@@ -9,10 +9,10 @@ body {
 
 .banner img {
   width: 100%;
-  height: auto;
+  height: 72;
 }
 
-.cover {
+.book cover {
   width: 150px;
   height: auto;
   border: 2px solid #b30000;

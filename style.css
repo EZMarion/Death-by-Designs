@@ -21,15 +21,6 @@ body {
   float: left;            
 }
 
-.container {
-  max-width: 800px;
-  margin: 20px auto;
-  padding: 20px;
-  background-color: #1a1a1a;
-  border-radius: 8px;
-  box-shadow: 0 0 10px #000;
-}
-
 h1 {
   color: #b30000;
 }

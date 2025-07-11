@@ -2,30 +2,94 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Death by Designs</title>
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    body {
+      margin: 0;
+      font-family: serif;
+      background-color: #0b0c1e;
+      color: #fff;
+    }
+
+    .banner img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    .container {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 40px 20px;
+      display: flex;
+      flex-direction: row;
+      flex-wrap: wrap;
+      align-items: flex-start;
+      gap: 30px;
+    }
+
+    .cover {
+      width: 120px;
+      height: auto;
+      border: 2px solid #b30000;
+      border-radius: 6px;
+      box-shadow: 0 0 6px #000;
+      flex-shrink: 0;
+    }
+
+    .book-info {
+      flex: 1;
+      min-width: 260px;
+    }
+
+    h1 {
+      font-size: 2.5em;
+      color: #d22;
+      margin-top: 0;
+    }
+
+    .btn {
+      display: inline-block;
+      margin: 10px 0;
+      padding: 10px 20px;
+      background-color: #b30000;
+      color: #fff;
+      text-decoration: none;
+      border-radius: 4px;
+      font-weight: bold;
+    }
+
+    @media (max-width: 768px) {
+      .container {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+      }
+      .cover {
+        margin-bottom: 20px;
+      }
+    }
+  </style>
 </head>
 <body>
   <div class="banner">
-    <img src="banner.jpg" alt="1900s City">
+    <img src="banner.jpg" alt="Banner" />
   </div>
-  
-  <div style="height: 30px;"></div>
-  
+
   <div class="container">
-  <div class="book-layout">
-    <img src="Book Cover.jpg" alt="Book Cover" class="Book Cover">
-    <div class="book-text">
+    <img src="cover.jpg" alt="Book Cover" class="cover" />
+    <div class="book-info">
       <h1>Death by Designs</h1>
       <p>by E. Z. Marion</p>
       <a href="chapters.html" class="btn">Start Reading</a>
-      <p class="genre">Action, Detective, Mystery & Thriller, Religion</p>
-       </div>
-  </div>
-    <p>This is my very first piece of writing and my own original novel, not a translation. This novel is set in 1900s and is especially suitable for those who enjoy detective stories, action and mystery.</p>
-    <h2>About Author</h2>
-    <p>Hello, I'm a writer from Myanmar who has always been fascinated by the world of crime and mystery. Ever since I was young, I loved watching detective movies—the suspense, the secrets, and the thrill of uncovering the truth. As I grew older, my passion expanded to include mystery, thriller, and dark fantasy. I began creating my own characters and imagining twisted plots filled with hidden motives and chilling truths. "Death by Designs" is my very first novel—an original story born from my imaginati...
+      <p><em>Action, Detective, Mystery & Thriller, Religion</em></p>
+      <p>
+        This is my very first piece of writing and my own original novel, not a translation. This novel is set in 1900s and is especially suitable for those who enjoy detective stories, action and mystery.
+      </p>
+    </div>
   </div>
 </body>
 </html>

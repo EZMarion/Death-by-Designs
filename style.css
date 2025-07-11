@@ -15,7 +15,7 @@ body {
 }
 
 .book Cover {
-  width: 80px;
+  width: 70%;
   height: auto;
   margin: 0 20px 15px 0; 
   float: left;            

@@ -8,8 +8,10 @@ body {
 }
 
 .banner img {
-  width: 100%;
-  height: 72;
+ width: 100%;
+  height: 300px;
+  object-fit: cover;
+  display: block;
 }
 
 .book cover {

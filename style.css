@@ -17,8 +17,10 @@ body {
 .book Cover {
   width: 100px;
   height: auto;
+  border: 2px solid #b30000;
+  border-radius: 6px;
   margin: 20px 16px 20px 0; 
-  float: left;            
+  box-shadow: 0 0 6px #000;          
 }
 
 h1 {

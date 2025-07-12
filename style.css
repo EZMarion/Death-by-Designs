@@ -33,6 +33,7 @@ body {
 .book-text {
   flex: 1;
   min-width: 200px;
+   color: #f0f0f0;
 }
 
 .container {
@@ -44,12 +45,12 @@ body {
 
 h1 {
   font-size: 2.5em;
-  color: #1a1f3c; 
+  color: #3a4265; 
   margin-top: 0;
 }
 
 .book-text p:first-of-type {
-  color: #1a1f3c;
+  color: #3a4265;
   font-weight: bold;
 }
 

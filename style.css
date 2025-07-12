@@ -44,12 +44,12 @@ body {
 
 h1 {
   font-size: 2.5em;
-  color: #d4af37; /* gold */
+  color: #1a1f3c; 
   margin-top: 0;
 }
 
 .book-text p:first-of-type {
-  color: #d4af37; /* makes "by E. Z. Marion" gold */
+  color: #1a1f3c;
   font-weight: bold;
 }
 

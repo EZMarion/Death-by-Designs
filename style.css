@@ -98,4 +98,21 @@ ul.chapters li a {
   color: #aaa;
   margin-top: 20px;
 }
+.book-row {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  margin-top: 40px;
+}
 
+.title-author h1 {
+  font-size: 2em;
+  color: #3b4c73; 
+  margin: 0;
+}
+
+.title-author p {
+  color: #ccc;
+  margin: 5px 0 0;
+  font-weight: bold;
+}

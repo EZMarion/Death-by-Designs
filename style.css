@@ -19,8 +19,7 @@ body {
   align-items: flex-start;
   gap: 30px; 
   flex-wrap: wrap;
-  margin-top: 40px;
-}
+  }
 
 .book Cover {
   width: 100px;

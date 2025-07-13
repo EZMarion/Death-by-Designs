@@ -45,12 +45,12 @@ body {
 
 h1 {
   font-size: 2.5em;
-  color: #3b4c73; 
+  color: #2A34393; 
   margin-top: 0;
 }
 
 .book-text p:first-of-type {
-  color: #3b4c73;
+  color: #2A3439;
   font-weight: bold;
 }
 

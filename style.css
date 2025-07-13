@@ -108,3 +108,9 @@ ul.chapters li a {
   color: #aaa;
   margin-top: 20px;
 }
+
+.big-text {
+  font-size: 18px;
+  line-height: 1.8;
+  color: #e0e7ff; 
+}

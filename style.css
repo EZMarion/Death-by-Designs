@@ -114,3 +114,9 @@ ul.chapters li a {
   line-height: 1.2;
   color: #e0e7ff; 
 }
+
+.section-title {
+  color: #3b4c73; 
+  font-size: 22px;
+  margin-top: 30px;
+}

@@ -120,3 +120,22 @@ ul.chapters li a {
   font-size: 28px;
   margin-top: 30px;
 }
+
+.chapter-list a {
+  font-size: 20px;
+  color: #f8fafc; 
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.chapter-list a:hover {
+  color: #d4af37;
+}
+
+.reader-note {
+  margin-top: 30px;
+  font-size: 16px;
+  line-height: 1.6;
+  color: #e0e0e0;
+  font-style: italic;
+}

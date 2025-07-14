@@ -142,7 +142,7 @@ ul.chapters li a {
 .user-buttons {
   position: absolute;
   top: 40px;
-  left: 300px;
+  left: 250px;
   display: flex;
   flex-direction: column;
   align-items: flex-start;

@@ -208,3 +208,17 @@ ul.chapters li a {
   font-size: 24px;
   cursor: pointer;
 }
+
+.login-btn, .signup-btn, .notify-btn {
+  background-color: #1f3d7a;
+  color: #f0f0f0; 
+  padding: 8px 14px;
+  text-decoration: none;
+  border-radius: 8px;
+  font-weight: bold;
+  transition: background-color 0.3s;
+}
+
+.login-btn, .signup-btn, .notify-btn:hover {
+  background-color: #294d99; 
+}

@@ -6,11 +6,38 @@
   <title>Death by Designs</title>
   <link rel="stylesheet" href="style.css">
 </head>
+  <script>
+  function openModal(id) {
+    document.getElementById(id).style.display = 'block';
+  }
+  function closeModal(id) {
+    document.getElementById(id).style.display = 'none';
+  }
+</script>
 <body>
  <div class="user-buttons">
   <a href="#" class="user-btn">Log In</a>
   <a href="#" class="user-btn">Sign Up</a>
   <a href="#" class="user-btn">Notify Me</a>
+</div>
+  <div id="loginModal" class="modal">
+  <div class="modal-content">
+    <span class="close" onclick="closeModal('loginModal')">&times;</span>
+    <h2>Log In</h2>
+    <input type="text" placeholder="Username or Email">
+    <input type="password" placeholder="Password">
+    <button>Login</button>
+  </div>
+</div>
+  <div id="signupModal" class="modal">
+  <div class="modal-content">
+    <span class="close" onclick="closeModal('signupModal')">&times;</span>
+    <h2>Sign Up</h2>
+    <input type="text" placeholder="Name">
+    <input type="email" placeholder="Email">
+    <input type="password" placeholder="Password">
+    <button>Sign Up</button>
+  </div>
 </div>
   <div class="banner">
     <img src="banner.jpg" alt="1900s City">

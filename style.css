@@ -156,7 +156,7 @@ ul.chapters li a {
 
 .auth-link {
   text-decoration: none;
-  color: #B0C4DE; /* soft blue */
+  color: #B0C4DE; 
   font-weight: bold;
   border: 1px solid #B0C4DE;
   padding: 6px 14px;
@@ -170,7 +170,7 @@ ul.chapters li a {
 }
 
 .notify {
-  border-color: #FFD700; /* Gold for highlight */
+  border-color: #FFD700; 
   color: #FFD700;
 }
 

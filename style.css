@@ -177,7 +177,7 @@ ul.chapters li a {
 }
 
 .modal-content {
-  background-color: #101427;
+  background-color: #1f3d7a;
   padding: 30px;
   border-radius: 10px;
   width: 300px;
@@ -194,8 +194,8 @@ ul.chapters li a {
 }
 
 .modal-content button {
-  background-color: #c026d3;
-  color: white;
+  background-color: #1f3d7a;
+  color: #f0f0f;
   border: none;
   padding: 10px;
   border-radius: 5px;

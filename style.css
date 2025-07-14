@@ -209,7 +209,7 @@ ul.chapters li a {
   cursor: pointer;
 }
 
-.login-btn, .signup-btn, .notify-btn {
+.openModal, .notifyUser {
   background-color: #1f3d7a;
   color: #f0f0f0; 
   padding: 8px 14px;
@@ -219,6 +219,6 @@ ul.chapters li a {
   transition: background-color 0.3s;
 }
 
-.login-btn, .signup-btn, .notify-btn:hover {
+.openModal, .notifyUser:hover {
   background-color: #294d99; 
 }

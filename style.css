@@ -139,3 +139,42 @@ ul.chapters li a {
   color: #FFD700;
   font-style: italic;
 }
+.top-bar {
+  display: flex;
+  justify-content: flex-end;
+  padding: 15px 40px;
+  background-color: transparent;
+  position: absolute;
+  width: 100%;
+  z-index: 10;
+}
+
+.auth-buttons {
+  display: flex;
+  gap: 15px;
+}
+
+.auth-link {
+  text-decoration: none;
+  color: #B0C4DE; /* soft blue */
+  font-weight: bold;
+  border: 1px solid #B0C4DE;
+  padding: 6px 14px;
+  border-radius: 6px;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.auth-link:hover {
+  background-color: #B0C4DE;
+  color: #1a1a2e;
+}
+
+.notify {
+  border-color: #FFD700; /* Gold for highlight */
+  color: #FFD700;
+}
+
+.notify:hover {
+  background-color: #FFD700;
+  color: #1a1a2e;
+}

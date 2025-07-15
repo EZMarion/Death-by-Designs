@@ -14,20 +14,7 @@
     document.getElementById(id).style.display = 'none';
   }
 </script>
-  <script>
-  function notifyUser() {
-    Notification.requestPermission().then(permission => {
-      if (permission === "granted") {
-        new Notification("Thanks for subscribing!", {
-          body: "We'll notify you when new chapters arrive!",
-        });
-      } else {
-        alert("Please allow notifications in your browser.");
-      }
-    });
-  }
-</script>
-<body>
+ <body>
  <div class="user-buttons">
  <button onclick="openModal('loginModal')" class="user-btn">Log In</button>
 <button onclick="openModal('signupModal')" class="user-btn">Sign Up</button>

@@ -14,6 +14,22 @@
     document.getElementById(id).style.display = 'none';
   }
 </script>
+  <div id="cookie-popup" style="position: fixed; bottom: 20px; left: 20px; right: 20px; background: #1f3d7a; color: #f0f0f0; padding: 15px; border-radius: 8px; font-family: Georgia, serif; display: none; z-index: 9999;">
+  This website uses cookies to improve your experience. By continuing, you agree to our <a href="privacy.html" style="color: #FFD700;">Privacy Policy</a>.
+  <button id="accept-cookie" style="margin-left: 15px; padding: 8px 14px; background: #FFD700; color: #1f3d7a; border: none; border-radius: 5px; font-weight: bold; cursor: pointer;">Accept</button>
+</div>
+  <script>
+  window.onload = function() {
+    if (!localStorage.getItem("cookiesAccepted")) {
+      document.getElementById("cookie-popup").style.display = "block";
+    }
+
+    document.getElementById("accept-cookie").onclick = function() {
+      localStorage.setItem("cookiesAccepted", true);
+      document.getElementById("cookie-popup").style.display = "none";
+    }
+  }
+</script>
  <body>
  <div class="user-buttons">
  <button onclick="openModal('loginModal')" class="user-btn">Log In</button>

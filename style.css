@@ -209,4 +209,11 @@ ul.chapters li a {
   cursor: pointer;
 }
 
+.social-links a {
+  font-size: 20px;
+  font-weight: bold;
+}
 
+.social-links a:hover {
+  color: #FFD700;
+}

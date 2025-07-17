@@ -219,14 +219,14 @@ ul.chapters li a {
 }
 
 a {
-  color: #f0f0f0; /* light text color */
+  color: #f0f0f0; 
   text-decoration: none;
 }
 
 a:hover {
-  color: #FFD700; /* gold on hover */
+  color: #FFD700; 
 }
 
 a:visited {
-  color: #f0f0f0; /* same as normal link color */
+  color: #f0f0f0; 
 }

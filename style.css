@@ -217,3 +217,16 @@ ul.chapters li a {
 .social-links a:hover {
   color: #FFD700;
 }
+
+a {
+  color: #f0f0f0; /* light text color */
+  text-decoration: none;
+}
+
+a:hover {
+  color: #FFD700; /* gold on hover */
+}
+
+a:visited {
+  color: #f0f0f0; /* same as normal link color */
+}

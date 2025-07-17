@@ -221,6 +221,7 @@ ul.chapters li a {
 a {
   color: #f0f0f0; 
   text-decoration: none;
+  margin: 5px 0;
 }
 
 a:hover {

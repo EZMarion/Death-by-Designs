@@ -255,12 +255,12 @@ body.light-mode h3 {
 
 @media (max-width: 768px) {
   body {
-    font-size: 19px;
+    font-size: 17px;
     line-height: 1.7;
   }
 
   .big-text {
-    font-size: 22px;
+    font-size: 20px;
   }
 
   img {
@@ -273,20 +273,20 @@ body.light-mode h3 {
   }
 
   .btn {
-    font-size: 19px;
+    font-size: 17px;
     padding: 12px 20px;
   }
 
   .genre-tags span {
-    font-size: 19px;
+    font-size: 17px;
     padding: 5px 10px;
   }
 
   .social-links a {
-    font-size: 19px;
+    font-size: 17px;
   }
 
   .book-text h1, .book-text p {
-    font-size: 19px;
+    font-size: 17px;
   }
 }

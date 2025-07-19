@@ -306,23 +306,10 @@ h1 {
   font-size: 0.8rem;
 }
 
-.synopsis {
+.big-text {
   margin-top: 1rem;
   line-height: 1.6;
   font-size: 0.95rem;
-}
-
-.chapter-button {
-  display: block;
-  width: 100%;
-  padding: 0.75rem;
-  background-color: #2f66f8;
-  color: white;
-  text-align: center;
-  border-radius: 999px;
-  font-weight: bold;
-  margin: 1rem 0;
-  text-decoration: none;
 }
 
 

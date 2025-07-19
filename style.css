@@ -255,35 +255,66 @@ body.light-mode h3 {
 
 @media (max-width: 768px) {
   body {
-    font-size: 14px; /* smaller than 16px */
+    font-size: 14px; 
     line-height: 1.5;
-    padding: 10px;
+  font-family: 'Georgia', serif;
+  margin: 0;
+  padding: 0;
   }
 
   .book-layout {
-    flex-direction: column;
-    align-items: center;
-    gap: 15px;
+      gap: 15px;
+    display: flex;
+  align-items: flex-start; 
+  flex-wrap: wrap;
   }
 
-  .book Cover, .banner img {
+ .banner img {
     width: 90%;
-    height: auto;
-  }
+  height: 210px;
+  object-fit: cover;
+  display: block;
+}
 
-  .big-text, .section-title, .chapter-list a {
+  .book Cover {
+  width: 50px;
+  height: auto;
+  border: 2px solid #b30000;
+  border-radius: 6px;
+  box-shadow: 0 0 6px #000;
+  flex-shrink: 0;      
+}
+
+    .big-text, .section-title, .chapter-list a {
     font-size: 16px; /* not too big */
   }
 
   .btn {
-    font-size: 0.9em;
-    padding: 10px 16px;
-  }
+  display: inline-block;
+  margin: 10px 0;
+  padding: 14px 30px; 
+  background-color: #b30000;
+  color: #fff;
+  text-decoration: none;
+  border-radius: 6px;
+  font-weight: bold;
+  font-size: 1.1em;  
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4); 
+  transition: transform 0.2s ease;
 
+  }
+  
+.btn:hover {
+  transform: scale(1.05); 
+}
+  
   .user-buttons {
-    left: 10px;
-    top: 10px;
-    flex-direction: row;
-    gap: 8px;
+          gap: 8px;
+     padding: 8px 14px;
+  text-decoration: none;
+  border-radius: 8px;
+  font-weight: bold;
+  transition: background-color 0.3s;
+}
   }
 }

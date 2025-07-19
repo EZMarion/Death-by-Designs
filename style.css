@@ -255,36 +255,35 @@ body.light-mode h3 {
 
 @media (max-width: 768px) {
   body {
-    font-size: 16px;
-    line-height: 1.6;
+    font-size: 14px; /* smaller than 16px */
+    line-height: 1.5;
     padding: 10px;
   }
 
   .book-layout {
     flex-direction: column;
     align-items: center;
-    gap: 20px;
+    gap: 15px;
   }
 
   .book Cover, .banner img {
-    width: 100%;
+    width: 90%;
     height: auto;
   }
 
   .big-text, .section-title, .chapter-list a {
-    font-size: 18px;
+    font-size: 16px; /* not too big */
   }
 
   .btn {
-    font-size: 1em;
-    padding: 12px 20px;
+    font-size: 0.9em;
+    padding: 10px 16px;
   }
 
   .user-buttons {
-    left: 20px;
-    top: 20px;
+    left: 10px;
+    top: 10px;
     flex-direction: row;
-    gap: 10px;
+    gap: 8px;
   }
 }
-

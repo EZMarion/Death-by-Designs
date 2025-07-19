@@ -271,11 +271,16 @@ body.light-mode h3 {
     object-fit: cover; 
   }
 
- 
-  .book-layout img {
-    width: 30%; 
-    margin: 0 auto;
-    display: block;
+.book-layout {
+  display: flex;
+  align-items: flex-start;
+  gap: 30px; 
+  flex-wrap: wrap;
+  }
+  
+.book Cover {
+     width: 50%; 
+        display: block;
 
   .btn {
     font-size: 14px;

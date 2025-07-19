@@ -264,12 +264,12 @@ body.light-mode h3 {
   }
 
   img {
-    max-width: 30%;
-    height: 50;
+    max-width: 80%;
+    height: auto;
   }
 
   .book-layout img {
-    width: 30%;
+    width: 80%;
   }
 
   .btn {

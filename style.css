@@ -14,21 +14,7 @@ body {
   display: block;
 }
 
-.book-layout {
-  display: flex;
-  align-items: flex-start;
-  gap: 30px; 
-  flex-wrap: wrap;
-  }
 
-.book Cover {
-  width: 50px;
-  height: auto;
-  border: 2px solid #b30000;
-  border-radius: 6px;
-  box-shadow: 0 0 6px #000;
-  flex-shrink: 0;      
-}
 
 .book-text {
   flex: 1;

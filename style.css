@@ -254,30 +254,31 @@ body.light-mode h3 {
 }
 
 @media (max-width: 768px) {
-  body {
-    font-size: 14px; 
-    line-height: 1.5;
+ body {
+  background-color: #0b0c1e;
+  color: #fff;
   font-family: 'Georgia', serif;
   margin: 0;
   padding: 0;
-  }
+}
 
-  .book-layout {
-      gap: 15px;
-    display: flex;
-  align-items: flex-start; 
+
+.book-layout {
+  display: flex;
+  align-items: flex-start;
+  gap: 30px; 
   flex-wrap: wrap;
   }
-
- .banner img {
-    width: 90%;
+  
+.banner img {
+   width: 100%;
   height: 210px;
   object-fit: cover;
   display: block;
 }
 
   .book Cover {
-  width: 50px;
+  width: 100px;
   height: auto;
   border: 2px solid #b30000;
   border-radius: 6px;
@@ -289,7 +290,7 @@ body.light-mode h3 {
     font-size: 16px; /* not too big */
   }
 
-  .btn {
+ .btn {
   display: inline-block;
   margin: 10px 0;
   padding: 14px 30px; 
@@ -301,20 +302,22 @@ body.light-mode h3 {
   font-size: 1.1em;  
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4); 
   transition: transform 0.2s ease;
-
-  }
+}
   
 .btn:hover {
   transform: scale(1.05); 
 }
   
-  .user-buttons {
-          gap: 8px;
-     padding: 8px 14px;
+ .user-btn {
+  background-color: #1f3d7a;
+  color: #f0f0f0; 
+  padding: 8px 14px;
   text-decoration: none;
   border-radius: 8px;
   font-weight: bold;
   transition: background-color 0.3s;
 }
-  }
+
+.user-btn:hover {
+  background-color: #294d99; 
 }

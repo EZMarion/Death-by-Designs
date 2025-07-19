@@ -254,13 +254,10 @@ body.light-mode h3 {
 }
 
 @media (max-width: 768px) {
-  body {
-    font-size: 14px;
-    line-height: 1.7;
-  }
+ 
 
   .big-text {
-    font-size: 18px;
+    font-size: 15px;
   }
 
   img {
@@ -276,7 +273,7 @@ body.light-mode h3 {
 
  
   .book-layout img {
-    width: 60%; 
+    width: 30%; 
     margin: 0 auto;
     display: block;
 
@@ -291,10 +288,10 @@ body.light-mode h3 {
   }
 
   .social-links a {
-    font-size: 14px;
+    font-size: 12px;
   }
 
   .book-text h1, .book-text p {
-    font-size: 25px;
+    font-size: 23px;
   }
 }

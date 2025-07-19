@@ -251,7 +251,91 @@ body.light-mode h2,
 body.light-mode h3 {
     color: #111111;
 }
+@media (min-width: 768px) {
+.body {
+  font-family: 'Helvetica', 'Arial', sans-serif;
+  margin: 0;
+  padding: 0;
+}
 
+.container {
+  padding: 1rem;
+  max-width: 100%;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem 0;
+}
+
+.book-cover {
+  width: 100px;
+  height: 140px;
+  border-radius: 6px;
+  object-fit: cover;
+}
+
+.book-info {
+  margin-left: 1rem;
+  flex: 1;
+}
+
+.title {
+  font-size: 1.2rem;
+  font-weight: bold;
+}
+
+.author {
+  font-size: 0.9rem;
+  color: #888;
+}
+
+.tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-top: 0.5rem;
+}
+
+.tag {
+ 
+  padding: 4px 8px;
+  border-radius: 999px;
+  font-size: 0.8rem;
+}
+
+.synopsis {
+  margin-top: 1rem;
+  line-height: 1.6;
+  font-size: 0.95rem;
+}
+
+.chapter-button {
+  display: block;
+  width: 100%;
+  padding: 0.75rem;
+  background-color: #2f66f8;
+  color: white;
+  text-align: center;
+  border-radius: 999px;
+  font-weight: bold;
+  margin: 1rem 0;
+  text-decoration: none;
+}
+
+
+@media (min-width: 768px) {
+  .container {
+    max-width: 600px;
+    margin: auto;
+  }
+
+  .header {
+    flex-direction: row;
+  }
+}
 
 
  

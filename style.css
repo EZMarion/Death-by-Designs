@@ -255,12 +255,12 @@ body.light-mode h3 {
 
 @media (max-width: 768px) {
   body {
-    font-size: 16px;
+    font-size: 14px;
     line-height: 1.7;
   }
 
   .big-text {
-    font-size: 20px;
+    font-size: 18px;
   }
 
   img {
@@ -268,17 +268,25 @@ body.light-mode h3 {
     height: auto;
   }
 
-  .book-layout img {
-    width: 50%;
+ .banner img {
+    width: 100%; 
+    max-height: 100px; 
+    object-fit: cover; 
   }
 
+ 
+  .book-layout img {
+    width: 60%; 
+    margin: 0 auto;
+    display: block;
+
   .btn {
-    font-size: 18px;
+    font-size: 14px;
     padding: 12px 20px;
   }
 
   .genre-tags span {
-    font-size: 17px;
+    font-size: 13px;
     padding: 5px 10px;
   }
 
@@ -287,6 +295,6 @@ body.light-mode h3 {
   }
 
   .book-text h1, .book-text p {
-    font-size: 22px;
+    font-size: 25px;
   }
 }

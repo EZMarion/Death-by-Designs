@@ -272,13 +272,13 @@ body.light-mode h3 {
   
 .banner img {
    width: 100%;
-  height: 210px;
+  height: 10px;
   object-fit: cover;
   display: block;
 }
 
   .book Cover {
-  width: 50px;
+  width: 20px;
   height: auto;
   border: 2px solid #b30000;
   border-radius: 6px;

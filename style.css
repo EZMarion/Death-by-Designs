@@ -285,16 +285,25 @@ body.light-mode .big-text {
   .big-text {
     font-size: 15px;
   }
+    
+ .book-layout {
+    flex-direction: row; /* Book cover left, text right stays */
+    align-items: flex-start;
+    gap: 15px;
+    margin: 0 15px;
+  }
 
-   .book Cover {
-  width: 100%;
-  max-width:100px;
-  height: auto;
-  border: 2px solid #b30000;
-  border-radius: 6px;
-  box-shadow: 0 0 6px #000;
-  flex-shrink: 0;      
-}
+    
+.book-cover {
+    width: 80px;
+    max-width: 80px;
+    margin-right: 15px;
+    margin-left: 0;
+    border: 2px solid #b30000;
+    border-radius: 6px;
+    box-shadow: 0 0 6px #000;
+    flex-shrink: 0;
+  }
     
   .book-text h1 {
     font-size: 20px;

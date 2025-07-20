@@ -280,11 +280,11 @@ body.light-mode .big-text {
 
       .note {
   font-size: 16px;
-  margin-top: 5px;
+  margin-top: 0px;
 }
 
 .reader-note {
-  margin-top: 5px;
+  margin-top: 0px;
   font-size: 16px;
   line-height: 1.6;
   font-style: italic;

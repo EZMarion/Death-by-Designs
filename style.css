@@ -248,6 +248,7 @@ body.light-mode .big-text {
 a:visited {
   color: #f0f0f0; 
 }
+  
 @media (max-width: 768px) {
   body, .container {
     margin: 0 15px;
@@ -287,6 +288,67 @@ a:visited {
   }
 }
 
+@media (max-width: 992px) {
+  .container {
+    padding: 30px 20px;
+  }
+  .big-text {
+    font-size: 18px;
+  }
+  .book-text h1 {
+    font-size: 24px;
+  }
+  .book-text p {
+    font-size: 18px;
+  }
+}
 
+
+@media (max-width: 768px) {
+  .container {
+    padding: 20px 15px;
+  }
+  .big-text {
+    font-size: 16px;
+  }
+  .book-layout {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .book-text h1 {
+    font-size: 22px;
+  }
+  .book-text p {
+    font-size: 16px;
+  }
+  .btn {
+    font-size: 16px;
+    padding: 10px 20px;
+  }
+  .genre-tags span {
+    font-size: 13px;
+    padding: 5px 10px;
+  }
+}
+
+
+@media (max-width: 480px) {
+  .container {
+    padding: 15px 10px;
+  }
+  .big-text {
+    font-size: 15px;
+  }
+  .book-text h1 {
+    font-size: 20px;
+  }
+  .book-text p {
+    font-size: 15px;
+  }
+  .btn {
+    font-size: 14px;
+    padding: 8px 16px;
+  }
+}
 
   

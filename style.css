@@ -248,7 +248,44 @@ body.light-mode .big-text {
 a:visited {
   color: #f0f0f0; 
 }
+@media (max-width: 768px) {
+  body, .container {
+    margin: 0 15px;
+    padding: 15px;
+  }
 
+  .book-layout {
+    flex-direction: row;
+    align-items: flex-start;
+    gap: 15px;
+  }
+
+  .bookCover {
+    width: 100px;
+    height: auto;
+    flex-shrink: 0;
+  }
+
+  .book-text {
+    font-size: 17px;
+    line-height: 1.4;
+    flex: 1;
+  }
+
+  h1 {
+    font-size: 24px;
+  }
+
+  .btn {
+    font-size: 16px;
+    padding: 10px 20px;
+  }
+
+  .genre-tags span {
+    font-size: 13px;
+    padding: 6px 12px;
+  }
+}
 
 
 

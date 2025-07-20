@@ -253,3 +253,15 @@ body.light-mode h3 {
 }
 
 
+@media (max-width: 768px) {
+  body {
+    margin-left: 11px;
+    margin-right: 10px;
+  }
+
+  .container {
+    margin-left: 10px;
+    margin-right: 10px;
+  }
+
+ 

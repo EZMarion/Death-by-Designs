@@ -43,7 +43,7 @@ body {
   box-sizing: border-box;
 }
 
-h1 {
+.h1 {
   font-size: 2.5em;
   color: #1f3d7a; 
   margin-top: 0;
@@ -263,12 +263,12 @@ body.light-mode h3 {
     margin-left: 5px;
     margin-right: 5px;
   }
-  . h1 {
+  .h1 {
     font-size: 20px;
     margin-top: 15px;
   }
 
-  . p {
+  .book-text p:first-of-type {
     font-size: 18px;
   }
 

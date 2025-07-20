@@ -283,14 +283,14 @@ body.light-mode .big-text {
     font-size: 25px;
   }
   .book-text p {
-    font-size: 20px;
+    font-size: 25px;
   }
   .btn {
-    font-size: 16px;
+    font-size: 18px;
     padding: 10px 20px;
   }
   .genre-tags span {
-    font-size: 13px;
+    font-size: 16px;
     padding: 5px 10px;
   }
 }

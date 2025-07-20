@@ -250,3 +250,63 @@ a:visited {
   color: #f0f0f0; 
 }
   
+@media (max-width: 768px) {
+  .book-layout {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .container {
+    padding: 20px 15px;
+  }
+
+  .user-buttons {
+    position: static;
+    margin: 20px 0;
+    align-items: center;
+  }
+
+  .Book\ Cover {
+    max-width: 150px;
+    margin: 0 auto;
+  }
+
+  .book-text {
+    text-align: center;
+    padding: 10px;
+  }
+
+  .chapter-list a {
+    margin-left: 0;
+    display: block;
+    text-align: center;
+    margin-bottom: 10px;
+  }
+
+  .btn {
+    width: 100%;
+    text-align: center;
+  }
+
+  h1 {
+    font-size: 1.8em;
+  }
+
+  .reader-note,
+  .note,
+  .big-text {
+    font-size: 16px;
+    text-align: center;
+  }
+
+  .genre-tags {
+    justify-content: center;
+  }
+
+  .site-links {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    font-size: 18px;
+  }
+}

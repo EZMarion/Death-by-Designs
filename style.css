@@ -290,6 +290,14 @@ body.light-mode .big-text {
   font-style: italic;
 }
 
+     .chapter-list a {
+    margin-left: 0;
+    display: block;
+    font-size: 18px;
+    margin-top: 10px;
+  }
+
+    
   .book-text h1 {
     font-size: 25px;
   }
@@ -305,3 +313,5 @@ body.light-mode .big-text {
     padding: 5px 10px;
   }
 }
+
+  

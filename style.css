@@ -255,13 +255,13 @@ body.light-mode h3 {
 
 @media (max-width: 768px) {
   body {
-    margin-left: 11px;
-    margin-right: 10px;
+    margin-left: 5px;
+    margin-right: 5px;
   }
 
   .container {
-    margin-left: 10px;
-    margin-right: 10px;
+    margin-left: 5px;
+    margin-right: 5px;
   }
 
  

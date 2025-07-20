@@ -263,12 +263,12 @@ body.light-mode h3 {
     margin-left: 5px;
     margin-right: 5px;
   }
-  .book-text h1 {
+  . h1 {
     font-size: 20px;
     margin-top: 15px;
   }
 
-  .book-text p {
+  . p {
     font-size: 18px;
   }
 

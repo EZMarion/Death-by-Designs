@@ -250,15 +250,6 @@ a:visited {
 }
 
 
-@media (max-width: 768px) {
-
-.banner img {
-   width: 100%;
-  height: 80px;
-  object-fit: cover;
-  display: block;
-}
-
 
 
   

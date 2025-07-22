@@ -346,3 +346,13 @@ body.light-mode .big-text {
    font-size: 23px;
  } 
 }
+
+@media (max-width: 768px) {
+.site-links {
+   font-size: 21px;
+ } 
+}
+
+
+
+

@@ -254,10 +254,12 @@ body.light-mode .big-text {
 
 body.light-mode .social-links a {
     color: #111111;
+  font-weight: bold;
 }
 
 body.light-mode .footer-text {
     color: #111111;
+  font-weight: bold;
 }
  
 @media (max-width: 768px) {

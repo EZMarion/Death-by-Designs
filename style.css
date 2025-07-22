@@ -307,7 +307,7 @@ body.light-mode ..chapter-list a:hover {
    }
 @media (max-width: 768px) {
   .big-text {
-    font-size: 14px;
+    font-size: 15px;
 }
    }
 @media (max-width: 768px) {
@@ -391,7 +391,7 @@ body.light-mode ..chapter-list a:hover {
 }
 @media (max-width: 768px) {
 .about-page p {
-    font-size: 14px;
+    font-size: 15px;
 }
 
 .about-page h1 {

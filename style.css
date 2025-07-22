@@ -411,5 +411,16 @@ body.light-mode ..chapter-list a:hover {
     
   }
 }
+@media (max-width: 768px) {
+  .Privacy-page p {
+      font-size: 13px;
+      
+  }
+
+  .Privacy-page h1 {
+      font-size: 16px;
+    
+  }
+}
 
 

@@ -252,7 +252,13 @@ body.light-mode .big-text {
 
  }
 
+body.light-mode .social-links a {
+    color: #111111;
+}
 
+body.light-mode .footer-text {
+    color: #111111;
+}
  
 @media (max-width: 768px) {
   .container {

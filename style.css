@@ -265,14 +265,10 @@ body.light-mode .big-text {
    }
 @media (max-width: 768px) {
 .book cover {
-    width: 8%;
-    max-width: 8px;
+    width: 5%;
+    max-width: 5px;
     margin-right: 15px;
     margin-left: 0;
-    border: 2px solid #b30000;
-    border-radius: 6px;
-    box-shadow: 0 0 6px #000;
-    flex-shrink: 0;
   }
   }
 @media (max-width: 768px) {

@@ -257,11 +257,24 @@ body.light-mode .social-links  {
   font-weight: bold;
 }
 
-body.light-mode .footer style {
-    color: #111111;
-  font-weight: bold;
+.footer-text {
+  color: #f0f0f0;
 }
- 
+
+.footer-link {
+  color: #FFD700;
+}
+
+/* Light mode */
+body.light-mode .footer-text {
+  color: #111111;
+}
+
+body.light-mode .footer-link {
+  color: #1f3d7a;
+}
+
+
 @media (max-width: 768px) {
   .container {
     padding: 20px 15px;

@@ -292,6 +292,11 @@ body.light-mode ..chapter-list a:hover {
 }
 
 
+.nav-menu {
+  color: #f0f0f0;
+  font-weight: bold;
+  font-size: 20px
+}
 
 
 

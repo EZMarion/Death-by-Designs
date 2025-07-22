@@ -260,7 +260,7 @@ body.light-mode .big-text {
    }
 @media (max-width: 768px) {
   .big-text {
-    font-size: 16px;
+    font-size: 10px;
 }
    }
 @media (max-width: 768px) {
@@ -301,31 +301,31 @@ body.light-mode .big-text {
      .chapter-list a {
     margin-left: 0;
     display: block;
-    font-size: 15px;
+    font-size: 16px;
     margin-top: 10px;
   }
  }
 @media (max-width: 768px) {
   .book-text h1 {
-    font-size: 20px;
+    font-size: 23px;
   }
   }
 @media (max-width: 768px) {
  .book-text p:first-of-type {
-    font-size: 15px;
+    font-size: 18px;
   }
   }
 
 @media (max-width: 768px) {
   .btn {
-    font-size: 15px;
+    font-size: 20px;
     padding: 10px 20px;
   }
     }
 
 @media (max-width: 768px) {
   .genre-tags span {
-    font-size: 13px;
+    font-size: 14px;
     padding: 5px 10px;
   }
 }
@@ -333,7 +333,7 @@ body.light-mode .big-text {
 @media (max-width: 768px) {
 
 .social-links a {
-  font-size: 15px;
+  font-size: 13px;
   font-weight: bold;
 }
 

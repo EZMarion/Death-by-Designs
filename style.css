@@ -343,11 +343,7 @@ body.light-mode .big-text {
  } 
 }
 
-@media (max-width: 768px) {
-.site-links {
-   font-size: 21px;
- } 
-}
+
 
 
 

@@ -283,6 +283,9 @@ body.light-mode .social-link {
   color: #111111;
 }
 
+body.light-mode .chapter-list a {
+  color: #111111;
+}
 
 @media (max-width: 768px) {
   .container {

@@ -252,12 +252,12 @@ body.light-mode .big-text {
 
  }
 
-body.light-mode .social-links a {
+body.light-mode .social-links  {
     color: #111111;
   font-weight: bold;
 }
 
-body.light-mode .footer-text {
+body.light-mode .footer style {
     color: #111111;
   font-weight: bold;
 }

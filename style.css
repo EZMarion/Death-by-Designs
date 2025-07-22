@@ -393,12 +393,12 @@ body.light-mode ..chapter-list a:hover {
   .about-page p {
       font-size: 15px;
       line-height: 1.6;
-      padding: 0 15px;
+      
   }
 
   .about-page h1 {
       font-size: 18px;
-      text-align: center;
-      margin: 20px 0;
+    
+    
   }
 }

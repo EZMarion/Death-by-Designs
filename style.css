@@ -274,6 +274,15 @@ body.light-mode .footer-link {
   color: #1f3d7a;
 }
 
+.social-link {
+  color: #f0f0f0;
+  font-weight: bold;
+}
+
+body.light-mode .social-link {
+  color: #111111;
+}
+
 
 @media (max-width: 768px) {
   .container {

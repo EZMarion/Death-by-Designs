@@ -389,17 +389,13 @@ body.light-mode ..chapter-list a:hover {
    font-size: 23px;
  } 
 }
-
 @media (max-width: 768px) {
-.About {
-   font-size: 14px;
- } 
+.about-page p {
+    font-size: 14px;
 }
 
-@media (max-width: 768px) {
-.nav-menu {
-    font-size: 16px
+.about-page h1 {
+    font-size: 16px;
 }
 }
-
 

@@ -257,12 +257,16 @@ body.light-mode .big-text {
   .container {
     padding: 20px 15px;
   }
+   }
+@media (max-width: 768px) {
   .big-text {
-    font-size: 16px;
-
+    font-size: 6px;
+}
+   }
+@media (max-width: 768px) {
 .book cover {
-    width: 10px;
-    max-width: 10px;
+    width: 8%;
+    max-width: 8px;
     margin-right: 15px;
     margin-left: 0;
     border: 2px solid #b30000;
@@ -270,46 +274,59 @@ body.light-mode .big-text {
     box-shadow: 0 0 6px #000;
     flex-shrink: 0;
   }
-
+  }
+@media (max-width: 768px) {
  .book-layout {
     flex-direction: row; 
     align-items: flex-start;
     gap: 15px;
     margin: 0 15px;
   }
-
+}
+@media (max-width: 768px) {
       .note {
-  font-size: 16px;
+  font-size: 5px;
   margin-top: 0px;
 }
+}
 
+@media (max-width: 768px) {
 .reader-note {
   margin-top: 0px;
-  font-size: 16px;
+  font-size: 5px;
   line-height: 1.6;
   font-style: italic;
 }
-
+}
+@media (max-width: 768px) {
      .chapter-list a {
     margin-left: 0;
     display: block;
-    font-size: 18px;
+    font-size: 5px;
     margin-top: 10px;
   }
-
-    
+ }
+@media (max-width: 768px) {
   .book-text h1 {
-    font-size: 25px;
+    font-size: 10px;
   }
+  }
+@media (max-width: 768px) {
  .book-text p:first-of-type {
-    font-size: 25px;
+    font-size: 8px;
   }
+  }
+
+@media (max-width: 768px) {
   .btn {
-    font-size: 18px;
+    font-size: 10px;
     padding: 10px 20px;
   }
+    }
+
+@media (max-width: 768px) {
   .genre-tags span {
-    font-size: 16px;
+    font-size: 8px;
     padding: 5px 10px;
   }
 }

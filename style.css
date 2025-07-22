@@ -109,7 +109,7 @@ ul.chapters li a {
 }
 
 .big-text {
-  font-size: 20px;
+  font-size: 22px;
   line-height: 1.2;
   color: #e0e7ff; 
 }
@@ -251,26 +251,6 @@ body.light-mode .big-text {
     color: #111111;
 
  }
-
-body.light-mode a {
-    color: #1f3d7a; /* Dark blue or any dark color */
-}
-
-body.light-mode a:hover {
-    color: #b30000; /* Optional: red on hover */
-}
-
-body.light-mode .social-links a {
-    color: #1f3d7a;
-}
-
-body.light-mode .social-links a:hover {
-    color: #b30000;
-}
-
-body.light-mode .footer-text {
-    color: #1f3d7a;
-}
 
 
  

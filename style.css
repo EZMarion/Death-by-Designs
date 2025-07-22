@@ -392,13 +392,11 @@ body.light-mode ..chapter-list a:hover {
 @media (max-width: 768px) {
   .about-page p {
       font-size: 15px;
-      line-height: 1.2;
       
   }
 
   .about-page h1 {
-      font-size: 18px;
-    
+      font-size: 16px;
     
   }
 }

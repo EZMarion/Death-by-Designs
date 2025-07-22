@@ -5,7 +5,27 @@
    <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Death by Designs</title>
   <link rel="stylesheet" href="style.css">
-  
+  <style>
+  body.light-mode {
+    background-color: #ffffff;
+    color: #000000;
+  }
+</style>
+<script>
+  window.onload = function() {
+    if (localStorage.getItem("theme") === "light") {
+      document.body.classList.add("light-mode");
+    }
+  };
+  function toggleTheme() {
+    document.body.classList.toggle("light-mode");
+    if (document.body.classList.contains("light-mode")) {
+      localStorage.setItem("theme", "light");
+    } else {
+      localStorage.setItem("theme", "dark");
+    }
+  }
+</script>
 </head>
   <script>
   function notifyUser() {

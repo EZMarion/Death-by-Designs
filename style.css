@@ -374,14 +374,7 @@ body.light-mode ..chapter-list a:hover {
 }
 
 
-@media (max-width: 768px) {
-.reader-note {
-  margin-top: 0px;
-  margin-right: 2px;
-  font-size: 15px;
-  line-height: 1.5;
-}
-}
+
 @media (max-width: 768px) {
      .chapter-list a {
     margin-left: 25px;
@@ -516,4 +509,11 @@ body.light-mode ..chapter-list a:hover {
   font-size: 30px;
   }
 }
-
+@media (max-width: 768px) {
+.reader-note {
+  font-size: 15px;
+  line-height: 1.4;
+  margin-left:0;
+  font-style: normal;
+}
+}

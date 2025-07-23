@@ -506,15 +506,21 @@ body.light-mode ..chapter-list a:hover {
 @media (max-width: 768px) {
 .user-buttons {
   position: absolute;
-  top: 28px;
-  font-size: 50px;
-  }
+  top: 30px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 10px;
+  z-index: 999;
+  font-size: 60px;
+}
 }
 @media (max-width: 768px) {
 .reader-note {
-  font-size: 15px;
+  font-size: 17px;
   line-height: 1.4;
-  margin-left:0;
+  margin-left:0px;
+  margin-top: 8px
   font-style: normal;
 }
 }

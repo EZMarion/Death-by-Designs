@@ -395,7 +395,11 @@ body.light-mode ..chapter-list a:hover {
   }
  }
 
-
+ .book-text {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
   
 @media (max-width: 768px) {
   .book-text h1 {

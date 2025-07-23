@@ -492,6 +492,13 @@ body.light-mode ..chapter-list a:hover {
   }
 }
 
+@media (max-width: 768px) {
+.banner img {
+   width: 100%;
+  height: 150px;
+  object-fit: cover;
+}
+}
 
 @media (max-width: 768px) {
   .book-cover {
@@ -502,7 +509,7 @@ body.light-mode ..chapter-list a:hover {
     display: block;
     width: 180px;
     height: auto;
-    margin-left: 15;
+    margin-left: 3;
     border: none;
     box-shadow: none;
   }

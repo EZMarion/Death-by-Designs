@@ -372,23 +372,19 @@ body.light-mode ..chapter-list a:hover {
     margin: 0 15px;
   }
 }
-@media (max-width: 768px) {
-      .note {
-  font-size: 15px;
-  margin-top: 0px;
-}
-}
+
 
 @media (max-width: 768px) {
 .reader-note {
   margin-top: 0px;
+  margin-right: 2px;
   font-size: 15px;
-  line-height: 1.6;
+  line-height: 1.5;
 }
 }
 @media (max-width: 768px) {
      .chapter-list a {
-    margin-left: 0;
+    margin-left: 10px;
     display: block;
     font-size: 16px;
     margin-top: 10px;

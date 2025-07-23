@@ -384,7 +384,7 @@ body.light-mode ..chapter-list a:hover {
 }
 @media (max-width: 768px) {
      .chapter-list a {
-    margin-left: 10px;
+    margin-left: 30px;
     display: block;
     font-size: 16px;
     margin-top: 10px;
@@ -509,3 +509,11 @@ body.light-mode ..chapter-list a:hover {
     box-shadow: none;
   }
 }
+@media (max-width: 768px) {
+.user-buttons {
+  position: absolute;
+  top: 10px;
+  font-size: 20px;
+  }
+}
+

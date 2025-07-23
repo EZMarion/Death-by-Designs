@@ -29,11 +29,11 @@ body {
   flex-shrink: 0;      
 }
 
-.book Cover {
+.book-cover {
   display: block;
 }
 
-.small cover {
+.small-cover {
   display: none;
 }
 .book-text {
@@ -486,13 +486,13 @@ body.light-mode ..chapter-list a:hover {
 
 
 @media (max-width: 768px) {
-.Book cover {
+  .book-cover {
     display: none;
   }
 
-  .small cover {
+  .small-cover {
     display: block;
-    width: 100px; 
+    width: 100px;
     height: auto;
     border: 2px solid #b30000;
     border-radius: 6px;

@@ -505,8 +505,8 @@ body.light-mode ..chapter-list a:hover {
 @media (max-width: 768px) {
 .user-buttons {
   position: absolute;
-  top: 20px;
-  font-size: 30px;
+  top: 28px;
+  font-size: 50px;
   }
 }
 @media (max-width: 768px) {

@@ -528,9 +528,3 @@ body.light-mode ..chapter-list a:hover {
     padding: 0 !important;
 }
 }
-@media (max-width: 768px) {
-  .container h1 {
-    font-size: 23px; 
-    line-height: 1.2;
-  }
-}

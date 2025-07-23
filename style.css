@@ -527,5 +527,12 @@ body.light-mode ..chapter-list a:hover {
    margin: 0;
    padding: 0;
   text-align: left;
+ } 
+  .note {
+    font-size: 17px;
+  line-height: 1.4;
+  text-align: left;
+  margin-top: 10px;
+
 }
 }

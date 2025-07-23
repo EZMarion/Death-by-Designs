@@ -156,6 +156,7 @@ ul.chapters li a {
   align-items: flex-start;
   gap: 10px;
   z-index: 999;
+  font-size: 50px;
 }
 
 .user-btn {

@@ -362,7 +362,8 @@ body.light-mode ..chapter-list a:hover {
 @media (max-width: 768px) {
   .big-text {
     font-size: 17px;
-     line-height: 1.4
+     line-height: 1.4;
+     font-style: normal;
 }
    }
 
@@ -521,6 +522,6 @@ body.light-mode ..chapter-list a:hover {
   font-size: 17px;
   line-height: 1.4;
   font-style: normal;
-  margin-left: 0; 
+  margin-left: 2px; 
 }
 }

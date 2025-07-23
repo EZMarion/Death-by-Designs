@@ -494,7 +494,6 @@ body.light-mode ..chapter-list a:hover {
     display: block;
     width: 150px;
     height: auto;
-    border: 2px solid #b30000;
     border-radius: 6px;
     box-shadow: 0 0 6px #000;
   }

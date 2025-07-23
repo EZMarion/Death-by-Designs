@@ -141,6 +141,24 @@ ul.chapters li a {
   color: #d4af37;
 }
 
+.free-label {
+  font-size: 13px;
+  color: #ffffff;
+  background-color: #28a745; /* green badge */
+  padding: 2px 6px;
+  border-radius: 4px;
+  margin-left: 10px;
+  white-space: nowrap;
+}
+
+.chapter-list p {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 6px 10px;
+  border-bottom: 1px solid #444;
+}
+
 .reader-note {
   margin-top: 30px;
   font-size: 20px;

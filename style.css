@@ -143,13 +143,7 @@ ul.chapters li a {
 
 
 
-.chapter-list p {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 6px 10px;
-  
-}
+
 
 .reader-note {
   margin-top: 30px;

@@ -141,15 +141,7 @@ ul.chapters li a {
   color: #d4af37;
 }
 
-.#free-label {
-  font-size: 13px;
-  color: #d4af37;
-  font-weight: bold;
-  padding: 2px 6px;
-  border-radius: 4px;
-  margin-left: 10px;
-  white-space: nowrap;
-}
+
 
 .chapter-list p {
   display: flex;

@@ -149,6 +149,13 @@ ul.chapters li a {
   white-space: nowrap;
 }
 
+.chapter-list p {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 6px 10px;
+}
+
 
 
 .reader-note {

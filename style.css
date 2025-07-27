@@ -541,10 +541,9 @@ body.light-mode ..chapter-list a:hover {
   font-size: 17px;
   line-height: 1.4;
   font-style: normal;
-   margin-left: 3px;
-    display: block;
-    font-size: 16px;
-    margin-top: 8px;
+   margin-left: 3px
+   padding: 0;
+  text-align: left; 
  } 
   .note {
     font-size: 17px;

@@ -371,8 +371,8 @@ body.light-mode ..chapter-list a:hover {
     
   }
 
-.site-link  {
-      font-size: 22px;
+.site-links  {
+      font-size: 21px;
   }
 
 @media (max-width: 768px) {
@@ -501,8 +501,8 @@ body.light-mode ..chapter-list a:hover {
   }
 }
 @media (max-width: 768px) {
-.site-link  {
-      font-size: 17px;
+.site-links  {
+      font-size: 15px;
   }
 }
 

@@ -29,39 +29,16 @@
   }
 </script>
 </head>
-  <script>
-  const chapterId = document.body.getAttribute('data-chapter-id');
 
-  function updateViewCount() {
-    // Get saved view data
-    let counts = JSON.parse(localStorage.getItem('chapterViews')) || {};
-
-    // Add +1 view for this chapter
-    if (counts[chapterId]) {
-      counts[chapterId]++;
-    } else {
-      counts[chapterId] = 1;
-    }
-
-    // Save back to localStorage
-    localStorage.setItem('chapterViews', JSON.stringify(counts));
-
-    // Show on screen
-    document.getElementById('view-count').textContent = counts[chapterId];
-  }
-
-  // Run it when the page loads
-  window.onload = updateViewCount;
-</script>
 <body>
-  <body data-chapter-id="chapter1">
+  
   <button onclick="toggleTheme()" style="position: absolute; top: 20px; right: 20px; padding: 10px 14px; border-radius: 8px; border: none; cursor: pointer; font-weight: bold;">
   🌙 / ☀️
 </button>
 
 <div class="container">
   <h1>Chapter 1: Introduction</h1>
-  <p>Views: <span id="view-count">0</span></p>
+
   <p class="big-text">
     The world was silent.<br>
 So silent, even the grass whispered. Each blade of grass swayed with the wind, its movement faint yet loud in the heavy quiet.

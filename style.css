@@ -156,7 +156,12 @@ ul.chapters li a {
   padding: 6px 10px;
 }
 
-
+.free-label {
+  font-size: 14px;
+  color: #aaaaaa; /* Faint gray */
+  font-style: italic;
+  margin-left: 10px;
+}
 
 .reader-note {
   margin-top: 30px;

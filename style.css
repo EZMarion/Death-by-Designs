@@ -330,7 +330,7 @@ body.light-mode ..chapter-list a:hover {
 }
 
 .about-page p {
-      font-size: 22px;
+      font-size: 20px;
       
   }
 
@@ -340,7 +340,7 @@ body.light-mode ..chapter-list a:hover {
   }
 
   .contact-page p {
-      font-size: 22px;
+      font-size: 20px;
       
   }
 
@@ -351,7 +351,7 @@ body.light-mode ..chapter-list a:hover {
 
 
   .Privacy-page p {
-      font-size: 22px;
+      font-size: 20px;
       
   }
 
@@ -362,7 +362,7 @@ body.light-mode ..chapter-list a:hover {
 
 
   .terms-page p {
-      font-size: 22px;
+      font-size: 20px;
       
   }
 
@@ -372,7 +372,7 @@ body.light-mode ..chapter-list a:hover {
   }
 
 .site-link  {
-      font-size: 23px;
+      font-size: 25px;
   }
 
 @media (max-width: 768px) {

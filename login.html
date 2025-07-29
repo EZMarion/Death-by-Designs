@@ -1,20 +1,48 @@
-<h2>Login</h2>
-<input type="email" id="login-email" placeholder="Email">
-<input type="password" id="login-password" placeholder="Password">
-<button onclick="login()">Login</button>
-  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
-<script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
-   <script src="auth.js"></script>
-<script>
-  function login() {
-    const email = document.getElementById("login-email").value;
-    const password = document.getElementById("login-password").value;
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Login</title>
+</head>
+<body>
+  <h2>Login</h2>
+  <input type="email" id="login-email" placeholder="Email">
+  <input type="password" id="login-password" placeholder="Password">
+  <button onclick="login()">Login</button>
 
-    auth.signInWithEmailAndPassword(email, password)
-      .then(user => {
-        alert("Login successful!");
-        window.location.href = "dashboard.html"; // or your homepage
-      })
-      .catch(error => alert(error.message));
-  }
-</script>
+
+  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
+
+
+  <script>
+    const firebaseConfig = {
+      apiKey: "AIzaSyDffoLenAKrKGMia63SDWTFt5E4AK3hxBE",
+      authDomain: "novel-site-81674.firebaseapp.com",
+      projectId: "novel-site-81674",
+      storageBucket: "novel-site-81674.firebasestorage.app",
+      messagingSenderId: "227276404115",
+      appId: "1:227276404115:web:0a5831851c8c05391b6466"
+    };
+
+    firebase.initializeApp(firebaseConfig);
+    const auth = firebase.auth();
+  </script>
+
+
+  <script>
+    function login() {
+      const email = document.getElementById("login-email").value;
+      const password = document.getElementById("login-password").value;
+
+      auth.signInWithEmailAndPassword(email, password)
+        .then(userCredential => {
+          alert("Login successful!");
+          window.location.href = "dashboard.html"; // change if needed
+        })
+        .catch(error => {
+          alert("Error: " + error.message);
+        });
+    }
+  </script>
+</body>
+</html>

@@ -39,7 +39,7 @@
           const name = email.split("@")[0]; // Use email name as profile name
           const joinDate = new Date().toISOString().split("T")[0];
 
-          database.ref("users/" + userId).set({
+     firebase.database().ref("users/" + userId).set({
             name: name,
             email: email,
             joined: joinDate,

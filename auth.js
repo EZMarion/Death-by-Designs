@@ -9,6 +9,15 @@ const firebaseConfig = {
 
 
 firebase.initializeApp(firebaseConfig);
-
+const database = firebase.database();
+function savePurchase(userId, chapterId) {
+  database.ref('purchases/' + userId + '/' + chapterId).set(true)
+    .then(() => {
+      alert("Chapter purchased successfully!");
+    })
+    .catch((error) => {
+      console.error("Error saving purchase:", error);
+    });
+}
 
 const auth = firebase.auth();

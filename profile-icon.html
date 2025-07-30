@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>User Profile</title>
+  <meta charset="UTF-8" />
+  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-database.js"></script>
+</head>
+<body>
+  <h2>User Profile</h2>
+  <div id="profile-info">
+    <p><strong>Name:</strong> <span id="user-name"></span></p>
+    <p><strong>Email:</strong> <span id="user-email"></span></p>
+    <p><strong>Join Date:</strong> <span id="join-date"></span></p>
+    <p><strong>Purchased Chapters:</strong></p>
+    <ul id="chapter-list"></ul>
+  </div>
+
+  <script>
+    const firebaseConfig = {
+      apiKey: "AIzaSyDffoLenAKrKGMia63SDWTFt5E4AK3hxBE",
+      authDomain: "novel-site-81674.firebaseapp.com",
+      projectId: "novel-site-81674",
+      storageBucket: "novel-site-81674.firebasestorage.app",
+      messagingSenderId: "227276404115",
+      appId: "1:227276404115:web:0a5831851c8c05391b6466"
+    };
+    firebase.initializeApp(firebaseConfig);
+    const auth = firebase.auth();
+    const database = firebase.database();
+
+    auth.onAuthStateChanged(user => {
+      if (user) {
+        const userId = user.uid;
+        document.getElementById('user-email').textContent = user.email;
+
+        database.ref('users/' + userId).once('value').then(snapshot => {
+          const data = snapshot.val();
+          document.getElementById('user-name').textContent = data.name;
+          document.getElementById('join-date').textContent = data.joinDate;
+
+          const chapters = Object.keys(data.purchases || {});
+          const chapterList = document.getElementById('chapter-list');
+          if (chapters.length === 0) {
+            chapterList.innerHTML = '<li>No chapters purchased yet.</li>';
+          } else {
+            chapters.forEach(ch => {
+              const li = document.createElement('li');
+              li.textContent = ch.replace("chapter-", "Chapter ");
+              chapterList.appendChild(li);
+            });
+          }
+        });
+      } else {
+        alert("Please log in to view your profile.");
+        window.location.href = "login.html";
+      }
+    });
+  </script>
+</body>
+</html>

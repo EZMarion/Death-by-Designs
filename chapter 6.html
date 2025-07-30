@@ -44,10 +44,7 @@
 <div class="container">
   <h1>Chapter 6: Weavy Revenage</h1>
   
-<div id="buy-message" style="display: none; padding: 20px; text-align: center;">
-  <p>You need to buy this chapter to read it.</p>
-  <button onclick="buyChapter()" style="padding: 10px 20px; font-size: 16px; cursor: pointer;">Buy Chapter 6</button>
-</div>
+
 
   <p class="big-text">
 The morning light poured weakly through the windows of John’s house, the rooms were quiet — too quiet. Noah stepped through the front door slowly, hesitating on the threshold. His boots made no sound on the worn wood. He carried something unspoken on his face — a stiffness in his jaw, a tension in his eyes. He felt it deep in his chest: guilt. It was unfamiliar and uncomfortable, sitting like a stone in his stomach.<br><br>
@@ -70,9 +67,6 @@ This time, he didn’t come to argue.<br><br>
   import { doc, getDoc } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
   import { markChapterAsPurchased } from './purchase.js';
 
-  function buyChapter() {
-    markChapterAsPurchased("chapter-6");
-  }
 
   auth.onAuthStateChanged(async (user) => {
     if (!user) {

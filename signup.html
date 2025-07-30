@@ -9,44 +9,10 @@
   <input type="password" id="signup-password" placeholder="Password">
   <button onclick="signup()">Sign Up</button>
 
-
   <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
   <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-database.js"></script>
 
-<script>
-  function signup() {
-    const email = document.getElementById("signup-email").value;
-    const password = document.getElementById("signup-password").value;
-
-    auth.createUserWithEmailAndPassword(email, password)
-      .then(userCredential => {
-        const user = userCredential.user;
-        const userId = user.uid;
-
-        // Default name from email
-        const name = email.split("@")[0];
-
-        // Join date
-        const joinDate = new Date().toISOString().split("T")[0];
-
-        // Save user info to Realtime Database
-        firebase.database().ref("users/" + userId).set({
-          name: name,
-          email: email,joined: new Date().toISOString()
-          purchases: {} 
-        });
-
-        alert("Signup successful!");
-        window.location.href = "login.html";
-      })
-      .catch(error => {
-        alert("Error: " + error.message);
-      });
-  }
-</script>
-
-
-  
   <script>
     const firebaseConfig = {
       apiKey: "AIzaSyDffoLenAKrKGMia63SDWTFt5E4AK3hxBE",
@@ -59,16 +25,27 @@
 
     firebase.initializeApp(firebaseConfig);
     const auth = firebase.auth();
-  </script>
+    const database = firebase.database();
 
-
-  <script>
     function signup() {
       const email = document.getElementById("signup-email").value;
       const password = document.getElementById("signup-password").value;
 
       auth.createUserWithEmailAndPassword(email, password)
         .then(userCredential => {
+          const user = userCredential.user;
+          const userId = user.uid;
+
+          const name = email.split("@")[0]; // Use email name as profile name
+          const joinDate = new Date().toISOString().split("T")[0];
+
+          database.ref("users/" + userId).set({
+            name: name,
+            email: email,
+            joined: joinDate,
+            purchases: {}
+          });
+
           alert("Signup successful!");
           window.location.href = "login.html";
         })

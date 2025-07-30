@@ -13,7 +13,41 @@
   <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
   <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
 
+<script>
+  function signup() {
+    const email = document.getElementById("signup-email").value;
+    const password = document.getElementById("signup-password").value;
 
+    auth.createUserWithEmailAndPassword(email, password)
+      .then(userCredential => {
+        const user = userCredential.user;
+        const userId = user.uid;
+
+        // Default name from email
+        const name = email.split("@")[0];
+
+        // Join date
+        const joinDate = new Date().toISOString().split("T")[0];
+
+        // Save user info to Realtime Database
+        firebase.database().ref("users/" + userId).set({
+          name: name,
+          email: email,
+          joinDate: joinDate,
+          purchases: {} // empty at first
+        });
+
+        alert("Signup successful!");
+        window.location.href = "login.html";
+      })
+      .catch(error => {
+        alert("Error: " + error.message);
+      });
+  }
+</script>
+
+
+  
   <script>
     const firebaseConfig = {
       apiKey: "AIzaSyDffoLenAKrKGMia63SDWTFt5E4AK3hxBE",

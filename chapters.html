@@ -56,6 +56,24 @@
     <button onclick="toggleTheme()" style="position: absolute; top: 20px; right: 20px; padding: 10px 14px; border-radius: 8px; border: none; cursor: pointer; font-weight: bold;">
   🌙 / ☀️
 </button>
+
+  <div id="profile-icon" style="
+  position: absolute;
+  top: 20px;
+  right: 70px;
+  background-color: #333;
+  color: #fff;
+  font-weight: bold;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  font-size: 20px;
+"></div>
+  
  <div class="user-buttons">
  <button onclick="openModal('loginModal')" class="user-btn">Log In</button>
 <button onclick="openModal('signupModal')" class="user-btn">Sign Up</button>
@@ -206,7 +224,28 @@
     </a>
   </p>
 </div>
-  
+
+
+  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-database.js"></script>
+<script>
+auth.onAuthStateChanged(user => {
+  if (user) {
+    const userId = user.uid;
+    firebase.database().ref('users/' + userId).once('value').then(snapshot => {
+      const userData = snapshot.val();
+      if (userData && userData.name) {
+        const firstLetter = userData.name.charAt(0).toUpperCase();
+        const icon = document.getElementById('profile-icon');
+        icon.textContent = firstLetter;
+        icon.style.display = 'flex';
+        icon.onclick = () => {
+          window.location.href = 'profile.html';
+        };
+      }
+    });
+  }
+});
+</script>
      
 </body>
 </html>

@@ -32,9 +32,8 @@
         // Save user info to Realtime Database
         firebase.database().ref("users/" + userId).set({
           name: name,
-          email: email,
-          joinDate: joinDate,
-          purchases: {} // empty at first
+          email: email,joined: new Date().toISOString()
+          purchases: {} 
         });
 
         alert("Signup successful!");

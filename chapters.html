@@ -233,6 +233,7 @@ auth.onAuthStateChanged(user => {
     const userId = user.uid;
     firebase.database().ref('users/' + userId).once('value').then(snapshot => {
       const userData = snapshot.val();
+      console.log("User data:", userData);
       if (userData && userData.name) {
         const firstLetter = userData.name.charAt(0).toUpperCase();
         const icon = document.getElementById('profile-icon');

@@ -107,13 +107,24 @@
    <script src="auth.js"></script>
 <script>
   function signup() {
+    const name = document.getElementById("signup-name").value;
     const email = document.getElementById("signup-email").value;
     const password = document.getElementById("signup-password").value;
 
     auth.createUserWithEmailAndPassword(email, password)
-      .then(() => {
+      .then((userCredential) => {
+        const user = userCredential.user;
+
+        // Save user's name to database
+        firebase.database().ref("users/" + user.uid).set({
+          name: name,
+          email: email,
+          joinedAt: new Date().toISOString()
+        });
+
         alert("Signup successful!");
         closeModal('signupModal');
+        location.reload(); // Refresh so icon shows
       })
       .catch(error => alert(error.message));
   }

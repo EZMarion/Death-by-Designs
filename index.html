@@ -143,6 +143,20 @@
   cursor: pointer;
 }
 </style>
+
+   <script>
+  function buyChapter(chapterId) {
+    firebase.auth().onAuthStateChanged(function(user) {
+      if (user) {
+        savePurchase(user.uid, chapterId);
+      } else {
+        alert("You must log in to buy.");
+      }
+    });
+  }
+</script>
+
+   
   <div class="banner">
     <img src="banner.jpg" alt="1900s City">
   </div>

@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8">
+  <title>Chapter 6 | Death by Designs</title>
+  <link rel="icon" href="favicon.jpg" type="image/jpg">
+  <link rel="stylesheet" href="style.css">
+  <style>
+  body.light-mode {
+    background-color: #ffffff;
+    color: #000000;
+  }
+</style>
+<script>
+  window.onload = function() {
+    if (localStorage.getItem("theme") === "light") {
+      document.body.classList.add("light-mode");
+    }
+  };
+  function toggleTheme() {                       
+    document.body.classList.toggle("light-mode");
+    if (document.body.classList.contains("light-mode")) {
+      localStorage.setItem("theme", "light");
+    } else {
+      localStorage.setItem("theme", "dark");
+    }
+  }
+</script>
+</head>
+<body>
+  <button onclick="toggleTheme()" style="position: absolute; top: 20px; right: 20px; padding: 10px 14px; border-radius: 8px; border: none; cursor: pointer; font-weight: bold;">
+  🌙 / ☀️
+</button>
+
+
+
+
+
+<div id="chapter-content" style="display: none;">
+
+
+
+<div class="container">
+  <h1>Chapter 6: Weavy Revenage</h1>
+  
+<div id="buy-message" style="display: none; padding: 20px; text-align: center;">
+  <p>You need to buy this chapter to read it.</p>
+  <button onclick="buyChapter()" style="padding: 10px 20px; font-size: 16px; cursor: pointer;">Buy Chapter 6</button>
+</div>
+
+  <p class="big-text">
+The morning light poured weakly through the windows of John’s house, the rooms were quiet — too quiet. Noah stepped through the front door slowly, hesitating on the threshold. His boots made no sound on the worn wood. He carried something unspoken on his face — a stiffness in his jaw, a tension in his eyes. He felt it deep in his chest: guilt. It was unfamiliar and uncomfortable, sitting like a stone in his stomach.<br><br>
+This time, he didn’t come to argue.<br><br>
+
+
+ <div style="text-align: center; margin-top: 40px;">
+  <p style="font-weight: bold;">{CHAPTER - 6 END}</p>
+
+
+ <div class="chapter-navigation" style="margin-top: 40px;">
+    <a href="chapters.html" class="btn">🏠 Back</a>
+  </div>
+</div>
+</div>
+</div>
+
+<script type="module">
+  import { auth, db } from './firebase-config.js';
+  import { doc, getDoc } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+  import { markChapterAsPurchased } from './purchase.js';
+
+  function buyChapter() {
+    markChapterAsPurchased("chapter-6");
+  }
+
+  auth.onAuthStateChanged(async (user) => {
+    if (!user) {
+      document.getElementById("buy-message").innerText = "Please login to read this chapter.";
+      document.getElementById("buy-message").style.display = "block";
+      return;
+    }
+
+    const userRef = doc(db, "users", user.uid);
+    const userSnap = await getDoc(userRef);
+    const purchases = userSnap.exists() ? userSnap.data().purchases || [] : [];
+
+    if (purchases.includes("chapter-6")) {
+      document.getElementById("chapter-content").style.display = "block";
+    } else {
+      document.getElementById("buy-message").style.display = "block";
+    }
+  });
+</script>
+</body>
+</html>

@@ -83,19 +83,6 @@
 <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
    <script src="auth.js"></script>
 <script>
-  const firebaseConfig = {
-    apiKey: "AIzaSyDffoLenAKrKGMia63SDWTFt5E4AK3hxBE",
-    authDomain: "novel-site-81674.firebaseapp.com",
-    projectId: "novel-site-81674",
-    storageBucket: "novel-site-81674.appspot.com",
-    messagingSenderId: "227276404115",
-    appId: "1:227276404115:web:0a5831851c8c05391b6466"
-  };
-
-  // Initialize Firebase
-  firebase.initializeApp(firebaseConfig);
-  const auth = firebase.auth();
-
   function signup() {
     const email = document.getElementById("signup-email").value;
     const password = document.getElementById("signup-password").value;

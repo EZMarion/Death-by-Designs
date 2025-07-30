@@ -375,6 +375,14 @@ body.light-mode ..chapter-list a:hover {
       font-size: 21px;
   }
 
+
+.paid-label {
+  color: #cc3333; /* soft red */
+  font-size: 14px;
+  margin-left: 8px;
+  font-weight: normal;
+}
+
 @media (max-width: 768px) {
    .container {
     padding: 20px 15px;

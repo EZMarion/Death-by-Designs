@@ -225,7 +225,9 @@
 auth.onAuthStateChanged(user => {
   if (user) {
     const userId = user.uid;
-    firebase.database().ref('users/' + userId).once('value').then(snapshot => {
+    const database = firebase.database();
+
+    database.ref('users/' + userId).once('value').then(snapshot => {
       const userData = snapshot.val();
 
       console.log("User data:", userData);
@@ -242,7 +244,6 @@ auth.onAuthStateChanged(user => {
   }
 });
 </script>
-
     
 </body>
 </html>

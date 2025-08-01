@@ -154,7 +154,8 @@
         document.getElementById("cookie-popup").style.display = "none";
       };
 
-      auth.onAuthStateChanged(user => {
+
+        
         if (user) {
           const email = user.email || "";
           const firstLetter = email.charAt(0).toUpperCase();
@@ -168,6 +169,18 @@
           container.appendChild(icon);
 
           document.querySelector('.user-buttons').style.display = 'none';
+
+    const userId = user.uid;
+    const userRef = firebase.database().ref('users/' + userId);
+
+    userRef.once('value').then((snapshot) => {
+      if (!snapshot.exists()) {
+        // Save user data if not already saved
+        userRef.set({
+          name: user.displayName || "Anonymous",
+          email: user.email,
+          joinDate: new Date().toISOString().split('T')[0]
+ 
         }
       });
     };

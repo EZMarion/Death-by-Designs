@@ -22,3 +22,23 @@ function savePurchase(userId, chapterId) {
 }
 
 const auth = firebase.auth();
+
+auth.onAuthStateChanged(user => {
+  if (user) {
+    const userId = user.uid;
+    const userRef = firebase.database().ref('users/' + userId);
+
+    userRef.once('value').then(snapshot => {
+      if (!snapshot.exists()) {
+        userRef.set({
+          name: user.displayName || "Anonymous",
+          email: user.email,
+          joinDate: new Date().toISOString().split('T')[0],
+          purchases: {},
+          reading: {}
+        });
+      }
+    });
+  }
+});
+

@@ -67,6 +67,8 @@
     <div class="profile-info">
       <p><strong>Name:</strong> <span id="user-name">Loading...</span></p>
       <p><strong>Email:</strong> <span id="user-email">Loading...</span></p>
+      <div id="user-stats" class="stats">
+  <div><strong>📚 Chapters Read:</strong> <span id="chapter-count">Loading...</span></div>
     </div>
   </div>
 
@@ -84,7 +86,7 @@
     const auth = firebase.auth();
     const database = firebase.database();
 
-    auth.onAuthStateChanged(user => {
+   auth.onAuthStateChanged(user => {
       if (user) {
         const userId = user.uid;
         document.getElementById("user-email").textContent = user.email;
@@ -103,3 +105,4 @@
   </script>
 </body>
 </html>
+

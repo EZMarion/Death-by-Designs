@@ -157,7 +157,7 @@
 
         // Reading count
         const readingCount = Object.keys(reading).length;
-        document.getElementById("reading-count").textContent = 📖 Reading Count: ${readingCount};
+        document.getElementById("reading-count").textContent = `📖 Reading Count: ${readingCount}`;
 
         // Purchased chapter list
         const chapterList = document.getElementById("chapter-list");
@@ -168,14 +168,14 @@
         } else {
           Object.keys(purchases).forEach(chapterId => {
             const chapterNumber = chapterId.replace(/[^\d]/g, '');
-            const title = Chapter - ${chapterNumber};
+            const title = `Chapter - ${chapterNumber}`;
             const link = document.createElement("p");
-            link.innerHTML = 
-              <a href="chapter ${chapterNumber}.html">
-                <span class="chapter-title">${title}</span>
-                <span class="arrow-label">>></span>
-              </a>
-            ;
+           link.innerHTML = `
+  <a href="chapter${chapterNumber}.html">
+    <span class="chapter-title">${title}</span>
+    <span class="arrow-label">>></span>
+  </a>
+`;
             chapterList.appendChild(link);
           });
         }

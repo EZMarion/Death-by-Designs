@@ -71,7 +71,14 @@
   <div><strong>📚 Chapters Read:</strong> <span id="chapter-count">Loading...</span></div>
     </div>
   </div>
+<div><strong>📚 Chapters Purchased:</strong> <span id="chapter-count">Loading...</span></div>
 
+    <div class="chapter-section">
+  <h3>📖 Purchased Chapters</h3>
+  <ul id="chapter-list">
+    <li>Loading...</li>
+  </ul>
+</div>
   <script>
     const firebaseConfig = {
       apiKey: "AIzaSyDffoLenAKrKGMia63SDWTFt5E4AK3hxBE",
@@ -86,22 +93,45 @@
     const auth = firebase.auth();
     const database = firebase.database();
 
-   auth.onAuthStateChanged(user => {
-      if (user) {
-        const userId = user.uid;
-        document.getElementById("user-email").textContent = user.email;
+  auth.onAuthStateChanged(user => {
+  if (user) {
+    const userId = user.uid;
+    document.getElementById("user-email").textContent = user.email;
 
-        database.ref("users/" + userId).once("value").then(snapshot => {
-          const data = snapshot.val();
-          const name = data?.name || "Unknown";
-          document.getElementById("user-name").textContent = name;
-          document.getElementById("profile-icon").textContent = name.charAt(0).toUpperCase();
-        });
-      } else {
-        alert("Please log in to view your profile.");
-        window.location.href = "login.html";
-      }
+    database.ref("users/" + userId).once("value").then(snapshot => {
+      const data = snapshot.val();
+      const name = data?.name || "Unknown";
+      document.getElementById("user-name").textContent = name;
+      document.getElementById("profile-icon").textContent = name.charAt(0).toUpperCase();
+
+      // ✅ Get purchased chapters and show count
+      const purchases = data?.purchases || {};
+      const chapterCount = Object.keys(purchases).length;
+      document.getElementById("chapter-count").textContent = chapterCount;
     });
+  } else {
+    alert("Please log in to view your profile.");
+    window.location.href = "login.html";
+  }
+const chapterList = document.getElementById("chapter-list");
+chapterList.innerHTML = ''; // Clear the "Loading..." message
+
+if (chapterCount === 0) {
+  chapterList.innerHTML = '<li>No chapters purchased yet.</li>';
+} else {
+  Object.keys(purchases).forEach(chapterId => {
+    const li = document.createElement("li");
+
+    // Format chapter title (optional)
+    let title = chapterId.replace(/[-_]/g, ' ');
+    title = title.charAt(0).toUpperCase() + title.slice(1);
+
+    li.textContent = title;
+    chapterList.appendChild(li);
+
+}
+ 
+});
   </script>
 </body>
 </html>

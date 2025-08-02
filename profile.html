@@ -38,55 +38,60 @@
     <ul id="chapter-list"><li>Loading...</li></ul>
   </div>
 
-  <script>
-    const firebaseConfig = {
-      apiKey: "AIzaSyDffoLenAKrKGMia63SDWTFt5E4AK3hxBE",
-      authDomain: "novel-site-81674.firebaseapp.com",
-      projectId: "novel-site-81674",
-      databaseURL: "https://novel-site-81674-default-rtdb.firebaseio.com",
-      storageBucket: "novel-site-81674.firebasestorage.app",
-      messagingSenderId: "227276404115",
-      appId: "1:227276404115:web:0a5831851c8c05391b6466"
-    };
+ <script>
+  const firebaseConfig = {
+    apiKey: "AIzaSyDffoLenAKrKGMia63SDWTFt5E4AK3hxBE",
+    authDomain: "novel-site-81674.firebaseapp.com",
+    projectId: "novel-site-81674",
+    databaseURL: "https://novel-site-81674-default-rtdb.firebaseio.com",
+    storageBucket: "novel-site-81674.firebasestorage.app",
+    messagingSenderId: "227276404115",
+    appId: "1:227276404115:web:0a5831851c8c05391b6466"
+  };
 
-    firebase.initializeApp(firebaseConfig);
-    const auth = firebase.auth();
-    const database = firebase.database();
+  firebase.initializeApp(firebaseConfig);
+  const auth = firebase.auth();
+  const database = firebase.database();
 
-    auth.onAuthStateChanged(user => {
-      if (user) {
-        const userId = user.uid;
-        document.getElementById('user-email').textContent = user.email;
+  auth.onAuthStateChanged(user => {
+    if (user) {
+      const userId = user.uid;
+      document.getElementById('user-email').textContent = user.email;
 
-        database.ref('users/' + userId).once('value').then(snapshot => {
-          const data = snapshot.val();
-          if (!data) {
-            document.getElementById('user-name').textContent = "No data found";
-            return;
-          }
+      database.ref('users/' + userId).once('value').then(snapshot => {
+        const data = snapshot.val();
 
-          document.getElementById('user-name').textContent = data.name || "Unknown";
-         document.getElementById('join-date').textContent = new Date(data.joined).toDateString() || "Unknown";
-          const purchases = data.purchases || {};
-          const chapters = Object.keys(purchases);
-          const chapterList = document.getElementById('chapter-list');
-          chapterList.innerHTML = ''; // Clear existing <li>
+        if (!data) {
+          document.getElementById('user-name').textContent = "No data found";
+          return;
+        }
 
-          if (chapters.length === 0) {
-            chapterList.innerHTML = '<li>No chapters purchased yet.</li>';
-          } else {
-            chapters.forEach(ch => {
-              const li = document.createElement('li');
-              li.textContent = ch.replace("chapter-", "Chapter ");
-              chapterList.appendChild(li);
-            });
-          }
-        });
-      } else {
-        alert("Please log in to view your profile.");
-        window.location.href = "login.html";
-      }
-    });
-  </script>
+        // Display the user's name and join date
+        document.getElementById('user-name').textContent = data.name || "No name saved";
+        document.getElementById('join-date').textContent = new Date(data.joined).toDateString() || "Unknown";
+
+        // Handle chapter purchases
+        const purchases = data.purchases || {};
+        const chapters = Object.keys(purchases);
+        const chapterList = document.getElementById('chapter-list');
+        chapterList.innerHTML = ''; // Clear existing <li>
+
+        if (chapters.length === 0) {
+          chapterList.innerHTML = '<li>No chapters purchased yet.</li>';
+        } else {
+          chapters.forEach(ch => {
+            const li = document.createElement('li');
+            li.textContent = ch.replace("chapter-", "Chapter ");
+            chapterList.appendChild(li);
+          });
+        }
+      });
+    } else {
+      alert("Please log in to view your profile.");
+      window.location.href = "login.html";
+    }
+  });
+</script>
+
 </body>
 </html>

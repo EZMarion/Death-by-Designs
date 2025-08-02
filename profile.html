@@ -8,16 +8,33 @@
     body {
       margin: 0;
       font-family: Arial, sans-serif;
-      background-image: url('/your-netlify-folder/background.jpg'); /* ✅ Replace with your Netlify image path */
-      background-size: cover;
-      background-position: center;
+      background-color: #111;
       color: #fff;
       display: flex;
       flex-direction: column;
       align-items: center;
-      justify-content: flex-start;
       min-height: 100vh;
       padding-top: 80px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .banner {
+      position: fixed;
+      top: 0;
+      left: 0;
+      z-index: -1;
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+    }
+
+    .banner img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      opacity: 0.25;
+      filter: blur(1px);
     }
 
     .profile-container {
@@ -54,6 +71,25 @@
       margin: 10px 0;
       font-size: 16px;
     }
+
+    .chapter-list p {
+      margin: 10px 0;
+    }
+
+    .chapter-list a {
+      text-decoration: none;
+      color: #fff;
+      display: flex;
+      justify-content: space-between;
+      background-color: #222;
+      padding: 10px;
+      border-radius: 6px;
+    }
+
+    .arrow-label {
+      font-weight: bold;
+      color: #ff5c5c;
+    }
   </style>
 
   <!-- Firebase SDK -->
@@ -62,28 +98,28 @@
   <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-database.js"></script>
 </head>
 
-<div class="banner">
-  <img src="banner.jpg" alt="Background Image">
-</div>
-  
 <body>
+  <!-- ✅ Background Image -->
+  <div class="banner">
+    <img src="banner.jpg" alt="Background Image">
+  </div>
+
   <div class="profile-container">
     <div id="profile-icon" class="profile-icon">?</div>
     <div class="profile-info">
       <p><strong>Name:</strong> <span id="user-name">Loading...</span></p>
       <p><strong>Email:</strong> <span id="user-email">Loading...</span></p>
-      <div id="user-stats" class="stats">
-  <div><strong>📚 Chapters Read:</strong> <span id="chapter-count">Loading...</span></div>
+      <p><strong>📚 Chapters Purchased:</strong> <span id="chapter-count">Loading...</span></p>
     </div>
-  </div>
-<div><strong>📚 Chapters Purchased:</strong> <span id="chapter-count">Loading...</span></div>
 
     <div class="chapter-section">
-  <h3>📖 Purchased Chapters</h3>
-  <div class="chapter-list" id="chapter-list">
-  <p>Loading...</p>
+      <h3>📖 Purchased Chapters</h3>
+      <div class="chapter-list" id="chapter-list">
+        <p>Loading...</p>
+      </div>
+    </div>
+  </div>
 
-</div>
   <script>
     const firebaseConfig = {
       apiKey: "AIzaSyDffoLenAKrKGMia63SDWTFt5E4AK3hxBE",
@@ -94,71 +130,53 @@
       messagingSenderId: "227276404115",
       appId: "1:227276404115:web:0a5831851c8c05391b6466"
     };
+
     firebase.initializeApp(firebaseConfig);
     const auth = firebase.auth();
     const database = firebase.database();
 
-  auth.onAuthStateChanged(user => {
-  if (user) {
-    const userId = user.uid;
-    document.getElementById("user-email").textContent = user.email;
+    auth.onAuthStateChanged(user => {
+      if (user) {
+        const userId = user.uid;
+        document.getElementById("user-email").textContent = user.email;
 
-    database.ref("users/" + userId).once("value").then(snapshot => {
-      const data = snapshot.val();
-      const name = data?.name || "Unknown";
-      document.getElementById("user-name").textContent = name;
-      document.getElementById("profile-icon").textContent = name.charAt(0).toUpperCase();
+        database.ref("users/" + userId).once("value").then(snapshot => {
+          const data = snapshot.val();
+          const name = data?.name || "Unknown";
+          const purchases = data?.purchases || {};
 
-      // ✅ Get purchased chapters and show count
-      const purchases = data?.purchases || {};
-      const chapterCount = Object.keys(purchases).length;
-      document.getElementById("chapter-count").textContent = chapterCount;
+          document.getElementById("user-name").textContent = name;
+          document.getElementById("profile-icon").textContent = name.charAt(0).toUpperCase();
+
+          const chapterCount = Object.keys(purchases).length;
+          document.getElementById("chapter-count").textContent = chapterCount;
+const chapterList = document.getElementById("chapter-list");
+          chapterList.innerHTML = '';
+
+          if (chapterCount === 0) {
+            chapterList.innerHTML = '<p>No chapters purchased yet.</p>';
+          } else {
+            Object.keys(purchases).forEach(chapterId => {
+              const chapterNumber = chapterId.replace(/[^\d]/g, '');
+              const title = Chapter - ${chapterNumber};
+              const link = document.createElement("p");
+
+              link.innerHTML = 
+                <a href="chapter ${chapterNumber}.html">
+                  <span class="chapter-title">${title}</span>
+                  <span class="arrow-label">>></span>
+                </a>
+              ;
+              chapterList.appendChild(link);
+            });
+          }
+        });
+
+      } else {
+        alert("Please log in to view your profile.");
+        window.location.href = "login.html";
+      }
     });
-  } else {
-    alert("Please log in to view your profile.");
-    window.location.href = "login.html";
-  }
-const chapterList = document.getElementById("chapter-list");
-chapterList.innerHTML = ''; // Clear the "Loading..." message
-
-if (chapterCount === 0) {
-  chapterList.innerHTML = '<li>No chapters purchased yet.</li>';
-} else {
-  Object.keys(purchases).forEach(chapterId => {
-    const li = document.createElement("li");
-
-    // Format chapter title (optional)
-    let title = chapterId.replace(/[-_]/g, ' ');
-    title = title.charAt(0).toUpperCase() + title.slice(1);
-
-    li.textContent = title;
-    chapterList.appendChild(li);
-
-}
-const chapterList = document.getElementById("chapter-list");
-chapterList.innerHTML = ''; // Clear loading
-
-if (chapterCount === 0) {
-  chapterList.innerHTML = '<p>No chapters purchased yet.</p>';
-} else {
-  Object.keys(purchases).forEach(chapterId => {
-    const chapterNumber = chapterId.replace(/[^\d]/g, ''); // Extract number
-    let chapterTitle = '';
-
-    const link = document.createElement("p");
-    link.innerHTML = 
-      <a href="chapter ${chapterNumber}.html">
-        <span class="chapter-title">Chapter - ${chapterNumber} ${chapterTitle}</span>
-        <span class="arrow-label">>></span>
-      </a>
-    ;
-    chapterList.appendChild(link);
-  
-}
-
-                                 
-});
   </script>
 </body>
 </html>
-

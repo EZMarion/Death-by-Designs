@@ -384,13 +384,14 @@ body.light-mode ..chapter-list a:hover {
 }
 
 
-.profile-info{
+.profile-info  { 
    font-size: 25px;
   }
 
 
-
-
+.chapter-section  {
+  font-size: 27px;
+ }
 
 @media (max-width: 768px) {
    .container {

@@ -66,8 +66,7 @@
           }
 
           document.getElementById('user-name').textContent = data.name || "Unknown";
-          document.getElementById('join-date').textContent = data.joinDate || "Unknown";
-
+         document.getElementById('join-date').textContent = new Date(data.joined).toDateString() || "Unknown";
           const purchases = data.purchases || {};
           const chapters = Object.keys(purchases);
           const chapterList = document.getElementById('chapter-list');

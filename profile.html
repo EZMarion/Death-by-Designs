@@ -75,9 +75,9 @@
 
     <div class="chapter-section">
   <h3>📖 Purchased Chapters</h3>
-  <ul id="chapter-list">
-    <li>Loading...</li>
-  </ul>
+  <div class="chapter-list" id="chapter-list">
+  <p>Loading...</p>
+
 </div>
   <script>
     const firebaseConfig = {
@@ -130,7 +130,28 @@ if (chapterCount === 0) {
     chapterList.appendChild(li);
 
 }
- 
+const chapterList = document.getElementById("chapter-list");
+chapterList.innerHTML = ''; // Clear loading
+
+if (chapterCount === 0) {
+  chapterList.innerHTML = '<p>No chapters purchased yet.</p>';
+} else {
+  Object.keys(purchases).forEach(chapterId => {
+    const chapterNumber = chapterId.replace(/[^\d]/g, ''); // Extract number
+    let chapterTitle = '';
+
+    const link = document.createElement("p");
+    link.innerHTML = 
+      <a href="chapter ${chapterNumber}.html">
+        <span class="chapter-title">Chapter - ${chapterNumber} ${chapterTitle}</span>
+        <span class="arrow-label">>></span>
+      </a>
+    ;
+    chapterList.appendChild(link);
+  
+}
+
+                                 
 });
   </script>
 </body>

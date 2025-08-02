@@ -25,6 +25,12 @@
       appId: "1:227276404115:web:0a5831851c8c05391b6466"
     };
 
+    
+    firebase.initializeApp(firebaseConfig);
+    const auth = firebase.auth();
+    const database = firebase.database();
+
+
 auth.onAuthStateChanged(user => {
   if (user) {
     const userId = user.uid;
@@ -44,9 +50,6 @@ auth.onAuthStateChanged(user => {
   }
 });
     
-    firebase.initializeApp(firebaseConfig);
-    const auth = firebase.auth();
-    const database = firebase.database();
 
     function signup() {
       const email = document.getElementById("signup-email").value;

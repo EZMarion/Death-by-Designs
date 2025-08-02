@@ -109,6 +109,7 @@
     <div class="profile-info">
       <p><strong>Name:</strong> <span id="user-name">Loading...</span></p>
       <p><strong>Email:</strong> <span id="user-email">Loading...</span></p>
+      <div id="reading-count">📖 Reading Count: Loading...</div>
       <p><strong>📚 Chapters Purchased:</strong> <span id="chapter-count">Loading...</span></p>
     </div>
 
@@ -134,48 +135,58 @@
     const auth = firebase.auth();
     const database = firebase.database();
 
-    auth.onAuthStateChanged(user => {
-      if (user) {
-        const userId = user.uid;
-        document.getElementById("user-email").textContent = user.email;
+ 
+  auth.onAuthStateChanged(user => {
+    if (user) {
+      const userId = user.uid;
+      document.getElementById("user-email").textContent = user.email;
 
-        database.ref("users/" + userId).once("value").then(snapshot => {
-          const data = snapshot.val();
-          const name = data?.name || "Unknown";
-          const purchases = data?.purchases || {};
+      database.ref("users/" + userId).once("value").then(snapshot => {
+        const data = snapshot.val();
+        const name = data?.name || "Unknown";
+        const purchases = data?.purchases || {};
+        const reading = data?.reading || {};
 
-          document.getElementById("user-name").textContent = name;
-          document.getElementById("profile-icon").textContent = name.charAt(0).toUpperCase();
+        // Set name and profile icon
+        document.getElementById("user-name").textContent = name;
+        document.getElementById("profile-icon").textContent = name.charAt(0).toUpperCase();
 
-          const chapterCount = Object.keys(purchases).length;
-          document.getElementById("chapter-count").textContent = chapterCount;
-const chapterList = document.getElementById("chapter-list");
-          chapterList.innerHTML = '';
+        // Purchased chapter count
+        const chapterCount = Object.keys(purchases).length;
+        document.getElementById("chapter-count").textContent = chapterCount;
 
-          if (chapterCount === 0) {
-            chapterList.innerHTML = '<p>No chapters purchased yet.</p>';
-          } else {
-            Object.keys(purchases).forEach(chapterId => {
-              const chapterNumber = chapterId.replace(/[^\d]/g, '');
-              const title = Chapter - ${chapterNumber};
-              const link = document.createElement("p");
+        // Reading count
+        const readingCount = Object.keys(reading).length;
+        document.getElementById("reading-count").textContent = 📖 Reading Count: ${readingCount};
 
-              link.innerHTML = 
-                <a href="chapter ${chapterNumber}.html">
-                  <span class="chapter-title">${title}</span>
-                  <span class="arrow-label">>></span>
-                </a>
-              ;
-              chapterList.appendChild(link);
-            });
-          }
-        });
+        // Purchased chapter list
+        const chapterList = document.getElementById("chapter-list");
+        chapterList.innerHTML = '';
 
-      } else {
-        alert("Please log in to view your profile.");
-        window.location.href = "login.html";
-      }
-    });
-  </script>
+        if (chapterCount === 0) {
+          chapterList.innerHTML = '<p>No chapters purchased yet.</p>';
+        } else {
+          Object.keys(purchases).forEach(chapterId => {
+            const chapterNumber = chapterId.replace(/[^\d]/g, '');
+            const title = Chapter - ${chapterNumber};
+            const link = document.createElement("p");
+            link.innerHTML = 
+              <a href="chapter ${chapterNumber}.html">
+                <span class="chapter-title">${title}</span>
+                <span class="arrow-label">>></span>
+              </a>
+            ;
+            chapterList.appendChild(link);
+          });
+        }
+      });
+
+    } else {
+      alert("Please log in to view your profile.");
+      window.location.href = "login.html";
+    }
+  });
+</script>
+
 </body>
 </html>

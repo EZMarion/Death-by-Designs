@@ -54,7 +54,13 @@
       appId: "1:227276404115:web:0a5831851c8c05391b6466"
     };
 
+  
+
     
+    // ✅ Initialize Firebase
+    firebase.initializeApp(firebaseConfig);
+    const auth = firebase.auth();
+    const database = firebase.database();
 
 auth.onAuthStateChanged(user => {
   if (user) {
@@ -74,12 +80,7 @@ auth.onAuthStateChanged(user => {
     });
   }
 });
-
     
-    // ✅ Initialize Firebase
-    firebase.initializeApp(firebaseConfig);
-    const auth = firebase.auth();
-    const database = firebase.database();
 
     // ✅ Login Function
     function login() {

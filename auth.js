@@ -68,6 +68,44 @@ function login(email, password) {
     });
 }
 
+function signup() {
+  const name = document.getElementById("signup-name").value;
+  const email = document.getElementById("signup-email").value;
+  const password = document.getElementById("signup-password").value;
+
+  if (!name || !email || !password) {
+    alert("Please fill in all fields");
+    return;
+  }
+
+  auth.createUserWithEmailAndPassword(email, password)
+    .then(userCredential => {
+      const user = userCredential.user;
+
+      // Step 1: Set displayName in Auth profile
+      return user.updateProfile({ displayName: name })
+        .then(() => {
+          // Step 2: Save to Realtime Database
+          return database.ref("users/" + user.uid).set({
+            name: name,
+            email: email,
+            joinDate: new Date().toISOString().split('T')[0],
+            purchases: {},
+            reading: {}
+          });
+        });
+    })
+    .then(() => {
+      alert("Signup successful!");
+      window.location.href = "index.html";
+    })
+    .catch(error => {
+      alert("Signup failed: " + error.message);
+    });
+}
+
+
+
 // ✅ Logout Function
 function logout() {
   auth.signOut()
@@ -79,3 +117,4 @@ function logout() {
       alert("Logout error: " + error.message);
     });
 }
+

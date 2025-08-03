@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>User Profile</title>
   <style>
     body {
@@ -18,7 +18,6 @@
       position: relative;
       z-index: 1;
     }
-
     .banner {
       position: fixed;
       top: 0;
@@ -28,24 +27,20 @@
       height: 100%;
       overflow: hidden;
     }
-
     .banner img {
       width: 100%;
       height: 100%;
       object-fit: cover;
-      opacity: 0.50;
+      opacity: 0.5;
       filter: blur(1px);
     }
-
     .profile-container {
-    
       padding: 20px 30px;
       border-radius: 12px;
       text-align: center;
       width: 90%;
       max-width: 400px;
     }
-
     .profile-icon {
       width: 80px;
       height: 80px;
@@ -61,21 +56,17 @@
       box-shadow: 0 0 10px rgba(0,0,0,0.3);
       animation: bounce 1s infinite alternate;
     }
-
     @keyframes bounce {
       from { transform: translateY(0); }
       to { transform: translateY(-8px); }
     }
-
     .profile-info p {
       margin: 10px 0;
       font-size: 16px;
     }
-
     .chapter-list p {
       margin: 10px 0;
     }
-
     .chapter-list a {
       text-decoration: none;
       color: #fff;
@@ -85,21 +76,19 @@
       padding: 10px;
       border-radius: 6px;
     }
-
     .arrow-label {
       font-weight: bold;
       color: #ff5c5c;
     }
   </style>
 
-  <!-- Firebase SDK -->
+  <!-- Firebase SDKs -->
   <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
   <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
   <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-database.js"></script>
 </head>
 
 <body>
-  <!-- ✅ Background Image -->
   <div class="banner">
     <img src="banner.jpg" alt="Background Image">
   </div>
@@ -119,10 +108,12 @@
         <p>Loading...</p>
       </div>
     </div>
-  <a href="chapters.html" class="btn" style="font-size: 18px; color: #fff; text-decoration: none;  transition: transform 0.2s ease;  background-color: #b30000; padding: 14px 30px; font-weight: bold; font-size: 1.1em;  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);  border-radius: 6px;">🏠 Back</a>
-    <button onclick="logout()" style="margin-top: 20px; padding: 12px 28px; font-size: 16px; background-color: #333; color: #fff; border: none; border-radius: 6px; cursor: pointer;">
-  🔓 Logout
-</button>
+
+    <a href="chapters.html" class="btn" style="font-size: 18px; color: #fff; text-decoration: none; background-color: #b30000; padding: 14px 30px; font-weight: bold; border-radius: 6px; box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4); display: inline-block; margin-top: 20px;">🏠 Back</a>
+
+    <button onclick="logout()" style="margin-top: 20px; padding: 12px 28px; font-size: 16px; background-color: #333; color: #fff; border: none; border-radius: 6px; cursor: pointer;">🔓 Logout</button>
+  </div>
+
   <script>
     const firebaseConfig = {
       apiKey: "AIzaSyDffoLenAKrKGMia63SDWTFt5E4AK3hxBE",
@@ -138,74 +129,66 @@
     const auth = firebase.auth();
     const database = firebase.database();
 
- 
-  auth.onAuthStateChanged(user => {
-    if (user) {
-      const userId = user.uid;
-      document.getElementById("user-email").textContent = user.email;
+    auth.onAuthStateChanged(user => {
+      if (user) {
+        const userId = user.uid;
+        document.getElementById("user-email").textContent = user.email;
 
-      database.ref("users/" + userId).once("value").then(snapshot => {
-        const data = snapshot.val() || {};
-        if (!data.name) {
-    database.ref("users/" + userId + "/name").set("Anonymous");
-    data.name = "Anonymous";
-  }
-        const name = data?.name || "Unknown";
-        const purchases = data?.purchases || {};
-        const reading = data?.reading || {};
+        database.ref("users/" + userId).once("value").then(snapshot => {
+          const data = snapshot.val() || {};
 
-        // Set name and profile icon
-        document.getElementById("user-name").textContent = name;
-        document.getElementById("profile-icon").textContent = name.charAt(0).toUpperCase();
+          if (!data.name) {
+            database.ref("users/" + userId + "/name").set("Anonymous");
+            data.name = "Anonymous";
+          }
 
-        // Purchased chapter count
-        const chapterCount = Object.keys(purchases).length;
-        document.getElementById("chapter-count").textContent = chapterCount;
+          const name = data.name || "Unknown";
+          const purchases = data.purchases || {};
+          const reading = data.reading || {};
 
-        // Reading count
-        const readingCount = Object.keys(reading).length;
-        document.getElementById("reading-count").textContent = `📖 Reading Count: ${readingCount}`;
+          document.getElementById("user-name").textContent = name;
+          document.getElementById("profile-icon").textContent = name.charAt(0).toUpperCase();
 
-        // Purchased chapter list
-        const chapterList = document.getElementById("chapter-list");
-        chapterList.innerHTML = '';
+          const chapterCount = Object.keys(purchases).length;
+          const readingCount = Object.keys(reading).length;
 
-        if (chapterCount === 0) {
-          chapterList.innerHTML = '<p>No chapters purchased yet.</p>';
-        } else {
-          Object.keys(purchases).forEach(chapterId => {
-            const chapterNumber = chapterId.replace(/[^\d]/g, '');
-            const title = `Chapter - ${chapterNumber}`;
-            const link = document.createElement("p");
-           link.innerHTML = `
-  <a href="chapter${chapterNumber}.html">
-    <span class="chapter-title">${title}</span>
-    <span class="arrow-label">>></span>
-  </a>
-`;
-            chapterList.appendChild(link);
-          });
-        }
-      });
+          document.getElementById("chapter-count").textContent = chapterCount;
+          document.getElementById("reading-count").textContent = `📖 Reading Count: ${readingCount}`;
 
-    } else {
-      alert("Please log in to view your profile.");
-      window.location.href = "login.html";
-    }
-  });
+          const chapterList = document.getElementById("chapter-list");
+          chapterList.innerHTML = '';
 
+          if (chapterCount === 0) {
+            chapterList.innerHTML = '<p>No chapters purchased yet.</p>';
+          } else {
+            Object.keys(purchases).forEach(chapterId => {
+              const chapterNumber = chapterId.replace(/[^\d]/g, '');
+              const title = `Chapter - ${chapterNumber}`;
+              const link = document.createElement("p");
+              link.innerHTML = `
+                <a href="chapter${chapterNumber}.html">
+                  <span class="chapter-title">${title}</span>
+                  <span class="arrow-label">>></span>
+                </a>`;
+              chapterList.appendChild(link);
+            });
+          }
+        });
+
+      } else {
+        alert("Please log in to view your profile.");
+        window.location.href = "login.html";
+      }
+    });
 
     function logout() {
-  firebase.auth().signOut().then(() => {
-    alert("Logged out successfully!");
-    window.location.href = "index.html"; // Or "login.html" if you prefer
-  }).catch(error => {
-    alert("Error logging out: " + error.message);
-  });
-}
-    
-</script>
-    
-
+      firebase.auth().signOut().then(() => {
+        alert("Logged out successfully!");
+        window.location.href = "index.html";
+      }).catch(error => {
+        alert("Error logging out: " + error.message);
+      });
+    }
+  </script>
 </body>
 </html>

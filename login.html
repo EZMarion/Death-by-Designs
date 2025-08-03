@@ -96,16 +96,22 @@ auth.onAuthStateChanged(user => {
   .then(userCredential => {
     alert("Login successful!");
 
-    const uid = userCredential.user.uid;
-    return database.ref('users/' + uid).once('value');
-  })
-  .then(snapshot => {
-    const userData = snapshot.val();
-    console.log("User data:", userData);
+   const uid = userCredential.user.uid;
+const userRef = database.ref('users/' + uid);
 
-    // ✅ Redirect after fetching user data
-    window.location.href = "index.html";
-  })
+return userRef.once('value').then(snapshot => {
+  if (!snapshot.exists()) {
+    // 👤 Set initial data if user is new
+    return userRef.set({
+      email: userCredential.user.email,
+      name: "Anonymous",
+      purchases: {},
+      reading: {}
+    });
+  }
+}).then(() => {
+  window.location.href = "index.html";
+});
   .catch(error => {
     alert("Login failed: " + error.message);
   });

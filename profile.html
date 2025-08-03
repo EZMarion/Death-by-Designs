@@ -142,7 +142,11 @@
       document.getElementById("user-email").textContent = user.email;
 
       database.ref("users/" + userId).once("value").then(snapshot => {
-        const data = snapshot.val();
+        const data = snapshot.val() || {};
+        if (!data.name) {
+    database.ref("users/" + userId + "/name").set("Anonymous");
+    data.name = "Anonymous";
+  }
         const name = data?.name || "Unknown";
         const purchases = data?.purchases || {};
         const reading = data?.reading || {};

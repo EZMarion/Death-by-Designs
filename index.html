@@ -29,8 +29,63 @@
 
   </style>
   <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-database.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-database.js"></script>
+
+<script>
+  // ✅ Your Firebase config
+  const firebaseConfig = {
+    apiKey: "AIzaSyDffoLenAKrKGMia63SDWTFt5E4AK3hxBE",
+    authDomain: "novel-site-81674.firebaseapp.com",
+    databaseURL: "https://novel-site-81674-default-rtdb.firebaseio.com",
+    projectId: "novel-site-81674",
+    storageBucket: "novel-site-81674.appspot.com",
+    messagingSenderId: "227276404115",
+    appId: "1:227276404115:web:0a5831851c8c05391b6466"
+  };
+
+  // ✅ Initialize Firebase
+  firebase.initializeApp(firebaseConfig);
+  const auth = firebase.auth();
+  const database = firebase.database();
+
+  // ✅ Handle login state and show profile icon
+  auth.onAuthStateChanged(user => {
+    if (user) {
+      const email = user.email || "";
+      const firstLetter = email.charAt(0).toUpperCase();
+
+      const icon = document.createElement('div');
+      icon.textContent = firstLetter;
+      icon.className = 'profile-icon'; // Add style if needed
+      icon.onclick = () => window.location.href = "profile.html";
+
+      const container = document.getElementById('profile-icon-container');
+      if (container) {
+        container.innerHTML = '';
+        container.appendChild(icon);
+      }
+
+      const buttons = document.querySelector('.user-buttons');
+      if (buttons) buttons.style.display = 'none';
+
+      // ✅ Save to Realtime Database if not yet saved
+      const userRef = database.ref('users/' + user.uid);
+      userRef.once('value').then(snapshot => {
+        if (!snapshot.exists()) {
+          userRef.set({
+            name: user.displayName || "Anonymous",
+            email: user.email,
+            joinDate: new Date().toISOString().split('T')[0],
+            purchases: {},
+            reading: {}
+          });
+        }
+      });
+    }
+  });
+</script>
+
 </head>
 <body>
   <button onclick="toggleTheme()" style="position: absolute; top: 20px; right: 20px; padding: 10px 14px; border-radius: 8px; border: none; cursor: pointer; font-weight: bold;">
@@ -128,20 +183,7 @@
     </footer>
   </div>
 
-  <script>
-    const firebaseConfig = {
-       apiKey: "AIzaSyDffoLenAKrKGMia63SDWTFt5E4AK3hxBE",
-    authDomain: "novel-site-81674.firebaseapp.com",
-    databaseURL: "https://novel-site-81674-default-rtdb.firebaseio.com", 
-    projectId: "novel-site-81674",
-    storageBucket: "novel-site-81674.appspot.com",
-    messagingSenderId: "227276404115",
-    appId: "1:227276404115:web:0a5831851c8c05391b6466"
-  };
-    firebase.initializeApp(firebaseConfig);
-    const auth = firebase.auth();
-    const database = firebase.database();
-
+   
     window.onload = function () {
       if (localStorage.getItem("theme") === "light") {
         document.body.classList.add("light-mode");
@@ -156,38 +198,7 @@
         document.getElementById("cookie-popup").style.display = "none";
       };
 
-     auth.onAuthStateChanged(user => {
-  if (user) {
-    const email = user.email || "";
-    const firstLetter = email.charAt(0).toUpperCase();
-
-    const icon = document.createElement('div');
-    icon.textContent = firstLetter;
-    icon.onclick = () => window.location.href = "profile.html";
-
-    const container = document.getElementById('profile-icon-container');
-    container.innerHTML = '';
-    container.appendChild(icon);
-
-    document.querySelector('.user-buttons').style.display = 'none';
-
-    // ✅ Check if user exists in DB, and save if not
-    const userRef = database.ref('users/' + user.uid);
-    userRef.once('value').then(snapshot => {
-      if (!snapshot.exists()) {
-        userRef.set({
-          name: user.displayName || "Anonymous",
-          email: user.email,
-          joinDate: new Date().toISOString().split('T')[0],
-          purchases: {},
-          reading: {}
-        });
-      }
-    });
-  }
-});
-
-
+  
     function toggleTheme() {
       document.body.classList.toggle("light-mode");
     if (document.body.classList.contains("light-mode")) {

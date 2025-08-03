@@ -1,8 +1,8 @@
 const firebaseConfig = {
   apiKey: "AIzaSyDffoLenAKrKGMia63SDWTFt5E4AK3hxBE",
   authDomain: "novel-site-81674.firebaseapp.com",
-  projectId: "novel-site-81674",
   databaseURL: "https://novel-site-81674-default-rtdb.firebaseio.com",
+  projectId: "novel-site-81674",
   storageBucket: "novel-site-81674.firebasestorage.app",
   messagingSenderId: "227276404115",
   appId: "1:227276404115:web:0a5831851c8c05391b6466"
@@ -13,23 +13,21 @@ firebase.initializeApp(firebaseConfig);
 const auth = firebase.auth();
 const database = firebase.database();
 
-// ✅ Save purchase to Realtime Database
+// ✅ Save Chapter Purchase
 function savePurchase(userId, chapterId) {
-  database.ref(`purchases/${userId}/${chapterId}`).set(true)
+  database.ref(`users/${userId}/purchases/${chapterId}`).set(true)
     .then(() => {
       alert("Chapter purchased successfully!");
     })
     .catch((error) => {
-      console.error("Error saving purchase:", error);
+      console.error("Error saving purchase:", error.message);
     });
 }
 
-// ✅ Auto-save user profile if not already saved
+// ✅ Auto-save user profile on login/signup
 auth.onAuthStateChanged(user => {
   if (user) {
-    const userId = user.uid;
-    const userRef = database.ref(`users/${userId}`);
-
+    const userRef = database.ref('users/' + user.uid);
     userRef.once('value').then(snapshot => {
       if (!snapshot.exists()) {
         userRef.set({
@@ -44,3 +42,40 @@ auth.onAuthStateChanged(user => {
   }
 });
 
+// ✅ Login Function
+function login(email, password) {
+  auth.signInWithEmailAndPassword(email, password)
+    .then(userCredential => {
+      const uid = userCredential.user.uid;
+      const userRef = database.ref('users/' + uid);
+      return userRef.once('value').then(snapshot => {
+        if (!snapshot.exists()) {
+          return userRef.set({
+            name: "Anonymous",
+            email: userCredential.user.email,
+            joinDate: new Date().toISOString().split('T')[0],
+            purchases: {},
+            reading: {}
+          });
+        }
+      }).then(() => {
+        alert("Login successful!");
+        window.location.href = "index.html";
+      });
+    })
+    .catch(error => {
+      alert("Login failed: " + error.message);
+    });
+}
+
+// ✅ Logout Function
+function logout() {
+  auth.signOut()
+    .then(() => {
+      alert("Logged out successfully!");
+      window.location.href = "index.html"; // or "login.html"
+    })
+    .catch(error => {
+      alert("Logout error: " + error.message);
+    });
+}

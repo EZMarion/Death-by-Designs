@@ -57,25 +57,6 @@
     const auth = firebase.auth();
     const database = firebase.database();
 
-    // Auto-save user data if new
-    auth.onAuthStateChanged(user => {
-      if (user) {
-        const userRef = database.ref('users/' + user.uid);
-        userRef.once('value').then(snapshot => {
-          if (!snapshot.exists()) {
-            userRef.set({
-              name: user.displayName || "Anonymous",
-              email: user.email,
-              joinDate: new Date().toISOString().split('T')[0],
-              purchases: {},
-              reading: {}
-            });
-          }
-        });
-      }
-    });
-
-    // ✅ Login function
     function login() {
       const email = document.getElementById("login-email").value;
       const password = document.getElementById("login-password").value;
@@ -87,23 +68,8 @@
 
       auth.signInWithEmailAndPassword(email, password)
         .then(userCredential => {
-          const uid = userCredential.user.uid;
-          const userRef = database.ref('users/' + uid);
-
-          return userRef.once('value').then(snapshot => {
-            if (!snapshot.exists()) {
-              return userRef.set({
-                email: userCredential.user.email,
-                name: "Anonymous",
-                joinDate: new Date().toISOString().split('T')[0],
-                purchases: {},
-                reading: {}
-              });
-            }
-          }).then(() => {
-            alert("Login successful!");
-            window.location.href = "index.html";
-          });
+          alert("Login successful!");
+          window.location.href = "index.html";
         })
         .catch(error => {
           alert("Login failed: " + error.message);

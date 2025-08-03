@@ -92,22 +92,24 @@ auth.onAuthStateChanged(user => {
         return;
       }
 
-      auth.signInWithEmailAndPassword(email, password)
-        .then(userCredential => {
-          alert("Login successful!");
-          // Optional: Fetch user data
-          const uid = userCredential.user.uid;
-          return database.ref('users/' + uid).once('value');
-        })
-        .then(snapshot => {
-          const userData = snapshot.val();
-          console.log("User data:", userData);
-          // Redirect to home
-          window.location.href = "index.html";
-        })
-        .catch(error => {
-          alert("Login failed: " + error.message);
-        });
+     auth.signInWithEmailAndPassword(email, password)
+  .then(userCredential => {
+    alert("Login successful!");
+
+    const uid = userCredential.user.uid;
+    return database.ref('users/' + uid).once('value');
+  })
+  .then(snapshot => {
+    const userData = snapshot.val();
+    console.log("User data:", userData);
+
+    // ✅ Redirect after fetching user data
+    window.location.href = "index.html";
+  })
+  .catch(error => {
+    alert("Login failed: " + error.message);
+  });
+
     }
   </script>
 </body>

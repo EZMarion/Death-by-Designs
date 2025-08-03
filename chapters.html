@@ -171,24 +171,36 @@
         document.getElementById("cookie-popup").style.display = "none";
       };
 
-     auth.onAuthStateChanged(user => {
-        if (user) {
-          const email = user.email || "";
-          const firstLetter = email.charAt(0).toUpperCase();
+      auth.onAuthStateChanged(user => {
+  if (user) {
+    const email = user.email || "";
+    const firstLetter = email.charAt(0).toUpperCase();
 
-          const icon = document.createElement('div');
-          icon.textContent = firstLetter;
-          icon.onclick = () => window.location.href = "profile.html";
+    const icon = document.createElement('div');
+    icon.textContent = firstLetter;
+    icon.onclick = () => window.location.href = "profile.html";
 
-          const container = document.getElementById('profile-icon-container');
-          container.innerHTML = '';
-          container.appendChild(icon);
+    const container = document.getElementById('profile-icon-container');
+    container.innerHTML = '';
+    container.appendChild(icon);
 
-          document.querySelector('.user-buttons').style.display = 'none';
-        }
-      });
-    }; 
+    document.querySelector('.user-buttons').style.display = 'none';
 
+    // ✅ Check if user exists in DB, and save if not
+    const userRef = database.ref('users/' + user.uid);
+    userRef.once('value').then(snapshot => {
+      if (!snapshot.exists()) {
+        userRef.set({
+          name: user.displayName || "Anonymous",
+          email: user.email,
+          joinDate: new Date().toISOString().split('T')[0],
+          purchases: {},
+          reading: {}
+        });
+      }
+    });
+  }
+});
 
     function toggleTheme() {
       document.body.classList.toggle("light-mode");

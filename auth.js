@@ -1,11 +1,11 @@
 const firebaseConfig = {
   apiKey: "AIzaSyDffoLenAKrKGMia63SDWTFt5E4AK3hxBE",
   authDomain: "novel-site-81674.firebaseapp.com",
-   databaseURL: "https://novel-site-81674-default-rtdb.asia-southeast1.firebasedatabase.app",
   projectId: "novel-site-81674",
   storageBucket: "novel-site-81674.appspot.com",
   messagingSenderId: "227276404115",
-  appId: "1:227276404115:web:0a5831851c8c05391b6466"
+  appId: "1:227276404115:web:0a5831851c8c05391b6466",
+  databaseURL: "https://novel-site-81674-default-rtdb.asia-southeast1.firebasedatabase.app"
 };
 
 // ✅ Initialize Firebase
@@ -117,6 +117,7 @@ function logout() {
       alert("Logout error: " + error.message);
     });
 }
+
 
 
 

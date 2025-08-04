@@ -3,7 +3,7 @@ const firebaseConfig = {
   authDomain: "novel-site-81674.firebaseapp.com",
   databaseURL: "https://novel-site-81674.firebasedatabase.app",
   projectId: "novel-site-81674",
-  storageBucket: "novel-site-81674.appspot.com"
+  storageBucket: "novel-site-81674.appspot.com",
   messagingSenderId: "227276404115",
   appId: "1:227276404115:web:0a5831851c8c05391b6466"
 };
@@ -117,5 +117,6 @@ function logout() {
       alert("Logout error: " + error.message);
     });
 }
+
 
 

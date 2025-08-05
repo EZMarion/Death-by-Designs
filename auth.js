@@ -105,7 +105,27 @@ function signup() {
     });
 }
 
+import { getFirestore, doc, setDoc, getDoc } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
 
+const db = getFirestore();
+
+// When user logs in or signs up
+onAuthStateChanged(auth, async (user) => {
+  if (user) {
+    const userRef = doc(db, "users", user.uid);
+    const docSnap = await getDoc(userRef);
+
+    if (!docSnap.exists()) {
+      await setDoc(userRef, {
+        name: user.displayName || "Anonymous",
+        email: user.email,
+        joined: new Date().toISOString(),
+        purchased: [],
+        reading: [],
+      });
+    }
+  }
+});
 
 // ✅ Logout Function
 function logout() {
@@ -118,6 +138,7 @@ function logout() {
       alert("Logout error: " + error.message);
     });
 }
+
 
 
 

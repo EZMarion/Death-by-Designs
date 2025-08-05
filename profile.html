@@ -5,7 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>User Profile</title>
   <style>
-    /* Your existing CSS here */
     body {
       margin: 0;
       font-family: Arial, sans-serif;
@@ -129,7 +128,6 @@
     const auth = getAuth(app);
     const db = getFirestore(app);
 
-    // Cache DOM elements after DOM loaded
     window.onload = () => {
       const userEmail = document.getElementById("user-email");
       const userName = document.getElementById("user-name");
@@ -140,7 +138,6 @@
       const joinDate = document.getElementById("join-date");
       const logoutBtn = document.getElementById("logout-btn");
 
-      // Listen for auth changes
       onAuthStateChanged(auth, async (user) => {
         if (!user) {
           alert("Please log in to view your profile.");
@@ -154,26 +151,24 @@
 
           if (userSnap.exists()) {
             const data = userSnap.data();
-            const name = data.name || "Unknown";
-            const purchases = data.purchases || {};
-            const reading = data.reading || {};
+            const name = data.name || "Anonymous";
+            const purchases = Array.isArray(data.purchases) ? data.purchases : Object.keys(data.purchases || {});
+            const reading = Array.isArray(data.reading) ? data.reading : Object.keys(data.reading || {});
+            const joined = data.joinDate || "N/A";
 
             userName.textContent = name;
             userEmail.textContent = data.email || user.email;
-            joinDate.textContent = data.joined?.split("T")[0] || "N/A";
-            profileIcon.textContent = name.charAt(0).toUpperCase();
+            joinDate.textContent = joined;
+            profileIcon.textContent = name?.charAt(0).toUpperCase() || "?";
 
-            const purchaseKeys = Object.keys(purchases);
-            const readingKeys = Object.keys(reading);
-
-            chapterCount.textContent = purchaseKeys.length;
-            readingCount.textContent = `📖 Reading Count: ${readingKeys.length}`;
+            chapterCount.textContent = purchases.length;
+            readingCount.textContent = `📖 Reading Count: ${reading.length}`;
 
             chapterList.innerHTML = '';
-            if (purchaseKeys.length === 0) {
+            if (purchases.length === 0) {
               chapterList.innerHTML = '<p>No chapters purchased yet.</p>';
             } else {
-              purchaseKeys.forEach(chapterId => {
+              purchases.forEach(chapterId => {
                 const chapterNumber = chapterId.replace(/[^\d]/g, '');
                 const title = `Chapter - ${chapterNumber}`;
                 const p = document.createElement("p");
@@ -194,7 +189,6 @@
         }
       });
 
-      // Logout handler
       logoutBtn.onclick = () => {
         signOut(auth)
           .then(() => {

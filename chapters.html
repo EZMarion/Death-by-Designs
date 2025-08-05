@@ -180,15 +180,16 @@
         const userRef = doc(db, "users", user.uid);
         const docSnap = await getDoc(userRef);
 
-        if (!docSnap.exists()) {
-          await setDoc(userRef, {
-            name: user.displayName || "Anonymous",
-            email: user.email,
-            joinDate: new Date().toISOString().split('T')[0],
-            purchases: [],
-            reading: []
-          });
-        }
+       if (!docSnap.exists()) {
+  await setDoc(userRef, {
+    // Set default only if you're sure, or skip setting name
+    name: "No name",
+    email: user.email,
+    joinDate: new Date().toISOString().split('T')[0],
+    purchases: [],
+    reading: []
+  });
+}
       }
     });
 

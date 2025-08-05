@@ -115,7 +115,8 @@
         return;
       }
 
-      userEmail.textContent = user.email;
+    
+   
 
       try {
         const userRef = doc(db, "users", user.uid);
@@ -127,40 +128,45 @@
           const purchases = data.purchases || {};
           const reading = data.reading || {};
 
-          userName.textContent = name;
-          profileIcon.textContent = name.charAt(0).toUpperCase();
+ document.getElementById("user-name").textContent = name;
+      document.getElementById("user-email").textContent = data.email || user.email;
+      document.getElementById("join-date").textContent = data.joined?.split("T")[0] || "N/A";
+      document.getElementById("profile-icon").textContent = name.charAt(0).toUpperCase();
 
-          const purchaseKeys = Object.keys(purchases);
-          const readingKeys = Object.keys(reading);
+ const purchaseKeys = Object.keys(purchases);
+      const readingKeys = Object.keys(reading);
 
-          chapterCount.textContent = purchaseKeys.length;
-          readingCount.textContent = `📖 Reading Count: ${readingKeys.length}`;
+      document.getElementById("chapter-count").textContent = purchaseKeys.length;
+      document.getElementById("reading-count").textContent = `📖 Reading Count: ${readingKeys.length}`;
 
-          chapterList.innerHTML = '';
-          if (purchaseKeys.length === 0) {
-            chapterList.innerHTML = '<p>No chapters purchased yet.</p>';
-          } else {
-            purchaseKeys.forEach(chapterId => {
-              const chapterNumber = chapterId.replace(/[^\d]/g, '');
-              const title = `Chapter - ${chapterNumber}`;
-              const p = document.createElement("p");
-              p.innerHTML = `
-                <a href="chapter${chapterNumber}.html">
-                  <span class="chapter-title">${title}</span>
-                  <span class="arrow-label">>></span>
-                </a>`;
-              chapterList.appendChild(p);
-            });
-          }
-        } else {
-          alert("User data not found in Firestore.");
-        }
-      } catch (err) {
-        alert("Error loading profile: " + err.message);
-        console.error(err);
+      // Display purchased chapters
+      const chapterList = document.getElementById("chapter-list");
+      chapterList.innerHTML = '';
+      if (purchaseKeys.length === 0) {
+        chapterList.innerHTML = '<p>No chapters purchased yet.</p>';
+      } else {
+        purchaseKeys.forEach(chapterId => {
+          const chapterNumber = chapterId.replace(/[^\d]/g, '');
+          const title = `Chapter - ${chapterNumber}`;
+          const p = document.createElement("p");
+          p.innerHTML = `
+            <a href="chapter${chapterNumber}.html">
+              <span class="chapter-title">${title}</span>
+              <span class="arrow-label">>></span>
+            </a>`;
+          chapterList.appendChild(p);
+        });
       }
-    });
 
+    } else {
+      alert("User data not found in Firestore.");
+    }
+  } catch (err) {
+    alert("Error loading profile: " + err.message);
+    console.error(err);
+  }
+});
+    
     // Logout function
     window.logout = function () {
       signOut(auth)

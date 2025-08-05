@@ -151,9 +151,9 @@
 
           if (userSnap.exists()) {
             const data = userSnap.data();
-            const name = data.name || "Anonymous";
-            const purchases = Array.isArray(data.purchases) ? data.purchases : Object.keys(data.purchases || {});
-            const reading = Array.isArray(data.reading) ? data.reading : Object.keys(data.reading || {});
+            const name = data.name || "Unnamed User";
+            const purchased = Array.isArray(data.purchased) ? data.purchased : [];
+            const reading = Array.isArray(data.reading) ? data.reading : [];
             const joined = data.joinDate || "N/A";
 
             userName.textContent = name;
@@ -161,14 +161,14 @@
             joinDate.textContent = joined;
             profileIcon.textContent = name?.charAt(0).toUpperCase() || "?";
 
-            chapterCount.textContent = purchases.length;
+            chapterCount.textContent = purchased.length;
             readingCount.textContent = `📖 Reading Count: ${reading.length}`;
 
             chapterList.innerHTML = '';
-            if (purchases.length === 0) {
+            if (purchased.length === 0) {
               chapterList.innerHTML = '<p>No chapters purchased yet.</p>';
             } else {
-              purchases.forEach(chapterId => {
+              purchased.forEach(chapterId => {
                 const chapterNumber = chapterId.replace(/[^\d]/g, '');
                 const title = `Chapter - ${chapterNumber}`;
                 const p = document.createElement("p");

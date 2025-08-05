@@ -1,7 +1,19 @@
-/ ✅ Import Firebase modules
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
-import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut, onAuthStateChanged, updateProfile } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
-import { getFirestore, doc, setDoc, getDoc } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+import {
+  getAuth,
+  createUserWithEmailAndPassword,
+  signInWithEmailAndPassword,
+  signOut,
+  onAuthStateChanged,
+  updateProfile
+} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+
+import {
+  getFirestore,
+  doc,
+  setDoc,
+  getDoc
+} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
 
 // ✅ Firebase Configuration
 const firebaseConfig = {
@@ -36,52 +48,6 @@ async function savePurchase(userId, chapterId) {
   }
 }
 
-// ✅ Auto-save user profile on login/signup
-onAuthStateChanged(auth, async (user) => {
-  if (user) {
-    const userRef = doc(db, "users", user.uid);
-    const docSnap = await getDoc(userRef);
-
-    if (!docSnap.exists()) {
-  await setDoc(userRef, {
-    // Set default only if you're sure, or skip setting name
-    name: "No name",
-    email: user.email,
-    joinDate: new Date().toISOString().split('T')[0],
-    purchases: [],
-    reading: []
-  });
-  }
-  }
-});
-
-// ✅ Login Function
-function login(email, password) {
-  signInWithEmailAndPassword(auth, email, password)
-    .then(async (userCredential) => {
-      const user = userCredential.user;
-      const userRef = doc(db, "users", user.uid);
-      const docSnap = await getDoc(userRef);
-
-      if (!docSnap.exists()) {
-  await setDoc(userRef, {
-    // Set default only if you're sure, or skip setting name
-    name: "No name",
-    email: user.email,
-    joinDate: new Date().toISOString().split('T')[0],
-    purchases: [],
-    reading: []
-  });
-}
-
-      alert("Login successful!");
-      window.location.href = "index.html";
-    })
-    .catch(error => {
-      alert("Login failed: " + error.message);
-    });
-}
-
 // ✅ Signup Function
 function signup() {
   const name = document.getElementById("signup-name").value;
@@ -97,8 +63,10 @@ function signup() {
     .then(async (userCredential) => {
       const user = userCredential.user;
 
+      // Set Firebase Auth displayName
       await updateProfile(user, { displayName: name });
 
+      // Save user data to Firestore
       const userRef = doc(db, "users", user.uid);
       await setDoc(userRef, {
         name: name,
@@ -115,6 +83,51 @@ function signup() {
       alert("Signup failed: " + error.message);
     });
 }
+
+// ✅ Login Function
+function login(email, password) {
+  signInWithEmailAndPassword(auth, email, password)
+    .then(async (userCredential) => {
+      const user = userCredential.user;
+      const userRef = doc(db, "users", user.uid);
+      const docSnap = await getDoc(userRef);
+
+      // If user data doesn't exist in Firestore, save it from Firebase Auth
+      if (!docSnap.exists()) {
+        await setDoc(userRef, {
+          name: user.displayName || "Anonymous",
+          email: user.email,
+          joinDate: new Date().toISOString().split('T')[0],
+          purchased: [],
+          reading: []
+        });
+      }
+
+      alert("Login successful!");
+      window.location.href = "index.html";
+    })
+    .catch(error => {
+      alert("Login failed: " + error.message);
+    });
+}
+
+// ✅ Auto-create Firestore doc if user is logged in and data missing
+onAuthStateChanged(auth, async (user) => {
+  if (user) {
+    const userRef = doc(db, "users", user.uid);
+    const docSnap = await getDoc(userRef);
+
+    if (!docSnap.exists()) {
+      await setDoc(userRef, {
+        name: user.displayName || "Anonymous",
+        email: user.email,
+        joinDate: new Date().toISOString().split('T')[0],
+        purchased: [],
+        reading: []
+      });
+    }
+  }
+});
 
 // ✅ Logout Function
 function logout() {
@@ -133,4 +146,3 @@ window.login = login;
 window.signup = signup;
 window.logout = logout;
 window.savePurchase = savePurchase;
-

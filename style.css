@@ -78,28 +78,7 @@ h1 {
   transform: scale(1.05); /* optional hover effect */
 }
 
-#profile-icon-container {
-  position: fixed;
-  top: 20px;
-  left: 20px; /* Adjust for your layout */
-  z-index: 9999; /* Ensures it stays on top of other elements */
-}
 
-#profile-icon-container div {
-  width: 40px;
-  height: 40px;
-  background-color: #1f3d7a;
-  color: white;
-  font-weight: bold;
-  font-size: 20px;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
-
-}
 
 
 .genre-tags {

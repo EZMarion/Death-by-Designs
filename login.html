@@ -37,11 +37,11 @@
   <input type="password" id="login-password" placeholder="Password">
   <button onclick="login()">Log In</button>
 
-  <!-- Firebase v10+ scripts -->
+  <!-- Firebase SDKs -->
   <script type="module">
     import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
     import { getAuth, signInWithEmailAndPassword, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
-    import { getFirestore, doc, setDoc, getDoc } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+    import { getFirestore, doc, getDoc, setDoc } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
 
     const firebaseConfig = {
       apiKey: "AIzaSyDffoLenAKrKGMia63SDWTFt5E4AK3hxBE",
@@ -56,8 +56,7 @@
     const auth = getAuth(app);
     const db = getFirestore(app);
 
-    // Login function
-    window.login = () => {
+    async function login() {
       const email = document.getElementById("login-email").value;
       const password = document.getElementById("login-password").value;
 
@@ -66,19 +65,11 @@
         return;
       }
 
-      signInWithEmailAndPassword(auth, email, password)
-        .then(() => {
-          alert("Login successful!");
-          window.location.href = "index.html";
-        })
-        .catch((error) => {
-          alert("Login failed: " + error.message);
-        });
-    };
+      try {
+        const userCredential = await signInWithEmailAndPassword(auth, email, password);
+        const user = userCredential.user;
 
-    // Save user to Firestore if not already saved
-    onAuthStateChanged(auth, async (user) => {
-      if (user) {
+        // Ensure user doc exists in Firestore
         const userRef = doc(db, "users", user.uid);
         const docSnap = await getDoc(userRef);
 
@@ -88,11 +79,16 @@
             email: user.email,
             joined: new Date().toISOString(),
             purchased: [],
-            reading: [],
+            reading: []
           });
         }
+
+        alert("Login successful!");
+        window.location.href = "index.html";
+      } catch (error) {
+        alert("Login failed: " + error.message);
       }
-    });
+    }
   </script>
 </body>
 </html>

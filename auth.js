@@ -43,14 +43,15 @@ onAuthStateChanged(auth, async (user) => {
     const docSnap = await getDoc(userRef);
 
     if (!docSnap.exists()) {
-      await setDoc(userRef, {
-        name: user.displayName || "Anonymous",
-        email: user.email || "",
-        joinDate: new Date().toISOString().split('T')[0],
-        purchased: [],
-        reading: []
-      });
-    }
+  await setDoc(userRef, {
+    // Set default only if you're sure, or skip setting name
+    name: "No name",
+    email: user.email,
+    joinDate: new Date().toISOString().split('T')[0],
+    purchases: [],
+    reading: []
+  });
+  }
   }
 });
 
@@ -63,14 +64,15 @@ function login(email, password) {
       const docSnap = await getDoc(userRef);
 
       if (!docSnap.exists()) {
-        await setDoc(userRef, {
-          name: "Anonymous",
-          email: user.email,
-          joinDate: new Date().toISOString().split('T')[0],
-          purchased: [],
-          reading: []
-        });
-      }
+  await setDoc(userRef, {
+    // Set default only if you're sure, or skip setting name
+    name: "No name",
+    email: user.email,
+    joinDate: new Date().toISOString().split('T')[0],
+    purchases: [],
+    reading: []
+  });
+}
 
       alert("Login successful!");
       window.location.href = "index.html";
@@ -131,3 +133,4 @@ window.login = login;
 window.signup = signup;
 window.logout = logout;
 window.savePurchase = savePurchase;
+

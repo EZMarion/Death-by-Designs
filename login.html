@@ -73,15 +73,15 @@
         const userRef = doc(db, "users", user.uid);
         const docSnap = await getDoc(userRef);
 
-        if (!docSnap.exists()) {
-          await setDoc(userRef, {
-            name: user.displayName || "Anonymous",
-            email: user.email,
-            joined: new Date().toISOString(),
-            purchased: [],
-            reading: []
-          });
-        }
+       if (!docSnap.exists()) {
+  await setDoc(userRef, {
+    name: "No name",
+    email: user.email,
+    joinDate: new Date().toISOString().split('T')[0],
+    purchases: [],
+    reading: []
+  });
+}
 
         alert("Login successful!");
         window.location.href = "index.html";

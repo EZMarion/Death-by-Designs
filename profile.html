@@ -138,67 +138,77 @@
       const joinDate = document.getElementById("join-date");
       const logoutBtn = document.getElementById("logout-btn");
 
-      onAuthStateChanged(auth, async (user) => {
-        if (!user) {
-          alert("Please log in to view your profile.");
-          window.location.href = "login.html";
-          return;
-        }
+     onAuthStateChanged(auth, async (user) => {
+  if (!user) {
+    alert("Please log in to view your profile.");
+    window.location.href = "login.html";
+    return;
+  }
 
-        try {
-          const userRef = doc(db, "users", user.uid);
-          const userSnap = await getDoc(userRef);
+  try {
+    const userRef = doc(db, "users", user.uid);
+    const userSnap = await getDoc(userRef);
 
-          if (userSnap.exists()) {
-            const data = userSnap.data();
-            const name = data.name || "Unnamed User";
-            const purchased = Array.isArray(data.purchased) ? data.purchased : [];
-            const reading = Array.isArray(data.reading) ? data.reading : [];
-            const joined = data.joinDate || "N/A";
+    if (userSnap.exists()) {
+      const data = userSnap.data();
 
-            userName.textContent = name;
-            userEmail.textContent = data.email || user.email;
-            joinDate.textContent = joined;
-            profileIcon.textContent = name?.charAt(0).toUpperCase() || "?";
+      const name = data.name || "Unnamed User";
+      const purchased = Array.isArray(data.purchased) ? data.purchased : [];
+      const reading = Array.isArray(data.reading) ? data.reading : [];
+      const joined = data.joinDate || "N/A";
 
-            chapterCount.textContent = purchased.length;
-            readingCount.textContent = `📖 Reading Count: ${reading.length}`;
+      // ✅ Display data on profile
+      userName.textContent = name;
+      userEmail.textContent = data.email || user.email;
+      joinDate.textContent = joined;
+      profileIcon.textContent = name.charAt(0).toUpperCase() || "?";
+      chapterCount.textContent = purchased.length;
+      readingCount.textContent = `📖 Reading Count: ${reading.length}`;
+      profileName.textContent = name;
 
-            chapterList.innerHTML = '';
-            if (purchased.length === 0) {
-              chapterList.innerHTML = '<p>No chapters purchased yet.</p>';
-            } else {
-              purchased.forEach(chapterId => {
-                const chapterNumber = chapterId.replace(/[^\d]/g, '');
-                const title = `Chapter - ${chapterNumber}`;
-                const p = document.createElement("p");
-                p.innerHTML = `
-                  <a href="chapter${chapterNumber}.html">
-                    <span class="chapter-title">${title}</span>
-                    <span class="arrow-label">>></span>
-                  </a>`;
-                chapterList.appendChild(p);
-              });
-            }
-          } else {
-            alert("User data not found in Firestore.");
-          }
-        } catch (err) {
-          alert("Error loading profile: " + err.message);
-          console.error(err);
-        }
-      });
+      // ✅ Debugging
+      console.log("Firestore name:", name);
+      console.log("Auth displayName:", user.displayName);
 
-      logoutBtn.onclick = () => {
-        signOut(auth)
-          .then(() => {
-            alert("Logged out successfully!");
-            window.location.href = "index.html";
-          })
-          .catch((error) => {
-            alert("Error logging out: " + error.message);
-          });
-      };
+      // ✅ Show purchased chapters
+      chapterList.innerHTML = '';
+      if (purchased.length === 0) {
+        chapterList.innerHTML = '<p>No chapters purchased yet.</p>';
+      } else {
+        purchased.forEach(chapterId => {
+          const chapterNumber = chapterId.replace(/[^\d]/g, '');
+          const title = `Chapter - ${chapterNumber}`;
+          const p = document.createElement("p");
+          p.innerHTML = `
+            <a href="chapter${chapterNumber}.html">
+              <span class="chapter-title">${title}</span>
+              <span class="arrow-label">>></span>
+            </a>`;
+          chapterList.appendChild(p);
+        });
+      }
+
+    } else {
+      alert("User data not found in Firestore.");
+    }
+
+  } catch (err) {
+    alert("Error loading profile: " + err.message);
+    console.error(err);
+  }
+});
+
+// ✅ Logout
+logoutBtn.onclick = () => {
+  signOut(auth)
+    .then(() => {
+      alert("Logged out successfully!");
+      window.location.href = "index.html";
+    })
+    .catch((error) => {
+      alert("Error logging out: " + error.message);
+    });
+};
     };
   </script>
 </body>

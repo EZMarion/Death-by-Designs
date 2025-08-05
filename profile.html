@@ -2,9 +2,10 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>User Profile</title>
   <style>
+    /* Your existing CSS here */
     body {
       margin: 0;
       font-family: Arial, sans-serif;
@@ -81,8 +82,35 @@
       color: #ff5c5c;
     }
   </style>
+</head>
+<body>
+  <div class="banner">
+    <img src="banner.jpg" alt="Background Image" />
+  </div>
 
-  <!-- Firebase SDKs (modular) -->
+  <div class="profile-container">
+    <div id="profile-icon" class="profile-icon">?</div>
+    <div class="profile-info">
+      <p><strong>Name:</strong> <span id="user-name">Loading...</span></p>
+      <p><strong>Email:</strong> <span id="user-email">Loading...</span></p>
+      <p><strong>Joined:</strong> <span id="join-date">Loading...</span></p>
+      <div id="reading-count">📖 Reading Count: Loading...</div>
+      <p><strong>📚 Chapters Purchased:</strong> <span id="chapter-count">Loading...</span></p>
+    </div>
+
+    <div class="chapter-section">
+      <h3>📖 Purchased Chapters</h3>
+      <div class="chapter-list" id="chapter-list">
+        <p>Loading...</p>
+      </div>
+    </div>
+
+    <a href="chapters.html" class="btn" style="font-size: 18px; color: #fff; text-decoration: none; background-color: #b30000; padding: 14px 30px; font-weight: bold; border-radius: 6px; box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4); display: inline-block; margin-top: 20px;">🏠 Back</a>
+
+    <button id="logout-btn" style="margin-top: 20px; padding: 12px 28px; font-size: 16px; background-color: #333; color: #fff; border: none; border-radius: 6px; cursor: pointer;">🔓 Logout</button>
+  </div>
+
+  <!-- Firebase and JS -->
   <script type="module">
     import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
     import { getAuth, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
@@ -101,110 +129,83 @@
     const auth = getAuth(app);
     const db = getFirestore(app);
 
-    const userEmail = document.getElementById("user-email");
-    const userName = document.getElementById("user-name");
-    const profileIcon = document.getElementById("profile-icon");
-    const chapterCount = document.getElementById("chapter-count");
-    const readingCount = document.getElementById("reading-count");
-    const chapterList = document.getElementById("chapter-list");
-
-    onAuthStateChanged(auth, async (user) => {
-      if (!user) {
-        alert("Please log in to view your profile.");
-        window.location.href = "login.html";
-        return;
-      }
-
-    
-   
-
-      try {
-        const userRef = doc(db, "users", user.uid);
-        const userSnap = await getDoc(userRef);
-
-        if (userSnap.exists()) {
-          const data = userSnap.data();
-          const name = data.name || "Unknown";
-          const purchases = data.purchases || {};
-          const reading = data.reading || {};
-
- document.getElementById("user-name").textContent = name;
-      document.getElementById("user-email").textContent = data.email || user.email;
-      document.getElementById("join-date").textContent = data.joined?.split("T")[0] || "N/A";
-      document.getElementById("profile-icon").textContent = name.charAt(0).toUpperCase();
-
- const purchaseKeys = Object.keys(purchases);
-      const readingKeys = Object.keys(reading);
-
-      document.getElementById("chapter-count").textContent = purchaseKeys.length;
-      document.getElementById("reading-count").textContent = `📖 Reading Count: ${readingKeys.length}`;
-
-      // Display purchased chapters
+    // Cache DOM elements after DOM loaded
+    window.onload = () => {
+      const userEmail = document.getElementById("user-email");
+      const userName = document.getElementById("user-name");
+      const profileIcon = document.getElementById("profile-icon");
+      const chapterCount = document.getElementById("chapter-count");
+      const readingCount = document.getElementById("reading-count");
       const chapterList = document.getElementById("chapter-list");
-      chapterList.innerHTML = '';
-      if (purchaseKeys.length === 0) {
-        chapterList.innerHTML = '<p>No chapters purchased yet.</p>';
-      } else {
-        purchaseKeys.forEach(chapterId => {
-          const chapterNumber = chapterId.replace(/[^\d]/g, '');
-          const title = `Chapter - ${chapterNumber}`;
-          const p = document.createElement("p");
-          p.innerHTML = `
-            <a href="chapter${chapterNumber}.html">
-              <span class="chapter-title">${title}</span>
-              <span class="arrow-label">>></span>
-            </a>`;
-          chapterList.appendChild(p);
-        });
-      }
+      const joinDate = document.getElementById("join-date");
+      const logoutBtn = document.getElementById("logout-btn");
 
-    } else {
-      alert("User data not found in Firestore.");
-    }
-  } catch (err) {
-    alert("Error loading profile: " + err.message);
-    console.error(err);
-  }
-});
-    
-    // Logout function
-    window.logout = function () {
-      signOut(auth)
-        .then(() => {
-          alert("Logged out successfully!");
-          window.location.href = "index.html";
-        })
-        .catch((error) => {
-          alert("Error logging out: " + error.message);
-        });
+      // Listen for auth changes
+      onAuthStateChanged(auth, async (user) => {
+        if (!user) {
+          alert("Please log in to view your profile.");
+          window.location.href = "login.html";
+          return;
+        }
+
+        try {
+          const userRef = doc(db, "users", user.uid);
+          const userSnap = await getDoc(userRef);
+
+          if (userSnap.exists()) {
+            const data = userSnap.data();
+            const name = data.name || "Unknown";
+            const purchases = data.purchases || {};
+            const reading = data.reading || {};
+
+            userName.textContent = name;
+            userEmail.textContent = data.email || user.email;
+            joinDate.textContent = data.joined?.split("T")[0] || "N/A";
+            profileIcon.textContent = name.charAt(0).toUpperCase();
+
+            const purchaseKeys = Object.keys(purchases);
+            const readingKeys = Object.keys(reading);
+
+            chapterCount.textContent = purchaseKeys.length;
+            readingCount.textContent = `📖 Reading Count: ${readingKeys.length}`;
+
+            chapterList.innerHTML = '';
+            if (purchaseKeys.length === 0) {
+              chapterList.innerHTML = '<p>No chapters purchased yet.</p>';
+            } else {
+              purchaseKeys.forEach(chapterId => {
+                const chapterNumber = chapterId.replace(/[^\d]/g, '');
+                const title = `Chapter - ${chapterNumber}`;
+                const p = document.createElement("p");
+                p.innerHTML = `
+                  <a href="chapter${chapterNumber}.html">
+                    <span class="chapter-title">${title}</span>
+                    <span class="arrow-label">>></span>
+                  </a>`;
+                chapterList.appendChild(p);
+              });
+            }
+          } else {
+            alert("User data not found in Firestore.");
+          }
+        } catch (err) {
+          alert("Error loading profile: " + err.message);
+          console.error(err);
+        }
+      });
+
+      // Logout handler
+      logoutBtn.onclick = () => {
+        signOut(auth)
+          .then(() => {
+            alert("Logged out successfully!");
+            window.location.href = "index.html";
+          })
+          .catch((error) => {
+            alert("Error logging out: " + error.message);
+          });
+      };
     };
   </script>
-</head>
-
-<body>
-  <div class="banner">
-    <img src="banner.jpg" alt="Background Image">
-  </div>
-
-  <div class="profile-container">
-    <div id="profile-icon" class="profile-icon">?</div>
-    <div class="profile-info">
-      <p><strong>Name:</strong> <span id="user-name">Loading...</span></p>
-      <p><strong>Email:</strong> <span id="user-email">Loading...</span></p>
-      <div id="reading-count">📖 Reading Count: Loading...</div>
-      <p><strong>📚 Chapters Purchased:</strong> <span id="chapter-count">Loading...</span></p>
-    </div>
-
-    <div class="chapter-section">
-      <h3>📖 Purchased Chapters</h3>
-      <div class="chapter-list" id="chapter-list">
-        <p>Loading...</p>
-      </div>
-    </div>
-
-    <a href="chapters.html" class="btn" style="font-size: 18px; color: #fff; text-decoration: none; background-color: #b30000; padding: 14px 30px; font-weight: bold; border-radius: 6px; box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4); display: inline-block; margin-top: 20px;">🏠 Back</a>
-
-    <button onclick="logout()" style="margin-top: 20px; padding: 12px 28px; font-size: 16px; background-color: #333; color: #fff; border: none; border-radius: 6px; cursor: pointer;">🔓 Logout</button>
-  </div>
 </body>
 </html>

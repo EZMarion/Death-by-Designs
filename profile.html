@@ -83,9 +83,9 @@
   </style>
 
   <!-- Firebase SDKs -->
-  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-database.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js"></script>
 </head>
 
 <body>
@@ -115,33 +115,37 @@
   </div>
 
   <script>
+    // Firebase config
     const firebaseConfig = {
       apiKey: "AIzaSyDffoLenAKrKGMia63SDWTFt5E4AK3hxBE",
-  authDomain: "novel-site-81674.firebaseapp.com",
-  projectId: "novel-site-81674",
-  storageBucket: "novel-site-81674.appspot.com",
-  messagingSenderId: "227276404115",
-  appId: "1:227276404115:web:0a5831851c8c05391b6466",
-  databaseURL: "https://novel-site-81674-default-rtdb.asia-southeast1.firebasedatabase.app"
+      authDomain: "novel-site-81674.firebaseapp.com",
+      projectId: "novel-site-81674",
+      storageBucket: "novel-site-81674.appspot.com",
+      messagingSenderId: "227276404115",
+      appId: "1:227276404115:web:0a5831851c8c05391b6466"
     };
 
+    // Initialize Firebase
     firebase.initializeApp(firebaseConfig);
     const auth = firebase.auth();
-    const database = firebase.database();
+    const db = firebase.firestore();
 
-    auth.onAuthStateChanged(user => {
-      if (user) {
-        const userId = user.uid;
-        document.getElementById("user-email").textContent = user.email;
+    auth.onAuthStateChanged(async (user) => {
+      if (!user) {
+        alert("Please log in to view your profile.");
+        window.location.href = "login.html";
+        return;
+      }
 
-        database.ref("users/" + userId).once("value").then(snapshot => {
-          const data = snapshot.val() || {};
+      const uid = user.uid;
+      document.getElementById("user-email").textContent = user.email;
 
-          if (!data.name) {
-            database.ref("users/" + userId + "/name").set("Anonymous");
-            data.name = "Anonymous";
-          }
+      try {
+        const docRef = db.collection("users").doc(uid);
+        const docSnap = await docRef.get();
 
+        if (docSnap.exists) {
+          const data = docSnap.data();
           const name = data.name || "Unknown";
           const purchases = data.purchases || {};
           const reading = data.reading || {};
@@ -173,39 +177,24 @@
               chapterList.appendChild(link);
             });
           }
-        });
 
-      } else {
-        alert("Please log in to view your profile.");
-        window.location.href = "login.html";
+        } else {
+          alert("User data not found in Firestore.");
+        }
+      } catch (error) {
+        alert("Error loading profile: " + error.message);
+        console.error(error);
       }
     });
 
     function logout() {
-      firebase.auth().signOut().then(() => {
+      auth.signOut().then(() => {
         alert("Logged out successfully!");
         window.location.href = "index.html";
       }).catch(error => {
         alert("Error logging out: " + error.message);
       });
     }
-
-import { getFirestore, doc, getDoc } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
-const db = getFirestore();
-
-onAuthStateChanged(auth, async (user) => {
-  if (user) {
-    const userRef = doc(db, "users", user.uid);
-    const docSnap = await getDoc(userRef);
-    
-    if (docSnap.exists()) {
-      const data = docSnap.data();
-      document.getElementById("user-name").textContent = data.name;
-      document.getElementById("reading-count").textContent = data.reading.length;
-    }
-  }
-});
-    
   </script>
 </body>
 </html>

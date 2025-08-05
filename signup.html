@@ -58,7 +58,7 @@
     const db = getFirestore(app);
 
     async function signup() {
-      const name = document.getElementById("signup-name").value;
+     const name = document.getElementById("signup-name").value.trim();
       const email = document.getElementById("signup-email").value;
       const password = document.getElementById("signup-password").value;
 

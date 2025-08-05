@@ -37,27 +37,27 @@
   <input type="password" id="login-password" placeholder="Password">
   <button onclick="login()">Log In</button>
 
-  <!-- Firebase scripts -->
-  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-database.js"></script>
+  <!-- Firebase v10+ scripts -->
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+    import { getAuth, signInWithEmailAndPassword, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+    import { getFirestore, doc, setDoc, getDoc } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
 
-  <script>
     const firebaseConfig = {
       apiKey: "AIzaSyDffoLenAKrKGMia63SDWTFt5E4AK3hxBE",
-  authDomain: "novel-site-81674.firebaseapp.com",
-  projectId: "novel-site-81674",
-  storageBucket: "novel-site-81674.appspot.com",
-  messagingSenderId: "227276404115",
-  appId: "1:227276404115:web:0a5831851c8c05391b6466",
-  databaseURL: "https://novel-site-81674-default-rtdb.asia-southeast1.firebasedatabase.app"
+      authDomain: "novel-site-81674.firebaseapp.com",
+      projectId: "novel-site-81674",
+      storageBucket: "novel-site-81674.appspot.com",
+      messagingSenderId: "227276404115",
+      appId: "1:227276404115:web:0a5831851c8c05391b6466"
     };
 
-    firebase.initializeApp(firebaseConfig);
-    const auth = firebase.auth();
-    const database = firebase.database();
+    const app = initializeApp(firebaseConfig);
+    const auth = getAuth(app);
+    const db = getFirestore(app);
 
-    function login() {
+    // Login function
+    window.login = () => {
       const email = document.getElementById("login-email").value;
       const password = document.getElementById("login-password").value;
 
@@ -66,15 +66,33 @@
         return;
       }
 
-      auth.signInWithEmailAndPassword(email, password)
-        .then(userCredential => {
+      signInWithEmailAndPassword(auth, email, password)
+        .then(() => {
           alert("Login successful!");
           window.location.href = "index.html";
         })
-        .catch(error => {
+        .catch((error) => {
           alert("Login failed: " + error.message);
         });
-    }
+    };
+
+    // Save user to Firestore if not already saved
+    onAuthStateChanged(auth, async (user) => {
+      if (user) {
+        const userRef = doc(db, "users", user.uid);
+        const docSnap = await getDoc(userRef);
+
+        if (!docSnap.exists()) {
+          await setDoc(userRef, {
+            name: user.displayName || "Anonymous",
+            email: user.email,
+            joined: new Date().toISOString(),
+            purchased: [],
+            reading: [],
+          });
+        }
+      }
+    });
   </script>
 </body>
 </html>

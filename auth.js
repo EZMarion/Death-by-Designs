@@ -30,28 +30,10 @@ const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 const db = getFirestore(app);
 
-// ✅ Save Chapter Purchase to Firestore
-async function savePurchase(userId, chapterId) {
-  const userRef = doc(db, "users", userId);
-  const userSnap = await getDoc(userRef);
-
-  if (userSnap.exists()) {
-    const data = userSnap.data();
-    const purchases = data.purchased || [];
-    if (!purchases.includes(chapterId)) {
-      purchases.push(chapterId);
-      await setDoc(userRef, { purchased: purchases }, { merge: true });
-    }
-    alert("Chapter purchased successfully!");
-  } else {
-    console.error("User not found in Firestore");
-  }
-}
-
 // ✅ Signup Function
 function signup() {
-  const name = document.getElementById("signup-name").value;
-  const email = document.getElementById("signup-email").value;
+  const name = document.getElementById("signup-name").value.trim();
+  const email = document.getElementById("signup-email").value.trim();
   const password = document.getElementById("signup-password").value;
 
   if (!name || !email || !password) {
@@ -92,10 +74,10 @@ function login(email, password) {
       const userRef = doc(db, "users", user.uid);
       const docSnap = await getDoc(userRef);
 
-      // If user data doesn't exist in Firestore, save it from Firebase Auth
       if (!docSnap.exists()) {
+        const displayName = user.displayName || "User";
         await setDoc(userRef, {
-          name: user.displayName || "Anonymous",
+          name: displayName,
           email: user.email,
           joinDate: new Date().toISOString().split('T')[0],
           purchased: [],
@@ -111,15 +93,16 @@ function login(email, password) {
     });
 }
 
-// ✅ Auto-create Firestore doc if user is logged in and data missing
+// ✅ Auto-create Firestore doc if user is logged in and missing data
 onAuthStateChanged(auth, async (user) => {
   if (user) {
     const userRef = doc(db, "users", user.uid);
     const docSnap = await getDoc(userRef);
 
     if (!docSnap.exists()) {
+      const displayName = user.displayName || "User";
       await setDoc(userRef, {
-        name: user.displayName || "Anonymous",
+        name: displayName,
         email: user.email,
         joinDate: new Date().toISOString().split('T')[0],
         purchased: [],
@@ -128,6 +111,24 @@ onAuthStateChanged(auth, async (user) => {
     }
   }
 });
+
+// ✅ Save Chapter Purchase to Firestore
+async function savePurchase(userId, chapterId) {
+  const userRef = doc(db, "users", userId);
+  const userSnap = await getDoc(userRef);
+
+  if (userSnap.exists()) {
+    const data = userSnap.data();
+    const purchases = data.purchased || [];
+    if (!purchases.includes(chapterId)) {
+      purchases.push(chapterId);
+      await setDoc(userRef, { purchased: purchases }, { merge: true });
+    }
+    alert("Chapter purchased successfully!");
+  } else {
+    console.error("User not found in Firestore");
+  }
+}
 
 // ✅ Logout Function
 function logout() {
@@ -141,7 +142,7 @@ function logout() {
     });
 }
 
-// ✅ Expose functions globally
+// ✅ Expose functions globally for use in HTML
 window.login = login;
 window.signup = signup;
 window.logout = logout;

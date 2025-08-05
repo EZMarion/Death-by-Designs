@@ -1,74 +1,86 @@
+/ ✅ Import Firebase modules
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut, onAuthStateChanged, updateProfile } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+import { getFirestore, doc, setDoc, getDoc } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+
+// ✅ Firebase Configuration
 const firebaseConfig = {
   apiKey: "AIzaSyDffoLenAKrKGMia63SDWTFt5E4AK3hxBE",
   authDomain: "novel-site-81674.firebaseapp.com",
   projectId: "novel-site-81674",
   storageBucket: "novel-site-81674.appspot.com",
   messagingSenderId: "227276404115",
-  appId: "1:227276404115:web:0a5831851c8c05391b6466",
-  databaseURL: "https://novel-site-81674-default-rtdb.asia-southeast1.firebasedatabase.app"
-  
+  appId: "1:227276404115:web:0a5831851c8c05391b6466"
 };
 
 // ✅ Initialize Firebase
-firebase.initializeApp(firebaseConfig);
-const auth = firebase.auth();
-const database = firebase.database();
+const app = initializeApp(firebaseConfig);
+const auth = getAuth(app);
+const db = getFirestore(app);
 
-// ✅ Save Chapter Purchase
-function savePurchase(userId, chapterId) {
-  database.ref(`users/${userId}/purchases/${chapterId}`).set(true)
-    .then(() => {
-      alert("Chapter purchased successfully!");
-    })
-    .catch((error) => {
-      console.error("Error saving purchase:", error.message);
-    });
+// ✅ Save Chapter Purchase to Firestore
+async function savePurchase(userId, chapterId) {
+  const userRef = doc(db, "users", userId);
+  const userSnap = await getDoc(userRef);
+
+  if (userSnap.exists()) {
+    const data = userSnap.data();
+    const purchases = data.purchased || [];
+    if (!purchases.includes(chapterId)) {
+      purchases.push(chapterId);
+      await setDoc(userRef, { purchased: purchases }, { merge: true });
+    }
+    alert("Chapter purchased successfully!");
+  } else {
+    console.error("User not found in Firestore");
+  }
 }
 
 // ✅ Auto-save user profile on login/signup
-auth.onAuthStateChanged(user => {
+onAuthStateChanged(auth, async (user) => {
   if (user) {
-    const userRef = database.ref('users/' + user.uid);
-    userRef.once('value').then(snapshot => {
-      if (!snapshot.exists()) {
-        userRef.set({
-          name: user.displayName || "Anonymous",
-          email: user.email || "",
-          joinDate: new Date().toISOString().split('T')[0],
-          purchases: {},
-          reading: {}
-        });
-      }
-    });
+    const userRef = doc(db, "users", user.uid);
+    const docSnap = await getDoc(userRef);
+
+    if (!docSnap.exists()) {
+      await setDoc(userRef, {
+        name: user.displayName || "Anonymous",
+        email: user.email || "",
+        joinDate: new Date().toISOString().split('T')[0],
+        purchased: [],
+        reading: []
+      });
+    }
   }
 });
 
 // ✅ Login Function
 function login(email, password) {
-  auth.signInWithEmailAndPassword(email, password)
-    .then(userCredential => {
-      const uid = userCredential.user.uid;
-      const userRef = database.ref('users/' + uid);
-      return userRef.once('value').then(snapshot => {
-        if (!snapshot.exists()) {
-          return userRef.set({
-            name: "Anonymous",
-            email: userCredential.user.email,
-            joinDate: new Date().toISOString().split('T')[0],
-            purchases: {},
-            reading: {}
-          });
-        }
-      }).then(() => {
-        alert("Login successful!");
-        window.location.href = "index.html";
-      });
+  signInWithEmailAndPassword(auth, email, password)
+    .then(async (userCredential) => {
+      const user = userCredential.user;
+      const userRef = doc(db, "users", user.uid);
+      const docSnap = await getDoc(userRef);
+
+      if (!docSnap.exists()) {
+        await setDoc(userRef, {
+          name: "Anonymous",
+          email: user.email,
+          joinDate: new Date().toISOString().split('T')[0],
+          purchased: [],
+          reading: []
+        });
+      }
+
+      alert("Login successful!");
+      window.location.href = "index.html";
     })
     .catch(error => {
       alert("Login failed: " + error.message);
     });
 }
 
+// ✅ Signup Function
 function signup() {
   const name = document.getElementById("signup-name").value;
   const email = document.getElementById("signup-email").value;
@@ -79,24 +91,21 @@ function signup() {
     return;
   }
 
-  auth.createUserWithEmailAndPassword(email, password)
-    .then(userCredential => {
+  createUserWithEmailAndPassword(auth, email, password)
+    .then(async (userCredential) => {
       const user = userCredential.user;
 
-      // Step 1: Set displayName in Auth profile
-      return user.updateProfile({ displayName: name })
-        .then(() => {
-          // Step 2: Save to Realtime Database
-          return database.ref("users/" + user.uid).set({
-            name: name,
-            email: email,
-            joinDate: new Date().toISOString().split('T')[0],
-            purchases: {},
-            reading: {}
-          });
-        });
-    })
-    .then(() => {
+      await updateProfile(user, { displayName: name });
+
+      const userRef = doc(db, "users", user.uid);
+      await setDoc(userRef, {
+        name: name,
+        email: email,
+        joinDate: new Date().toISOString().split('T')[0],
+        purchased: [],
+        reading: []
+      });
+
       alert("Signup successful!");
       window.location.href = "index.html";
     })
@@ -105,44 +114,20 @@ function signup() {
     });
 }
 
-import { getFirestore, doc, setDoc, getDoc } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
-
-const db = getFirestore();
-
-// When user logs in or signs up
-onAuthStateChanged(auth, async (user) => {
-  if (user) {
-    const userRef = doc(db, "users", user.uid);
-    const docSnap = await getDoc(userRef);
-
-    if (!docSnap.exists()) {
-      await setDoc(userRef, {
-        name: user.displayName || "Anonymous",
-        email: user.email,
-        joined: new Date().toISOString(),
-        purchased: [],
-        reading: [],
-      });
-    }
-  }
-});
-
 // ✅ Logout Function
 function logout() {
-  auth.signOut()
+  signOut(auth)
     .then(() => {
       alert("Logged out successfully!");
-      window.location.href = "index.html"; // or "login.html"
+      window.location.href = "index.html";
     })
     .catch(error => {
       alert("Logout error: " + error.message);
     });
 }
 
-
-
-
-
-
-
-
+// ✅ Expose functions globally
+window.login = login;
+window.signup = signup;
+window.logout = logout;
+window.savePurchase = savePurchase;

@@ -82,10 +82,97 @@
     }
   </style>
 
-  <!-- Firebase SDKs -->
-  <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js"></script>
+  <!-- Firebase SDKs (modular) -->
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+    import { getAuth, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+    import { getFirestore, doc, getDoc } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+
+    const firebaseConfig = {
+      apiKey: "AIzaSyDffoLenAKrKGMia63SDWTFt5E4AK3hxBE",
+      authDomain: "novel-site-81674.firebaseapp.com",
+      projectId: "novel-site-81674",
+      storageBucket: "novel-site-81674.appspot.com",
+      messagingSenderId: "227276404115",
+      appId: "1:227276404115:web:0a5831851c8c05391b6466"
+    };
+
+    const app = initializeApp(firebaseConfig);
+    const auth = getAuth(app);
+    const db = getFirestore(app);
+
+    const userEmail = document.getElementById("user-email");
+    const userName = document.getElementById("user-name");
+    const profileIcon = document.getElementById("profile-icon");
+    const chapterCount = document.getElementById("chapter-count");
+    const readingCount = document.getElementById("reading-count");
+    const chapterList = document.getElementById("chapter-list");
+
+    onAuthStateChanged(auth, async (user) => {
+      if (!user) {
+        alert("Please log in to view your profile.");
+        window.location.href = "login.html";
+        return;
+      }
+
+      userEmail.textContent = user.email;
+
+      try {
+        const userRef = doc(db, "users", user.uid);
+        const userSnap = await getDoc(userRef);
+
+        if (userSnap.exists()) {
+          const data = userSnap.data();
+          const name = data.name || "Unknown";
+          const purchases = data.purchases || {};
+          const reading = data.reading || {};
+
+          userName.textContent = name;
+          profileIcon.textContent = name.charAt(0).toUpperCase();
+
+          const purchaseKeys = Object.keys(purchases);
+          const readingKeys = Object.keys(reading);
+
+          chapterCount.textContent = purchaseKeys.length;
+          readingCount.textContent = `📖 Reading Count: ${readingKeys.length}`;
+
+          chapterList.innerHTML = '';
+          if (purchaseKeys.length === 0) {
+            chapterList.innerHTML = '<p>No chapters purchased yet.</p>';
+          } else {
+            purchaseKeys.forEach(chapterId => {
+              const chapterNumber = chapterId.replace(/[^\d]/g, '');
+              const title = `Chapter - ${chapterNumber}`;
+              const p = document.createElement("p");
+              p.innerHTML = `
+                <a href="chapter${chapterNumber}.html">
+                  <span class="chapter-title">${title}</span>
+                  <span class="arrow-label">>></span>
+                </a>`;
+              chapterList.appendChild(p);
+            });
+          }
+        } else {
+          alert("User data not found in Firestore.");
+        }
+      } catch (err) {
+        alert("Error loading profile: " + err.message);
+        console.error(err);
+      }
+    });
+
+    // Logout function
+    window.logout = function () {
+      signOut(auth)
+        .then(() => {
+          alert("Logged out successfully!");
+          window.location.href = "index.html";
+        })
+        .catch((error) => {
+          alert("Error logging out: " + error.message);
+        });
+    };
+  </script>
 </head>
 
 <body>
@@ -113,88 +200,5 @@
 
     <button onclick="logout()" style="margin-top: 20px; padding: 12px 28px; font-size: 16px; background-color: #333; color: #fff; border: none; border-radius: 6px; cursor: pointer;">🔓 Logout</button>
   </div>
-
-  <script>
-    // Firebase config
-    const firebaseConfig = {
-      apiKey: "AIzaSyDffoLenAKrKGMia63SDWTFt5E4AK3hxBE",
-      authDomain: "novel-site-81674.firebaseapp.com",
-      projectId: "novel-site-81674",
-      storageBucket: "novel-site-81674.appspot.com",
-      messagingSenderId: "227276404115",
-      appId: "1:227276404115:web:0a5831851c8c05391b6466"
-    };
-
-    // Initialize Firebase
-    firebase.initializeApp(firebaseConfig);
-    const auth = firebase.auth();
-    const db = firebase.firestore();
-
-    auth.onAuthStateChanged(async (user) => {
-      if (!user) {
-        alert("Please log in to view your profile.");
-        window.location.href = "login.html";
-        return;
-      }
-
-      const uid = user.uid;
-      document.getElementById("user-email").textContent = user.email;
-
-      try {
-        const docRef = db.collection("users").doc(uid);
-        const docSnap = await docRef.get();
-
-        if (docSnap.exists) {
-          const data = docSnap.data();
-          const name = data.name || "Unknown";
-          const purchases = data.purchases || {};
-          const reading = data.reading || {};
-
-          document.getElementById("user-name").textContent = name;
-          document.getElementById("profile-icon").textContent = name.charAt(0).toUpperCase();
-
-          const chapterCount = Object.keys(purchases).length;
-          const readingCount = Object.keys(reading).length;
-
-          document.getElementById("chapter-count").textContent = chapterCount;
-          document.getElementById("reading-count").textContent = `📖 Reading Count: ${readingCount}`;
-
-          const chapterList = document.getElementById("chapter-list");
-          chapterList.innerHTML = '';
-
-          if (chapterCount === 0) {
-            chapterList.innerHTML = '<p>No chapters purchased yet.</p>';
-          } else {
-            Object.keys(purchases).forEach(chapterId => {
-              const chapterNumber = chapterId.replace(/[^\d]/g, '');
-              const title = `Chapter - ${chapterNumber}`;
-              const link = document.createElement("p");
-              link.innerHTML = `
-                <a href="chapter${chapterNumber}.html">
-                  <span class="chapter-title">${title}</span>
-                  <span class="arrow-label">>></span>
-                </a>`;
-              chapterList.appendChild(link);
-            });
-          }
-
-        } else {
-          alert("User data not found in Firestore.");
-        }
-      } catch (error) {
-        alert("Error loading profile: " + error.message);
-        console.error(error);
-      }
-    });
-
-    function logout() {
-      auth.signOut().then(() => {
-        alert("Logged out successfully!");
-        window.location.href = "index.html";
-      }).catch(error => {
-        alert("Error logging out: " + error.message);
-      });
-    }
-  </script>
 </body>
 </html>

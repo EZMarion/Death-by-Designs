@@ -28,54 +28,7 @@
     }
 
   </style>
-  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-database.js"></script>
- <script>
-    const firebaseConfig = {
-      apiKey: "AIzaSyDffoLenAKrKGMia63SDWTFt5E4AK3hxBE",
-  authDomain: "novel-site-81674.firebaseapp.com",
-  projectId: "novel-site-81674",
-  storageBucket: "novel-site-81674.appspot.com",
-  messagingSenderId: "227276404115",
-  appId: "1:227276404115:web:0a5831851c8c05391b6466",
-  databaseURL: "https://novel-site-81674-default-rtdb.asia-southeast1.firebasedatabase.app"
-    };
-
-    firebase.initializeApp(firebaseConfig);
-    const auth = firebase.auth();
-    const database = firebase.database();
-
-    auth.onAuthStateChanged(user => {
-      if (user) {
-        const email = user.email || "";
-        const firstLetter = email.charAt(0).toUpperCase();
-
-        const icon = document.createElement('div');
-        icon.textContent = firstLetter;
-        icon.onclick = () => window.location.href = "profile.html";
-
-        const container = document.getElementById('profile-icon-container');
-        container.innerHTML = '';
-        container.appendChild(icon);
-
-        document.querySelector('.user-buttons').style.display = 'none';
-
-        const userRef = database.ref('users/' + user.uid);
-        userRef.once('value').then(snapshot => {
-          if (!snapshot.exists()) {
-            userRef.set({
-              name: user.displayName || "Anonymous",
-              email: user.email,
-              joinDate: new Date().toISOString().split('T')[0],
-              purchases: {},
-              reading: {}
-            });
-          }
-        });
-      }
-    });
-  </script>
+ 
 </head>
 <body>
   <button onclick="toggleTheme()" style="position: absolute; top: 20px; right: 20px; padding: 10px 14px; border-radius: 8px; border: none; cursor: pointer; font-weight: bold;">
@@ -188,25 +141,28 @@
 
 
 
-<script>
-  window.onload = function () {
-    // Apply theme
-    if (localStorage.getItem("theme") === "light") {
-      document.body.classList.add("light-mode");
-    }
+<script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+    import { getAuth, onAuthStateChanged, createUserWithEmailAndPassword, signInWithEmailAndPassword, updateProfile } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+    import { getFirestore, doc, setDoc, getDoc } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
 
-    // Cookie popup
-    if (!localStorage.getItem("cookiesAccepted")) {
-      document.getElementById("cookie-popup").style.display = "block";
-    }
-
-    document.getElementById("accept-cookie").onclick = function () {
-      localStorage.setItem("cookiesAccepted", true);
-      document.getElementById("cookie-popup").style.display = "none";
+    const firebaseConfig = {
+      apiKey: "AIzaSyDffoLenAKrKGMia63SDWTFt5E4AK3hxBE",
+      authDomain: "novel-site-81674.firebaseapp.com",
+      projectId: "novel-site-81674",
+      storageBucket: "novel-site-81674.appspot.com",
+      messagingSenderId: "227276404115",
+      appId: "1:227276404115:web:0a5831851c8c05391b6466"
     };
 
-    // Show profile icon if user is logged in
-    auth.onAuthStateChanged(user => {
+    const app = initializeApp(firebaseConfig);
+    const auth = getAuth(app);
+    const db = getFirestore(app);
+
+    window.auth = auth;
+    window.db = db;
+
+    onAuthStateChanged(auth, async (user) => {
       if (user) {
         const email = user.email || "";
         const firstLetter = email.charAt(0).toUpperCase();
@@ -221,110 +177,89 @@
 
         document.querySelector('.user-buttons').style.display = 'none';
 
-        // Save user to database if not saved yet
-        const userRef = firebase.database().ref("users/" + user.uid);
-        userRef.once('value').then(snapshot => {
-          if (!snapshot.exists()) {
-            userRef.set({
-              name: user.displayName || "Anonymous",
-              email: user.email,
-              joinDate: new Date().toISOString().split('T')[0],
-              purchases: {},
-              reading: {}
-            });
-          }
-        });
+        const userRef = doc(db, "users", user.uid);
+        const docSnap = await getDoc(userRef);
+
+        if (!docSnap.exists()) {
+          await setDoc(userRef, {
+            name: user.displayName || "Anonymous",
+            email: user.email,
+            joinDate: new Date().toISOString().split('T')[0],
+            purchases: [],
+            reading: []
+          });
+        }
       }
     });
-  };
 
-  function toggleTheme() {
-    document.body.classList.toggle("light-mode");
-    localStorage.setItem("theme", document.body.classList.contains("light-mode") ? "light" : "dark");
-  }
+    window.signup = async function () {
+      const name = document.getElementById("signup-name").value;
+      const email = document.getElementById("signup-email").value;
+      const password = document.getElementById("signup-password").value;
 
-  function signup() {
-    const name = document.getElementById("signup-name").value;
-    const email = document.getElementById("signup-email").value;
-    const password = document.getElementById("signup-password").value;
-
-    auth.createUserWithEmailAndPassword(email, password)
-      .then((userCredential) => {
+      try {
+        const userCredential = await createUserWithEmailAndPassword(auth, email, password);
         const user = userCredential.user;
 
-        // Set displayName in Auth
-        return user.updateProfile({ displayName: name }).then(() => {
-          // Save user data to database
-          return firebase.database().ref("users/" + user.uid).set({
-            name: name,
-            email: email,
-            joinDate: new Date().toISOString().split('T')[0],
-            purchases: {},
-            reading: {}
-          });
+        await updateProfile(user, { displayName: name });
+
+        await setDoc(doc(db, "users", user.uid), {
+          name: name,
+          email: email,
+          joinDate: new Date().toISOString().split('T')[0],
+          purchases: [],
+          reading: []
         });
-      })
-      .then(() => {
+
         alert("Signup successful!");
-        closeModal('signupModal');
+        closeModal("signupModal");
         location.reload();
-      })
-      .catch(error => alert(error.message));
-  }
-
-
-import { getFirestore, doc, setDoc, getDoc } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
-
-const db = getFirestore();
-
-// When user logs in or signs up
-onAuthStateChanged(auth, async (user) => {
-  if (user) {
-    const userRef = doc(db, "users", user.uid);
-    const docSnap = await getDoc(userRef);
-
-    if (!docSnap.exists()) {
-      await setDoc(userRef, {
-        name: user.displayName || "Anonymous",
-        email: user.email,
-        joined: new Date().toISOString(),
-        purchased: [],
-        reading: [],
-      });
-    }
-  }
-});
-  
-  function login() {
-    const email = document.getElementById("login-email").value;
-    const password = document.getElementById("login-password").value;
-
-    auth.signInWithEmailAndPassword(email, password)
-      .then(() => {
-        alert("Login successful!");
-        closeModal('loginModal');
-        window.location.href = "index.html";
-      })
-      .catch(error => alert(error.message));
-  }
-
-  function closeModal(modalId) {
-    document.getElementById(modalId).style.display = "none";
-  }
-
-  function openModal(modalId) {
-    document.getElementById(modalId).style.display = "block";
-  }
-
-  function buyChapter(chapterId) {
-    firebase.auth().onAuthStateChanged(user => {
-      if (user) {
-        savePurchase(user.uid, chapterId);
-      } else {
-        alert("You must log in to buy.");
+      } catch (error) {
+        alert(error.message);
       }
-    });
-  }
-</script>
+    };
+
+    window.login = async function () {
+      const email = document.getElementById("login-email").value;
+      const password = document.getElementById("login-password").value;
+
+      try {
+        await signInWithEmailAndPassword(auth, email, password);
+        alert("Login successful!");
+        closeModal("loginModal");
+        window.location.href = "index.html";
+      } catch (error) {
+        alert(error.message);
+      }
+    };
+
+    window.toggleTheme = function () {
+      document.body.classList.toggle("light-mode");
+      localStorage.setItem("theme", document.body.classList.contains("light-mode") ? "light" : "dark");
+    };
+
+    window.openModal = function (modalId) {
+      document.getElementById(modalId).style.display = "block";
+    };
+
+    window.closeModal = function (modalId) {
+      document.getElementById(modalId).style.display = "none";
+    };
+
+    window.onload = function () {
+      if (localStorage.getItem("theme") === "light") {
+        document.body.classList.add("light-mode");
+      }
+
+      if (!localStorage.getItem("cookiesAccepted")) {
+        document.getElementById("cookie-popup").style.display = "block";
+      }
+
+      document.getElementById("accept-cookie").onclick = function () {
+        localStorage.setItem("cookiesAccepted", true);
+        document.getElementById("cookie-popup").style.display = "none";
+      };
+    };
+  </script>
 </body>
 </html>

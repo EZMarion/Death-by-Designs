@@ -189,6 +189,23 @@
         alert("Error logging out: " + error.message);
       });
     }
+
+import { getFirestore, doc, getDoc } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+const db = getFirestore();
+
+onAuthStateChanged(auth, async (user) => {
+  if (user) {
+    const userRef = doc(db, "users", user.uid);
+    const docSnap = await getDoc(userRef);
+    
+    if (docSnap.exists()) {
+      const data = docSnap.data();
+      document.getElementById("user-name").textContent = data.name;
+      document.getElementById("reading-count").textContent = data.reading.length;
+    }
+  }
+});
+    
   </script>
 </body>
 </html>

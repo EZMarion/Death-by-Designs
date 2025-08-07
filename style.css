@@ -60,12 +60,12 @@ body {
 
 h1 {
   font-size: 2.5em;
-  color: #f9e79f; 
+  color: #eee8aa; 
   margin-top: 0;
 }
 
 .book-text p:first-of-type {
-  color: #f9e79f;
+  color: #eee8aa;
   font-weight: bold;
 }
 

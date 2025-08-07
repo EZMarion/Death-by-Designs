@@ -401,11 +401,14 @@ body.light-mode ..chapter-list a:hover {
     padding: 20px 15px;
   }
 
-
-
-
-
-
+ }
+@media (max-width: 768px) {
+.banner img {
+   width: 100%;
+  height: 150px;
+  object-fit: cover;
+  display: block;
+}
   
    }
 @media (max-width: 768px) {

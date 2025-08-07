@@ -6,19 +6,19 @@ body {
   padding: 0;
 }
 
-.banner-big ,
-.banner  {
+.banner-big img,
+.banner img  {
    width: 100%;
   height: 210px;
   object-fit: cover;
   display: block;
 }
 
-.banner {
+.banner img {
   display: none;
 }
 
-.banner-big {
+.banner-big img {
   display: block;
 }
 
@@ -412,14 +412,14 @@ body.light-mode ..chapter-list a:hover {
 
  }
 @media (max-width: 768px) {
-.banner {
+.banner img {
    width: 100%;
   height: 150px;
   object-fit: cover;
   display: block;
 }
 
-   .banner-big {
+   .banner-big img {
     display: none;
   }
   

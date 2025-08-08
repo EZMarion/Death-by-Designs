@@ -453,7 +453,7 @@ body.light-mode ..chapter-list a:hover {
     align-items: flex-start;   /* 👈 Align to top */
     text-align: left;          /* 👈 Left-align text */
     margin: 0 5px;
-    gap: 15px;
+    gap: 5px;
    margin-left: 2px;
   }
  }

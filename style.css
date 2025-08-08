@@ -49,7 +49,7 @@ body {
 @media (max-width: 768px) {
 .small-cover {
   width: 100%;
-  max-width: 160px; /* You can adjust: 120–160px works well */
+  max-width: 120px; /* You can adjust: 120–160px works well */
   height: auto;
   border-radius: 6px;
   box-shadow: 0 4px 8px rgba(0,0,0,0.3);
@@ -447,14 +447,13 @@ body.light-mode ..chapter-list a:hover {
 
 @media (max-width: 768px) {
 .book-layout {
-    flex-direction: column; 
-    gap: 15px;
+  flex-direction: row;       /* 👈 Keep in row layout */
+    align-items: flex-start;   /* 👈 Align to top */
+    text-align: left;          /* 👈 Left-align text */
     margin: 0 15px;
-  align-items: center;
-    text-align: center;
+    gap: 15px;
   }
-}
-
+ }
 
 
 

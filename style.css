@@ -122,6 +122,11 @@ h1 {
   font-weight: 500;
 }
 
+.mobile-genre {
+  display: none;
+}
+
+
 ul.chapters {
   list-style: none;
   padding: 0;
@@ -506,13 +511,21 @@ body.light-mode ..chapter-list a:hover {
     }
     }
 
+
 @media (max-width: 768px) {
-.genre-tags {
-  order: 1; /* appear after everything */
-    align-self: left;
-    margin-top: 20px;
+  .mobile-genre {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 15px;
+  }
+
+  .genre-tags {
+    display: none;
+  }
 }
-}
+
 
 @media (max-width: 768px) {
   .genre-tags span {

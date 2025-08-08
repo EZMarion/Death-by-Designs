@@ -37,6 +37,28 @@
   🌙 / ☀️
 </button>
 
+
+import { getFirestore, doc, updateDoc, arrayUnion } from "firebase/firestore";
+import { getAuth, onAuthStateChanged } from "firebase/auth";
+import { initializeApp } from "firebase/app";
+
+const firebaseConfig = {
+  // your config here
+};
+const app = initializeApp(firebaseConfig);
+const db = getFirestore(app);
+const auth = getAuth();
+
+onAuthStateChanged(auth, (user) => {
+  if (user) {
+    const userRef = doc(db, "users", user.uid);
+    updateDoc(userRef, {
+      reading: arrayUnion("chapter1") // Change this per page
+    });
+  }
+});
+  
+
 <div class="container">
   <h1>Chapter 1: Introduction</h1>
 

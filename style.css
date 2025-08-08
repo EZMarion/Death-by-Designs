@@ -122,10 +122,13 @@ h1 {
   font-weight: 500;
 }
 
+.desktop-genre {
+  display: flex;
+}
+
 .mobile-genre {
   display: none;
 }
-
 
 ul.chapters {
   list-style: none;
@@ -513,16 +516,14 @@ body.light-mode ..chapter-list a:hover {
 
 
 @media (max-width: 768px) {
-  .mobile-genre {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 10px;
-    margin-top: 15px;
+  .desktop-genre {
+    display: none;
   }
 
-  .genre-tags {
-    display: none;
+  .mobile-genre {
+    display: flex;
+    justify-content: center;
+    margin-top: 15px;
   }
 }
 

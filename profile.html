@@ -156,6 +156,7 @@
       const name = data.name || "Unnamed User";
       const purchased = Array.isArray(data.purchased) ? data.purchased : [];
       const reading = Array.isArray(data.reading) ? data.reading : [];
+      readingCount.textContent = `📖 Reading Count: ${reading.length || 0}`;
       const joined = data.joinDate || "N/A";
 
       // ✅ Display data on profile
@@ -170,6 +171,7 @@
       // ✅ Debugging
       console.log("Firestore name:", name);
       console.log("Auth displayName:", user.displayName);
+      console.log("Reading field:", data.reading);
 
       // ✅ Show purchased chapters
       chapterList.innerHTML = '';

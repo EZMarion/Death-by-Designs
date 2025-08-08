@@ -82,6 +82,7 @@ h1 {
 .book-text p:first-of-type {
   color: #3b4c73;
   font-weight: bold;
+  font-size: 20px;
 }
 
 .btn {

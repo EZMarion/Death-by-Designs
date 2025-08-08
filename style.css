@@ -49,7 +49,7 @@ body {
 @media (max-width: 768px) {
 .small-cover {
   width: 100%;
-  max-width: 120px; /* You can adjust: 120–160px works well */
+  max-width: 130px; /* You can adjust: 120–160px works well */
   height: auto;
   border-radius: 6px;
   box-shadow: 0 4px 8px rgba(0,0,0,0.3);

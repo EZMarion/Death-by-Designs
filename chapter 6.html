@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <meta charset="UTF-8">
-  <title>Chapter 6 | E.Z. Marion Novels</title>
+  <title>Chapter 1 | E.Z. Marion Novels</title>
   <link rel="icon" href="favicon.jpg" type="image/jpg">
   <link rel="stylesheet" href="style.css">
   <style>
@@ -18,7 +18,7 @@
       document.body.classList.add("light-mode");
     }
   };
-  function toggleTheme() {                       
+  function toggleTheme() {
     document.body.classList.toggle("light-mode");
     if (document.body.classList.contains("light-mode")) {
       localStorage.setItem("theme", "light");
@@ -27,6 +27,52 @@
     }
   }
 </script>
+  
+ <script type="module">
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+  import {
+    getAuth,
+    onAuthStateChanged
+  } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+
+  import {
+    getFirestore,
+    doc,
+    updateDoc,
+    arrayUnion
+  } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+
+  // ✅ Firebase Configuration
+  const firebaseConfig = {
+    apiKey: "AIzaSyDffoLenAKrKGMia63SDWTFt5E4AK3hxBE",
+    authDomain: "novel-site-81674.firebaseapp.com",
+    projectId: "novel-site-81674",
+    storageBucket: "novel-site-81674.appspot.com",
+    messagingSenderId: "227276404115",
+    appId: "1:227276404115:web:0a5831851c8c05391b6466"
+  };
+
+  // ✅ Initialize Firebase
+  const app = initializeApp(firebaseConfig);
+  const auth = getAuth(app);
+  const db = getFirestore(app);
+
+  // ✅ Track Reading Progress
+  onAuthStateChanged(auth, async (user) => {
+    if (user) {
+      const userRef = doc(db, "users", user.uid);
+      try {
+        await updateDoc(userRef, {
+          reading: arrayUnion("chapter1") // Track "chapter1" read
+        });
+        console.log("✅ Chapter read recorded.");
+      } catch (error) {
+        console.error("❌ Failed to update reading history:", error);
+      }
+    }
+  });
+</script>
+  
 </head>
 <body>
   <button onclick="toggleTheme()" style="position: absolute; top: 20px; right: 20px; padding: 10px 14px; border-radius: 8px; border: none; cursor: pointer; font-weight: bold;">

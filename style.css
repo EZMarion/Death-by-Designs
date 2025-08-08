@@ -452,7 +452,7 @@ body.light-mode ..chapter-list a:hover {
   flex-direction: row;       /* 👈 Keep in row layout */
     align-items: flex-start;   /* 👈 Align to top */
     text-align: left;          /* 👈 Left-align text */
-    margin: 0 10px;
+    margin: 0 5px;
     gap: 15px;
    margin-left: 2px;
   }
@@ -466,7 +466,7 @@ body.light-mode ..chapter-list a:hover {
     margin-left: 3px;
     display: block;
     font-size: 16px;
-    margin-top: 5px;
+    
   }
  }
 
@@ -475,7 +475,7 @@ body.light-mode ..chapter-list a:hover {
   flex: 1;
   text-align: right;
    margin-right: 0px;
-   
+     margin-top: 2px;
   }
 }
  

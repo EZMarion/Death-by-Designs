@@ -46,6 +46,18 @@ body {
 .small-cover {
   display: none;
 }
+
+.small-cover {
+  width: 100%;
+  max-width: 120px; /* You can adjust: 120–160px works well */
+  height: auto;
+  border-radius: 6px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+  display: block;
+}
+
+
+
 .book-text {
   flex: 1;
   min-width: 200px;
@@ -444,16 +456,7 @@ body.light-mode ..chapter-list a:hover {
 
 
 
-@media (max-width: 768px) {
-.Small-Cover {
-  width: 100%;
-  max-width: 120px; /* You can adjust: 120–160px works well */
-  height: auto;
-  border-radius: 6px;
-  box-shadow: 0 4px 8px rgba(0,0,0,0.3);
-  display: block;
-}
- }
+
 
 @media (max-width: 768px) {
      .chapter-list a {

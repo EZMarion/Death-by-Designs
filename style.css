@@ -450,8 +450,9 @@ body.light-mode ..chapter-list a:hover {
   flex-direction: row;       /* 👈 Keep in row layout */
     align-items: flex-start;   /* 👈 Align to top */
     text-align: left;          /* 👈 Left-align text */
-    margin: 0 15px;
+    margin: 0 10px;
     gap: 15px;
+   margin-left: 2px;
   }
  }
 
@@ -471,7 +472,8 @@ body.light-mode ..chapter-list a:hover {
 .book-text {
     min-width: unset;
   flex: 1;
-  text-align: right
+  text-align: right;
+   margin-left: 2px;
   }
 }
  
@@ -495,6 +497,15 @@ body.light-mode ..chapter-list a:hover {
   }
     }
     }
+
+@media (max-width: 768px) {
+.genre-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 10px;
+}
+}
 
 @media (max-width: 768px) {
   .genre-tags span {

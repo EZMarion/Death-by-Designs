@@ -479,7 +479,7 @@ body.light-mode ..chapter-list a:hover {
     min-width: 0; /* 👈 This lets it shrink if needed */
     word-break: keep-all;
     white-space: normal;
-   margin-top: 5px;
+   margin-top: 10px;
   }
 }
  

@@ -477,6 +477,8 @@ body.light-mode ..chapter-list a:hover {
    margin-right: 0px;
      margin-top: 10px;
     min-width: 100px;
+  word-break: keep-all;     /* Only break between words */
+  white-space: normal;      /* Allow normal wrapping */
   }
 }
  

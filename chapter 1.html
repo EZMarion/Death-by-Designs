@@ -63,6 +63,20 @@ const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 const db = getFirestore(app);
 
+onAuthStateChanged(auth, async (user) => {
+    if (user) {
+      const userRef = doc(db, "users", user.uid);
+      try {
+        await updateDoc(userRef, {
+          reading: arrayUnion("chapter1") // ← this tracks chapter1 read
+        });
+        console.log("Chapter read recorded.");
+      } catch (error) {
+        console.error("Failed to update reading history:", error);
+      }
+    }
+  });
+
 </script>
 
   

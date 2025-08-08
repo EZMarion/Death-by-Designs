@@ -472,10 +472,10 @@ body.light-mode ..chapter-list a:hover {
 
 @media (max-width: 768px) {
 .book-text {
-    min-width: unset;
   flex: 1;
   text-align: right;
    margin-left: 2px;
+   margin-right: 20px;
   }
 }
  

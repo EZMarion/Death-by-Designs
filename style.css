@@ -447,10 +447,11 @@ body.light-mode ..chapter-list a:hover {
 
 @media (max-width: 768px) {
 .book-layout {
-    flex-direction: row; 
-    align-items: flex-start;
+    flex-direction: column; 
     gap: 15px;
     margin: 0 15px;
+  align-items: center;
+    text-align: center;
   }
 }
 
@@ -467,6 +468,11 @@ body.light-mode ..chapter-list a:hover {
   }
  }
 
+@media (max-width: 768px) {
+.book-text {
+    min-width: unset;
+  }
+}
  
 @media (max-width: 768px) {
   .book-text h1 {

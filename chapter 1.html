@@ -30,55 +30,50 @@
   }
 </script>
   
-  <script type="module">
-import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
-import {
-  getAuth,
-  createUserWithEmailAndPassword,
-  signInWithEmailAndPassword,
-  signOut,
-  onAuthStateChanged,
-  updateProfile
-} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+ <script type="module">
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+  import {
+    getAuth,
+    onAuthStateChanged
+  } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
 
-import {
-  getFirestore,
-  doc,
-  setDoc,
-  getDoc
-} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+  import {
+    getFirestore,
+    doc,
+    updateDoc,
+    arrayUnion
+  } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
 
-// ✅ Firebase Configuration
-const firebaseConfig = {
-  apiKey: "AIzaSyDffoLenAKrKGMia63SDWTFt5E4AK3hxBE",
-  authDomain: "novel-site-81674.firebaseapp.com",
-  projectId: "novel-site-81674",
-  storageBucket: "novel-site-81674.appspot.com",
-  messagingSenderId: "227276404115",
-  appId: "1:227276404115:web:0a5831851c8c05391b6466"
-};
+  // ✅ Firebase Configuration
+  const firebaseConfig = {
+    apiKey: "AIzaSyDffoLenAKrKGMia63SDWTFt5E4AK3hxBE",
+    authDomain: "novel-site-81674.firebaseapp.com",
+    projectId: "novel-site-81674",
+    storageBucket: "novel-site-81674.appspot.com",
+    messagingSenderId: "227276404115",
+    appId: "1:227276404115:web:0a5831851c8c05391b6466"
+  };
 
-// ✅ Initialize Firebase
-const app = initializeApp(firebaseConfig);
-const auth = getAuth(app);
-const db = getFirestore(app);
+  // ✅ Initialize Firebase
+  const app = initializeApp(firebaseConfig);
+  const auth = getAuth(app);
+  const db = getFirestore(app);
 
-onAuthStateChanged(auth, async (user) => {
+  // ✅ Track Reading Progress
+  onAuthStateChanged(auth, async (user) => {
     if (user) {
       const userRef = doc(db, "users", user.uid);
       try {
         await updateDoc(userRef, {
-          reading: arrayUnion("chapter1") // ← this tracks chapter1 read
+          reading: arrayUnion("chapter1") // Track "chapter1" read
         });
-        console.log("Chapter read recorded.");
+        console.log("✅ Chapter read recorded.");
       } catch (error) {
-        console.error("Failed to update reading history:", error);
+        console.error("❌ Failed to update reading history:", error);
       }
     }
   });
-
 </script>
-
   
 </head>
 

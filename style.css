@@ -475,16 +475,19 @@ body.light-mode ..chapter-list a:hover {
   flex: 1;
   text-align: right;
    margin-right: 0px;
-     margin-top: 10px;
-    min-width: 100px;
-  word-break: keep-all;     /* Only break between words */
-  white-space: normal;      /* Allow normal wrapping */
+     margin-top: 0px;
+    min-width: 0; /* 👈 This lets it shrink if needed */
+    word-break: keep-all;
+    white-space: normal;
   }
 }
  
 @media (max-width: 768px) {
   .book-text h1 {
     font-size: 23px;
+     white-space: nowrap;
+     overflow: hidden;          /* Optional */
+    text-overflow: ellipsis;
 
   }
   }

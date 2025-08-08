@@ -479,7 +479,7 @@ body.light-mode ..chapter-list a:hover {
     min-width: 0; /* 👈 This lets it shrink if needed */
     word-break: keep-all;
     white-space: normal;
-   margin-top: 10px;
+   margin-top: 5px;
   }
 }
  
@@ -495,7 +495,7 @@ body.light-mode ..chapter-list a:hover {
 @media (max-width: 768px) {
  .book-text p:first-of-type {
     font-size: 15px;
-  
+  margin-righr: 10px;
   }
   }
 
@@ -512,7 +512,7 @@ body.light-mode ..chapter-list a:hover {
   display: flex;
   flex-wrap: wrap;
   gap: 10px;
-  margin-top: 10px;
+  margin-top: 15px;
 }
 }
 

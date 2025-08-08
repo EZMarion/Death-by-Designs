@@ -476,7 +476,7 @@ body.light-mode ..chapter-list a:hover {
   text-align: right;
    margin-right: 0px;
      margin-top: 10px;
-    min-width: 0px;
+    min-width: 100px;
   }
 }
  

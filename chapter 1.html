@@ -29,6 +29,42 @@
     }
   }
 </script>
+
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+import {
+  getAuth,
+  createUserWithEmailAndPassword,
+  signInWithEmailAndPassword,
+  signOut,
+  onAuthStateChanged,
+  updateProfile
+} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+
+import {
+  getFirestore,
+  doc,
+  setDoc,
+  getDoc
+} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+
+// ✅ Firebase Configuration
+const firebaseConfig = {
+  apiKey: "AIzaSyDffoLenAKrKGMia63SDWTFt5E4AK3hxBE",
+  authDomain: "novel-site-81674.firebaseapp.com",
+  projectId: "novel-site-81674",
+  storageBucket: "novel-site-81674.appspot.com",
+  messagingSenderId: "227276404115",
+  appId: "1:227276404115:web:0a5831851c8c05391b6466"
+};
+
+// ✅ Initialize Firebase
+const app = initializeApp(firebaseConfig);
+const auth = getAuth(app);
+const db = getFirestore(app);
+
+
+
+  
 </head>
 
 <body>
@@ -37,27 +73,6 @@
   🌙 / ☀️
 </button>
 
-
-import { getFirestore, doc, updateDoc, arrayUnion } from "firebase/firestore";
-import { getAuth, onAuthStateChanged } from "firebase/auth";
-import { initializeApp } from "firebase/app";
-
-const firebaseConfig = {
-  // your config here
-};
-const app = initializeApp(firebaseConfig);
-const db = getFirestore(app);
-const auth = getAuth();
-
-onAuthStateChanged(auth, (user) => {
-  if (user) {
-    const userRef = doc(db, "users", user.uid);
-    updateDoc(userRef, {
-      reading: arrayUnion("chapter1") // Change this per page
-    });
-  }
-});
-  
 
 <div class="container">
   <h1>Chapter 1: Introduction</h1>

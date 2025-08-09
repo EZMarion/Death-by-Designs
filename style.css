@@ -634,7 +634,7 @@ body.light-mode ..chapter-list a:hover {
   font-size: 13px;
   line-height: 1.4;
   font-style: normal;
-   margin-left: 3px
+   margin-left: 2px;
    padding: 0;
   text-align: left; 
     margin-top: 8px;
@@ -644,7 +644,7 @@ body.light-mode ..chapter-list a:hover {
   line-height: 1.4;
   text-align: left;
   margin-top: 8px;
-      margin-left: 3px
+      margin-left: 2px;
 
 }
 }

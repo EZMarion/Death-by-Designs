@@ -517,7 +517,7 @@ body.light-mode ..chapter-list a:hover {
   color: #e0e7ff;
   padding: 3px 9px;
   border-radius: 999px;
-  font-size: 10px;
+  font-size: 9px;
   font-weight: 500;
 }
 }
@@ -612,20 +612,6 @@ body.light-mode ..chapter-list a:hover {
     box-shadow: none;
   }
 }
-@media (max-width: 768px) {
-.user-buttons {
-  position: absolute;
-  top: 10px;
-  display: flex;
-  flex-direction: column;
-  
-  gap: 10px;
- 
-  font-size: 15px;
-   right: 200px;
-}
-}
-
 
 
 @media (max-width: 768px) {

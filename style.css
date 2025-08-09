@@ -110,8 +110,7 @@ h1 {
   display: flex;
   flex-wrap: wrap;
   gap: 10px;
-    margin-top: 10px;
- 
+  margin-top: 10px;
 }
 
 .genre-tags span {
@@ -123,15 +122,6 @@ h1 {
   font-weight: 500;
 }
 
-.desktop-genre {
-  display: flex;
-
-   margin-left: 30px;
-}
-
-.mobile-genre {
-  display: none;
-}
 
 ul.chapters {
   list-style: none;
@@ -158,15 +148,13 @@ ul.chapters li a {
   font-size: 22px;
   line-height: 1.4;
   color: #e0e7ff; 
-    margin-left: 7px;
-    margin-right: 7px;
+  
 }
 
 .section-title {
   color: #1f3d7a; 
   font-size: 28px;
   margin-top: 30px;
-  margin-left: 7px;
 }
 
 .chapter-list a {
@@ -523,30 +511,12 @@ body.light-mode ..chapter-list a:hover {
     }
 
 
-@media (max-width: 768px) {
-  .desktop-genre {
-    display: none;
-  }
-
-  .mobile-genre {
-    display: flex;
-    flex-wrap: wrap; /* wrap to next line */
-    justify-content: flex-start !important; /* force left alignment */
-    margin-top: 15px;
-    margin-left: 0px;
-    
-  }
-}
 
 
 @media (max-width: 768px) {
   .genre-tags span {
-  background-color: #3b4c73; 
-  color: #e0e7ff;
-  padding: 6px 12px;
-  border-radius: 999px;
-  font-size: 14px;
-  font-weight: 500;
+    font-size: 8px;
+    padding: 5px 10px;
   }
 }
 

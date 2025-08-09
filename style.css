@@ -197,6 +197,7 @@ ul.chapters li a {
   line-height: 1.6;
   color: #e0e7ff;
   font-style: italic;
+   margin-left: 50px
 }
 .user-buttons {
   position: absolute;

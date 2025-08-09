@@ -108,7 +108,7 @@ h1 {
 
 .genre-tags {
   display: flex;
-  flex-wrap: wrap;
+  
   gap: 10px;
   margin-top: 10px;
 }

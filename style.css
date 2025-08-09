@@ -533,7 +533,7 @@ body.light-mode ..chapter-list a:hover {
 
 
 @media (max-width: 768px) {
-  .mobile-genre span {
+  .genre-tags span {
   background-color: #3b4c73; 
   color: #e0e7ff;
   padding: 6px 12px;

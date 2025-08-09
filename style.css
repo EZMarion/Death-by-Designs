@@ -124,7 +124,7 @@ h1 {
 
 .desktop-genre {
   display: flex;
-  margin-top: -10px;
+  margin-top: 10px;
    margin-left: 300px;
 }
 

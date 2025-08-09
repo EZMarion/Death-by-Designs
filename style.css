@@ -74,12 +74,12 @@ body {
 
 h1 {
   font-size: 2.5em;
-  color: #3b4c73; 
+  color: #1f3d7a; 
   margin-top: 0;
 }
 
 .book-text p:first-of-type {
-  color: #3b4c73;
+  color:#1f3d7a;
   font-weight: bold;
   font-size: 20px;
 }

@@ -191,7 +191,7 @@ ul.chapters li a {
   margin-left: 10px;
 }
 
-.pc reader-note {
+.reader-note1 {
   margin-top: 30px;
   font-size: 20px;
   line-height: 1.6;
@@ -199,7 +199,7 @@ ul.chapters li a {
   font-style: italic;
 }
 
-.pc reader-note {
+.reader-note1 {
   display: block;
 }
 
@@ -657,7 +657,7 @@ body.light-mode ..chapter-list a:hover {
 
 }
 
-.pc reader-note {
+.reader-note1 {
     display: none;
   }
 

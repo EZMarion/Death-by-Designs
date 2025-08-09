@@ -191,13 +191,23 @@ ul.chapters li a {
   margin-left: 10px;
 }
 
-.reader-note {
+.pc reader-note {
   margin-top: 30px;
   font-size: 20px;
   line-height: 1.6;
   color: #e0e7ff;
   font-style: italic;
 }
+
+.pc reader-note {
+  display: block;
+}
+
+.reader-note {
+  display: none;
+}
+
+
 .user-buttons {
   position: absolute;
   top: 60px;
@@ -646,7 +656,14 @@ body.light-mode ..chapter-list a:hover {
       margin-left: 2px;
 
 }
+
+.pc reader-note {
+    display: none;
+  }
+
 }
+
+
 @media (max-width: 768px) {
   .chapter-list p {
     padding: 4px 10px; /* Reduce vertical space */

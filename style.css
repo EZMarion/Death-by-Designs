@@ -616,7 +616,7 @@ body.light-mode ..chapter-list a:hover {
 
 
 @media (max-width: 768px) {
-..user-buttons {
+.user-buttons {
   position: absolute;
   top: 30px;
   display: flex;
@@ -625,7 +625,7 @@ body.light-mode ..chapter-list a:hover {
   gap: 10px;
   z-index: 999;
   font-size: 18px;
-   left: 220px;
+   left: 20px;
 }
 }
 @media (max-width: 768px) {

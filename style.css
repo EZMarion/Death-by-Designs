@@ -525,10 +525,11 @@ body.light-mode ..chapter-list a:hover {
 
   .mobile-genre {
     display: flex;
-    flex-wrap: wrap; /* so they go to next line */
-    justify-content: flex-start;
-    margin-top: 10px;
+    flex-wrap: wrap; /* wrap to next line */
+    justify-content: flex-start !important; /* force left alignment */
+    margin-top: 15px;
     margin-left: 0;
+    width: 100%; /* make
   }
 }
 

@@ -622,6 +622,23 @@ body.light-mode ..chapter-list a:hover {
    left: 20px;
 }
 }
+
+
+
+@media (max-width: 768px) {
+.user-buttons {
+  position: absolute;
+  top: 60px;
+  left: 220px;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  gap: 10px;
+  z-index: 999;
+  font-size: 50px;
+}
+}
+
 @media (max-width: 768px) {
 .reader-note {
   font-size: 17px;

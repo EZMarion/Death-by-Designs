@@ -525,8 +525,9 @@ body.light-mode ..chapter-list a:hover {
 
   .mobile-genre {
     display: flex;
-    justify-content: right;
-    margin-top: 15px;
+    justify-content: left;
+    margin-top: 20px;
+     margin-right: 30px;
   }
 }
 

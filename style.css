@@ -157,14 +157,15 @@ ul.chapters li a {
   font-size: 22px;
   line-height: 1.4;
   color: #e0e7ff; 
-    margin-left: 50px;
-    margin-right: 50px;
+    margin-left: 200px;
+    margin-right: 200px;
 }
 
 .section-title {
   color: #1f3d7a; 
   font-size: 28px;
   margin-top: 30px;
+  margin-left: 200px;
 }
 
 .chapter-list a {
@@ -283,6 +284,7 @@ ul.chapters li a {
 .social-links a {
   font-size: 20px;
   font-weight: bold;
+  margin-left: 200px;
 }
 
 .social-links a:hover {
@@ -552,6 +554,7 @@ body.light-mode ..chapter-list a:hover {
 .social-links a {
   font-size: 15px;
   font-weight: bold;
+  margin-left: 7px;
 }
 
 .social-links a:hover {
@@ -561,6 +564,7 @@ body.light-mode ..chapter-list a:hover {
 @media (max-width: 768px) {
 .section-title {
    font-size: 23px;
+  margin-left: 7px;
  } 
 }
 @media (max-width: 768px) {

@@ -661,6 +661,10 @@ body.light-mode ..chapter-list a:hover {
     display: none;
   }
 
+.reader-note {
+  display: block;
+}
+  
 }
 
 

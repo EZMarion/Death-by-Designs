@@ -125,7 +125,7 @@ h1 {
 .desktop-genre {
   display: flex;
   margin-top: 20px;
-   margin-left: 50px;
+   margin-left: 200px;
 }
 
 .mobile-genre {
@@ -532,7 +532,7 @@ body.light-mode ..chapter-list a:hover {
     flex-wrap: wrap; /* wrap to next line */
     justify-content: flex-start !important; /* force left alignment */
     margin-top: 15px;
-    margin-left: 2px;
+    margin-left: 0px;
     
   }
 }

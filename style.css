@@ -625,7 +625,7 @@ body.light-mode ..chapter-list a:hover {
   gap: 10px;
   z-index: 999;
   font-size: 18px;
-   left: 20px;
+   left: 220px;
 }
 
 @media (max-width: 768px) {

@@ -246,6 +246,12 @@ ul.chapters li a {
   align-items: center;
 }
 
+.big-text.chapter1 {
+ font-size: 22px;
+  line-height: 1.4;
+  color: #e0e7ff; 
+}
+
 .modal-content {
   background-color: #101427;
   padding: 30px;
@@ -666,8 +672,15 @@ body.light-mode ..chapter-list a:hover {
 }
   
 }
-
-
+@media (max-width: 768px) {
+.big-text.chapter1 {
+ font-size: 17px;
+     line-height: 1.5;
+     font-style: normal;
+      margin-left: 1px;
+    margin-right: 1px;
+}
+  }
 @media (max-width: 768px) {
   .chapter-list p {
     padding: 4px 10px; /* Reduce vertical space */

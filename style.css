@@ -530,7 +530,7 @@ body.light-mode ..chapter-list a:hover {
     flex-wrap: wrap; /* wrap to next line */
     justify-content: flex-start !important; /* force left alignment */
     margin-top: 15px;
-    margin-left: 7;
+    margin-left: 2px;
     
   }
 }

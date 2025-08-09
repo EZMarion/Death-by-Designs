@@ -124,8 +124,8 @@ h1 {
 
 .desktop-genre {
   display: flex;
-  margin-top: 8px;
-   margin-left: 30px;
+  margin-top: 15px;
+   margin-left: 20px;
 }
 
 .mobile-genre {
@@ -157,7 +157,7 @@ ul.chapters li a {
   font-size: 22px;
   line-height: 1.4;
   color: #e0e7ff; 
-    margin-left: 10px;
+    margin-left: 9px;
     margin-right: 10px;
 }
 

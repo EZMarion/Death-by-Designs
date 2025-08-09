@@ -627,7 +627,7 @@ body.light-mode ..chapter-list a:hover {
   font-size: 18px;
    left: 220px;
 }
-
+}
 @media (max-width: 768px) {
 .reader-note {
   font-size: 17px;

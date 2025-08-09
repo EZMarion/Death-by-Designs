@@ -192,13 +192,13 @@ ul.chapters li a {
 }
 
 .reader-note {
-  margin-top: 8px;
+  margin-top: 0px;
   font-size: 20px;
   line-height: 1.6;
   color: #e0e7ff;
   font-style: italic;
    margin-left: 300px;
-  margin-bottom: 300px;
+  
 }
 .user-buttons {
   position: absolute;

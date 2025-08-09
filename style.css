@@ -522,12 +522,12 @@ body.light-mode ..chapter-list a:hover {
     display: none;
   }
 
-  .genre-tags mobile-genre {
+  .mobile-genre {
     display: flex;
-    justify-content: left;
-    margin-top: 30px;
-    
-    margin-left: 2px;
+    flex-wrap: wrap; /* so they go to next line */
+    justify-content: flex-start;
+    margin-top: 10px;
+    margin-left: 0;
   }
 }
 

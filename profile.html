@@ -94,8 +94,7 @@
       <p><strong>Name:</strong> <span id="user-name">Loading...</span></p>
       <p><strong>Email:</strong> <span id="user-email">Loading...</span></p>
       <p><strong>Joined:</strong> <span id="join-date">Loading...</span></p>
-      <div id="reading-count">📖 Reading Count: Loading...</div>
-
+     
     </div>
 
     <div class="chapter-section">
@@ -134,7 +133,7 @@
       const userName = document.getElementById("user-name");
       const profileIcon = document.getElementById("profile-icon");
       const chapterCount = document.getElementById("chapter-count");
-      const readingCount = document.getElementById("reading-count");
+
       const chapterList = document.getElementById("chapter-list");
       const joinDate = document.getElementById("join-date");
       const logoutBtn = document.getElementById("logout-btn");
@@ -165,7 +164,7 @@
       joinDate.textContent = joined;
       profileIcon.textContent = name.charAt(0).toUpperCase() || "?";
       chapterCount.textContent = purchased.length;
-      readingCount.textContent = `📖 Reading Count: ${reading.length}`;
+    
       
 
       // ✅ Debugging

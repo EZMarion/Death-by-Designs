@@ -132,8 +132,7 @@
       const userEmail = document.getElementById("user-email");
       const userName = document.getElementById("user-name");
       const profileIcon = document.getElementById("profile-icon");
-      const chapterCount = document.getElementById("chapter-count");
-
+   
       const chapterList = document.getElementById("chapter-list");
       const joinDate = document.getElementById("join-date");
       const logoutBtn = document.getElementById("logout-btn");
@@ -154,8 +153,6 @@
 
       const name = data.name || "Unnamed User";
       const purchased = Array.isArray(data.purchased) ? data.purchased : [];
-      const reading = Array.isArray(data.reading) ? data.reading : [];
-      readingCount.textContent = `📖 Reading Count: ${reading.length || 0}`;
       const joined = data.joinDate || "N/A";
 
       // ✅ Display data on profile

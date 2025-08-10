@@ -151,7 +151,7 @@
     if (userSnap.exists()) {
       const data = userSnap.data();
 
-      const name = data.name || "Unnamed User";
+      const name = data.username || data.name || "Unnamed User";
       const purchased = Array.isArray(data.purchased) ? data.purchased : [];
       const joined = data.joinDate || "N/A";
 

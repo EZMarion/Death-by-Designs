@@ -1,0 +1,481 @@
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <meta charset="UTF-8">
+  <title>Chapter 1 | E.Z. Marion Novels</title>
+  <link rel="icon" href="favicon.png" type="image/png" />
+  <link rel="stylesheet" href="style.css">
+  <style>
+  body.light-mode {
+    background-color: #ffffff;
+    color: #000000;
+  }
+</style>
+<script>
+  window.onload = function() {
+    if (localStorage.getItem("theme") === "light") {
+      document.body.classList.add("light-mode");
+    }
+  };
+  function toggleTheme() {
+    document.body.classList.toggle("light-mode");
+    if (document.body.classList.contains("light-mode")) {
+      localStorage.setItem("theme", "light");
+    } else {
+      localStorage.setItem("theme", "dark");
+    }
+  }
+</script>
+  
+ <script type="module">
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+  import {
+    getAuth,
+    onAuthStateChanged
+  } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+
+  import {
+    getFirestore,
+    doc,
+    updateDoc,
+    arrayUnion
+  } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+
+  // ✅ Firebase Configuration
+  const firebaseConfig = {
+    apiKey: "AIzaSyDffoLenAKrKGMia63SDWTFt5E4AK3hxBE",
+    authDomain: "novel-site-81674.firebaseapp.com",
+    projectId: "novel-site-81674",
+    storageBucket: "novel-site-81674.appspot.com",
+    messagingSenderId: "227276404115",
+    appId: "1:227276404115:web:0a5831851c8c05391b6466"
+  };
+
+  // ✅ Initialize Firebase
+  const app = initializeApp(firebaseConfig);
+  const auth = getAuth(app);
+  const db = getFirestore(app);
+
+  // ✅ Track Reading Progress
+  onAuthStateChanged(auth, async (user) => {
+    if (user) {
+      const userRef = doc(db, "users", user.uid);
+      try {
+        await updateDoc(userRef, {
+          reading: arrayUnion("chapter1") // Track "chapter1" read
+        });
+        console.log("✅ Chapter read recorded.");
+      } catch (error) {
+        console.error("❌ Failed to update reading history:", error);
+      }
+    }
+  });
+</script>
+  
+</head>
+
+<body>
+  
+  <button onclick="toggleTheme()" style="position: absolute; top: 20px; right: 20px; padding: 10px 14px; border-radius: 8px; border: none; cursor: pointer; font-weight: bold;">
+  🌙 / ☀️
+</button>
+
+
+<div class="container">
+  <h1>Chapter 4: Curel Artwork</h1>
+
+  <p class="big-text chapter4">
+   The river was quiet—too quiet.
+Its surface barely moved, cold and still beneath the pale morning sky. But on the shore, the crowd had already gathered, voices rising in murmurs and gasps that broke through the heavy air like birds scattering from trees. Wet boots sloshed up from the water.
+Four men emerged from the riverbank, soaked to the waist, heaving a body between them. A young woman. No older than twenty, maybe twenty-five. Her arms were bound behind her back with coarse rope, eyes and mouth both covered with cloth, her skin a ghostly white edged with blue. Drowned. Likely days ago.
+The crowd stepped back as the men laid her gently on the riverbank. One of them untied the cloth from her face, revealing bloated cheeks and lips pale as ash. Her fingers were misshapen, nails water-warped, and the skin was slipping from her palms. Three days, maybe more.<br><br>
+John stepped forward, the sharp edge of winter air biting through his coat. He crouched beside the girl, examining the bruising, the marks, the unnatural slack of her limbs. He didn’t need long. She had died in pain.
+“Find her name,” John said quietly to the young investigator beside him. <br>
+“Check all missing persons from this week. Contact her family, if there is one.”<br>
+The boy nodded and hurried off, boots crunching on gravel.
+John stood and turned to leave the scene, his shoulders heavy with the weight of yet another unknown face. As he moved through the thick press of onlookers, something—or rather, someone—caught his attention. A silhouette leaning against a tree at the edge of the gathering. Watching.
+Goth.<br>
+The bounty hunter.
+John’s jaw tightened. Since the night Goth had helped them—no, saved them—he hadn’t been able to stop thinking about him. Was that help a gesture? Or did it come with a price?<br><br>
+Before he could speak, Goth appeared beside him like mist.
+“You’ve been quiet,” John muttered without looking.<br>
+ “What do you want? There’s nothing here I need your help with.”<br>
+Goth smiled faintly, eyes still on the river. “I owe you once,” he said. “Now I’m just collecting answers.”<br>
+John exhaled through his nose. “Answers to what?”<br>
+“That man last night. The one you chased. The one who died.”
+“Henry?”<br>
+Goth gave a slow nod. “Where was he from?”
+“Velmora,” John answered. “Not this town. Didn’t live here. Why?”<br>
+But Goth was already gone.
+John blinked, his gaze scanning the crowd. No trace of him. “Like a damn ghost,” he muttered under his breath.<br>
+Footsteps rushed up behind him. The young investigator again. Breathless. Pale.
+“Sir,” the boy whispered, voice tight with unease. <br>
+“We just got word… The Viscount’s nephew. He’s been killed.”
+John froze.<br>
+John's eyes widened, and a quiet disappointment settled in his chest.
+He had walked away from the aristocracy five years ago. He never wanted to go back—but now, it seemed he had no choice.<br><br>
+The long hallway of the Aristocracy Museum echoed with every step.
+Noah’s boots cracked against the polished marble floor, the sound bouncing down the corridor like distant gunshots. Beside him, John moved in silence, but even he couldn’t escape the eerie stillness that clung to the air like a veil. The farther they walked, the colder it seemed. Neither man spoke.<br>
+They reached the main exhibit hall—the scene of the crime.
+As the grand double doors creaked open, a thick metallic scent rushed out to meet them. Noah stepped in first, but stopped short with a low curse.<br>
+“Ah, damn it. That’s my favorite pair.”
+John glanced down. A fresh pool of blood soaked into the toes of Noah’s boots. Red. Still glistening.<br>
+The museum floor was streaked in it—slick rivers of crimson cutting across the smooth white stone like a grotesque painting.<br>
+“This happened not long ago,” John muttered, his eyes narrowing. “The blood hasn’t even begun to dry.”<br>
+Noah didn’t answer. His gaze had shifted upward.
+He touched John’s arm quickly, voice sharp. “Look up.”<br><br>
+John followed his line of sight—and recoiled.
+The body hung from the carving, suspended by metal chains that clinked softly in the still air. Both arms were bound tight, wrists twisted unnaturally, while the legs dangled just enough to let the blood drain freely onto the stone floor below.<br>
+But it wasn’t the chains or the position that struck the deepest chord of horror—<br>
+It was the skin.<br>
+It was the absence .<br>
+The body—once belonging to William, the Viscount’s nephew—was raw, muscle and sinew laid bare like a grotesque anatomy study. Every inch peeled with precision. Clean. Ritualistic. There was no face, no identity left—only a man-shaped wound.<br><br>
+Noah stepped back, covering his mouth with both hands. “What the hell is this?”<br>
+John didn’t answer. His gaze scanned the room—the ropes, the blood trails  that looked ceremonial. This wasn’t a murder. It was a message.<br>
+“It’ll take some time,” he muttered grimly. “A lot of time.”<br>
+He turned to the younger investigator who’d been waiting by the hall.
+“Start pulling records,” John said. “Anyone who entered the museum around two or three in the morning. Check every log, every signature.”
+The young man nodded and ran off.<br><br>
+Noah’s voice cut through the silence.<br>
+“Only aristocrats are allowed entry after midnight,” he said, wiping a hand over his jaw.
+John turned toward him sharply. “What did you say?”<br>
+Noah looked him straight in the eye. “The museum locks to the public at eleven. After that, only aristocracy can get in. Which means…”<br>
+He let the words hang in the air like smoke.<br>
+John finished the sentence in a whisper.“…the killer is one of them.”
+The silence that followed felt heavier than the blood on their boots.<br><br>
+The House of William
+The room gleamed with wealth.
+Tall windows framed the morning light, pouring gold across polished floors and embroidered drapes. The walls were lined with lavish oil paintings, but one dominated—a grand portrait of William himself, youthful and statuesque, painted in full regalia. He smiled down from the canvas with that effortless nobility only the born-rich possessed.
+His bed—massive, canopied, immaculate—stood untouched.
+John stood stiff near the footboard, glancing between the finery and the quiet servant in front of him.<br>
+“Where were you last night?” he asked evenly.<br>
+The man, hands clasped in front of his vest, answered without hesitation. “I traveled the north path. I delivered a gift to an old friend of the Prince.”<br>
+John nodded once. “Was there anyone who might… want him dead?”<br>
+The servant blinked. “Sir William was… sociable. Friendly. Everyone liked him. I cannot imagine why someone would do that to him.”<br>
+His eyes darted, just once, to the floor. But his voice remained steady.<br>
+“I’m grateful Your Highness is involved in this case,” he added, offering a respectful bow toward Noah. “If the Viscount knew, he would be deeply honored.”<br>
+Noah didn’t respond. He stood near the doorway, one hand resting casually on the hilt of his sword, his expression unreadable as he stared up at the painting of the skinless victim in better times—smiling, noble, untouched by horror.
+Only his eyes shifted—sharp, assessing.<br><br>
+On the Balcony.
+The cold wind blew through silken curtains as the two men stepped out onto the high balcony overlooking the manicured garden. Below, footmen moved about, pretending not to glance up.<br>
+John leaned on the stone rail, staring into the trimmed hedges. “What do we do now?” he said softly. “I don’t want to solve aristocratic crimes.”<br>
+Noah leaned back against the pillar behind him, arms crossed, the city skyline behind his dark silhouette. <br>
+“Why not, John?” he said, voice calm. “Solve this, and you’ll gain favor. Powerful allies. It wouldn’t be a bad thing.”<br>
+John turned toward him, jaw tight. “And when I find the killer? What then? Arrest them? Drag a Viscount’s son to the gallows? You think they’ll let that happen?” He scoffed.<br>
+ “They’ll handle it themselves. Clean it in-house. I’ll just be the broom.”<br>
+Noah gave a dry, almost amused laugh. “That’s the logical conclusion, isn’t it?”<br>
+A pause passed between them. The wind lifted Noah’s coat slightly, and his gaze turned distant for a moment.<br><br>
+Then, quietly, he said, “We should go somewhere.”
+John glanced at him. “Where?”<br>
+Noah didn’t answer right away. He pushed off the pillar, eyes narrowing with thought.
+“Somewhere that doesn’t wear perfume to hide the blood.”<br>
+And with that, he turned and walked back into the house, his boots clicking softly against the marble.
+
+On the Street – Approaching the Prince’s Estate
+The cobblestone street stretched ahead, slick with dew from the early afternoon mist. Horses clopped past. Vendors called faintly from distant corners. But John kept his eyes on Noah, whose stride was unusually purposeful.<br>
+“You really think the rumors are true?” John asked, adjusting the coat draped over his shoulders.<br>
+Noah didn’t slow. “Of course they are. This is a season of power plays. William’s death benefits Prince Samuel more than anyone.”<br>
+John frowned. “It’s too obvious. That’s what makes it feel wrong. Almost… staged.”<br>
+Noah gave a short nod. “Or it’s meant to humiliate Samuel, ruin him publicly. Strip him of credibility.”
+The large gates of the prince’s estate stood ahead, tall and gilded, framed by trimmed rose hedges. Noah stepped up without hesitation and knocked.<br>
+A well-dressed servant opened the door, his expression changing the instant he saw who stood before him. “Your Highness… forgive me, but Prince Samuel is—”<br>
+“Busy?” Noah cut in, already stepping inside.
+The servant hesitated, then stepped aside. John followed silently.<br><br>
+Inside the Estate – The Drawing Room
+They entered the main salon—and stopped.
+Prince Samuel was not alone. Draped in silk robes and half-dressed, he sat on a velvet settee, tangled with another young man in equally disheveled attire. Their closeness spoke volumes.
+John blinked. The air in the room seemed heavier.<br>
+Noah cleared his throat—an exaggerated, clearly intentional cough. “Well… this was expected.”
+“Expected?” John muttered sharply, brows furrowed.<br>
+Samuel, red-faced but quickly recovering, rose from the couch. “He’s just a painter,” he said casually, buttoning his robe. “A friend.”<br>
+The boy beside him bowed awkwardly and slipped past the investigators, disappearing into the hall.
+John stood stiff. He had never seen such an arrangement among nobility up close. His silence was louder than words.<br>
+“I’d like to speak with you,” Noah said coolly.<br>
+“In private,” Samuel replied, eyes flicking toward John.
+Noah raised a brow. “We’ll talk here.”<br>
+Samuel sighed and walked to the liquor cart. He poured himself a drink, then turned, glass in hand.
+“You came about William.”<br>
+“Yes,” Noah said. “Did you do it? If you tell me the truth, I might help you.”<br>
+John shot Noah a quick, disbelieving glance. “You’d help him?”<br>
+“I didn’t kill William,” Samuel said, offended. “Why would I? It’s far too obvious. You think I’m that reckless?”<br>
+John crossed his arms. “Then who do you think did?”<br>
+Samuel sipped his drink, then smiled thinly. “No idea. But I’ll say this—the one who did it is bold. Very bold.”<br>
+He stared at them both, as if daring them to believe otherwise.<br><br>
+Outside the Branch Office – Dusk
+The wind had softened, but the chill of late evening still clung to the air. Just outside a quiet branch of the Bureau, John leaned against the rail, staring at the deepening violet sky. His coat collar was turned up against the breeze, eyes distant.<br>
+“What if he’s lying?” he said finally, without turning.
+Beside him, Noah took a slow bite of his sandwich. “There’s nothing for him to gain by lying to me,” he replied through a mouthful, casually brushing crumbs from his coat.<br>
+John snorted. “You really believe that?” He allowed a dry chuckle to escape. “I don’t.”<br>
+Noah shrugged, unfazed. “People like Samuel only lie when the truth is more dangerous.”<br>
+Inside the Bureau – late evening, the halls were nearly empty now. Only the distant creak of floorboards reminded John that the Bureau still stood at the edge of its purpose. Most of the clerks had gone home, the candles burned low, and only a thin trail of smoke curled above the last dying fireplace.<br>
+John stepped into his office and flicked on the lamp. A manila folder rested quietly on his desk—one he hadn’t seen earlier. The corner was marked with a familiar hand.
+He opened it.
+Inside were the details of the girl pulled from the river.<br><br>
+Name: Emily Carter<br>
+Age: 22<br>
+Origin: Calveran<br>
+Occupation: House servant (recently employed in Fairdawn)<br>
+Family: One younger sister (contacted)<br>
+Status: Pregnant at time of death<br>
+John’s hand paused on that last line.
+He lowered the paper, pressing his thumb to the bridge of his nose. A knot formed in his chest. Not just murdered—but drowned, bound, blindfolded, and carrying a child.<br>
+His jaw tightened.
+She had come to this town with nothing—just the promise of work and a better future. Now her name was just another file. Another case to be shuffled between more pressing matters.
+He stared at the folder for a moment longer, then closed it gently.
+ Every part of him burned to finish this case, but another had risen to the top—urgent, unavoidable, and impossible to ignore.<br><br>
+Morning – Royal Terrace, Fairdawn Palace.
+The sky had barely lightened when John and Noah arrived.
+A hush fell over the palace courtyard despite the cluster of guards and staff murmuring behind cordoned rope. Above them, the prince’s balcony loomed, no longer a symbol of aristocratic pride—but horror.
+Samuel, Prince of Varethorn, hung limp and grotesque from the marble balustrade.
+His body was suspended by rope, tied tightly at the wrists. The skin had been entirely removed. Every inch of him exposed—slick muscle and raw sinew glistened in the cool morning air. Blood dripped in steady rhythm onto the cobbled floor below, already forming a sticky crimson pool.<br><br>
+John tilted his head upward, shielding his eyes from the early sun. “This is a big deal.”<br>
+Noah stood beside him, jaw clenched, voice flat. “The criminal killed the princes.”<br>
+John exhaled hard through his nose. “Whoever did this wasn’t just aiming for the throne... this was personal.”<br>
+John took a step closer to the rope, boots crunching against shattered bits of pottery and blood-smeared stone. “The criminal is not a professional,” he said quietly.<br>
+Noah turned to him. “How can you tell?”<br>
+
+John gestured up. “Look—bits of skin still hang from the rope, and the cuts are jagged. This wasn’t surgical. It was messy. The criminal wanted it to be seen.”<br>
+“To prove something?” Noah asked.<br>
+John nodded. “The killer didn’t kill without purpose. Message was clear: beneath their titles and wealth, the high-ranking were vile creatures—twisted, hollow things hiding behind silk and ceremony—and The killer meant to show the world their true faces.”<br>
+ Noah narrowed his eyes at the body. “So... it wasn’t political?”<br>
+John’s voice dropped. “No. This wasn’t about the competition for power. It was intimate. Intentionally cruel.”<br><br>
+He stepped away from the railing and crossed his arms. “The killer took the time. They needed privacy, a distraction-free moment. Tell me, Noah—what’s the one condition you’d be least likely to expect interruption?”<br>
+Noah thought. “While eating? Bathing? Resting... or—”<br>
+He stopped, eyes flickering with realization.
+John snapped his fingers. “Sex.”<br>
+Noah raised an eyebrow. “You think he was killed during—?”<br>
+
+John’s gaze was sharp. “The servant told us, ‘Prince is... busy.’ It was a clue. The killer may have been someone he was with... someone close. Trusted.”<br>
+Noah’s voice dropped. “Then that changes everything. If it was someone from his bed—then it could be anyone from his... personal record.”<br>
+John raised an eyebrow. “Wait. Are you saying—he kept a record of who he slept with?”<br>
+Noah offered a dry smirk. “You’d be surprised what royals log for... posterity.”<br>
+John blinked, then chuckled under his breath. “Do they write down the time too?”<br>
+Noah couldn’t help but laugh. John shook his head in disbelief, then turned serious again, eyes drifting back up to the ravaged corpse.<br>
+“If you find the one who was close to Samuel and William, you’ll find your criminal.”<br><br>
+The Bureau – late afternoon, stacks of paper scattered the long wooden table. Dust caught the dying sunlight that streamed through the tall windows. The silence was heavy—only the soft sound of flipping pages broke the air.
+John and Noah each had a stack before them, carefully combing through the names listed in Prince Samuel’s private records.<br>
+Noah leaned back first. “Nothing. No matching name.”<br>
+John, slower, more methodical, with furrowed brows, he scanned William’s record. His finger halted mid-page, trembling slightly.
+“Emily,” he whispered.<br>
+Noah glanced up.
+But John said nothing more.
+His mind reeled back to the girl in the river—tied, drowned, pregnant. The girl who had no one except a younger sister. And now... a name. A connection.
+John’s heart beat faster. So it was her.
+Emily had been in love with William. She’d carried his child. Betrayed, discarded... and killed. Her sister must have seen it. Must have known. And now, one by one, those responsible were turning up skinned and hung like butchered meat.
+But a young girl couldn’t have done this alone. Someone had helped her. Someone precise. Patient. Brutal.<br><br>
+John closed the file quietly and leaned back in his chair, lost in thought. If Noah knew what he’d just discovered, protocol would demand they find and arrest the killer immediately. But justice—real justice—had already been denied once. If she did nothing, Emily’s death would vanish into noble silence.
+A knock broke the quiet. The door creaked open.
+A man stepped inside, dressed in dark layers too fine for humility. Silver glinted at his cuff, and a ring caught the light.<br>
+“Viscount James,” Noah said coolly.<br>
+The Viscount smiled faintly. “Gentlemen.”<br>
+John didn’t rise. “What do you want?”<br>
+“I need to speak with both of you,” the Viscount said, shutting the door behind him.<br>
+He walked slowly to the center of the room and stopped just shy of the desk. “The next victim will be me.”<br><br>
+John’s eyes narrowed. “What are you talking about?”<br>
+The Viscount’s face was almost bored, as if recounting a mildly unpleasant story. “Me. Samuel. William. We were all involved in her death.”<br>
+Noah stiffened. “whoes death?”<br>
+The Viscount chuckled softly. “Emily. She thought—foolishly—that getting pregnant would earn her a marriage. William never intended to keep her. We warned her. She didn’t listen.”<br>
+John’s voice was flat. “So you killed her.”<br>
+“We threw her into the river. Just sank.” The Viscount examined his cuff. “That should have been the end of it. But someone saw, I think it was a girl. And now, she is taking revenge.”<br>
+John stood. “You want protection?”<br>
+The Viscount nodded. “This... vigilante has already killed the princes. What do you think they'll do to a viscount? I’m not here to confess—I’m here to make a deal.”<br>
+John’s jaw tensed. “I’ve served thirty years hunting murderers, thieves, and scum. I’ve walked in on butchery, buried children, consoled grieving mothers. Now you want me to protect you—after you murdered a girl and her unborn child?”<br><br>
+The Viscount’s tone didn’t change. “You want fairness. But you’ll never arrest me. You know how this works. Someone else would take the fall, and nothing would change.”<br>
+John’s hands clenched. He hated that the man was right.<br>
+The Viscount turned his gaze to Noah. “And you, Your Highness... I’ve heard there’s discord brewing between the dukes. If you help me, I’ll put my support behind you.”<br>
+Noah didn’t speak. His face was unreadable—aristocratic calm hiding the storm beneath.
+John stared at them both. And for a long moment, the room was still.
+After the Viscount left the Bureau, the air in the room hung thick with quiet outrage. John remained silent for a long moment, then shook his head with finality.<br>
+“I can’t help you with crime anymore,” he muttered, voice low but resolute.<br>
+Noah leaned forward. “Come on, John. This isn't a big deal. It's just politics—”<br>
+John cut him off, his voice firmer this time. “For you, maybe. But for me? It's everything. I’ve turned a blind eye too many times because people like him have power. The Viscount’s list of crimes was long—human trafficking, moral corruption, and perhaps even darker deeds that had yet to surface.I’ve watched justice crawl to its knees. And every time, I let it. Not this time. I won’t lift a finger for Viscount again.”<br><br>
+He pushed back his chair, grabbed his coat, and walked out without another word.
+Noah remained standing. Still, frozen. A thousand thoughts running behind his straight posture. His eyes drifted to the edge of the desk, where the file on the girl from the river lay partially open. His fingers flipped it gently.<br>
+Calveran. Younger sister...<br>
+He stared at the note scribbled in the corner, and something in him shifted. This case wasn’t just another entry in the Bureau’s book. It had weight. Purpose. And more importantly—for someone like him—it could become a turning point. But not alone. He needed John.<br>
+
+In the morning, for the first time, Noah knocked on John’s door.
+John opened, face tired and voice already dry with dismissal.<br>
+ “If this is about that crime again, I told you, I’m not—”<br>
+But Noah stepped in before he could finish. “Listen. You don’t have to arrest her, alright? Just come. Help with the investigation.”<br>
+John’s brow furrowed. He didn’t respond immediately.
+Noah pressed on, voice low. “And… the king summoned you. To oversee me.”<br>
+A pause.
+John narrowed his eyes. “So now you’re coercing me?”<br>
+Noah just gave a half-smile. “If that’s what gets you moving.”<br>
+John sighed deeply and grabbed his long coat from the wall. “You’re lucky I still have a conscience.”<br><br>
+They walked side by side beneath the gaslit streets. The sky was gray with the breath of coming rain. Noah glanced over.
+“So, what do we do now?”<br>
+John let out a long breath. “We find the boy who was with Samuel. He might’ve seen something.”<br>
+Noah raised an eyebrow. “Really? You want to start with him?”<br>
+John gave a dry smirk, John had no desire to investigate—not this time. So he said something vague, something that sounded reasonable enough to end the conversation.
+
+Outside the modest townhouse, John paused just before knocking.<br>
+“What’s his name again?” he asked without looking at Noah.<br>
+Noah gave a smirk. “Gay.”<br>
+John blinked. “What?”<br>
+Noah laughed under his breath. “His name is Meteo.”<br>
+John frowned, unimpressed, and rapped his knuckles against the door.
+A moment later, it opened. A young man stood before them—his white shirt smudged with streaks of crimson, blue, and ochre. His fingers clutched a paintbrush and a worn painter’s palette. Paint speckled his cheeks, and his short hair looked unevenly chopped, like it had been cut in haste with dull scissors. The jagged edges caught John’s eye.<br><br>
+“Can we ask you a few questions?” Noah asked with his usual calm authority.<br>
+“Of course,” Meteo said softly, stepping aside to let them in.<br>
+Inside, the room was cluttered with art supplies, half-finished canvases, and the smell of turpentine. Meteo returned to his easel without hesitation. He dabbed a brush into deep blue and gently touched it to the canvas.
+John’s eyes fell on the painting. The face forming under Meteo’s brush was unmistakable—Samuel, prince and now, corpse.<br>
+“You’re still painting him?” John asked, arching a brow.<br>
+ “The man’s dead. No need to finish that.”<br>
+Meteo didn’t look away from his work. He simply smiled. “I don’t like to leave things unfinished. Even if the subject… is gone.”<br><br>
+Noah wandered slowly around the room, eyes scanning for signs of anything suspicious. John, meanwhile, kept his gaze fixed on the boy’s delicate gestures. Everything about him—the soft tone, the light step, the almost balletic grace of his hand movements—made John deeply uncomfortable. Too gentle. Too theatrical. Too... composed.<br>
+Noah asked, “Did you see anyone suspicious near Samuel recently? Maybe a woman?”<br>
+Meteo paused, then turned slightly. “Hard to say. We only met when he needed me. I wasn’t exactly invited to dinner parties.”<br>
+John stepped forward. “If you remember anything, even a detail, you let us know.”<br>
+Before Meteo could respond, John tugged on Noah’s arm. “Let’s go.”<br><br>
+The door shut behind them.<br>
+Noah raised an eyebrow. “Why’d you rush out like that?”<br>
+John exhaled hard. “We’re wasting time. He’s just a boring painter.”<br>
+Noah glanced back toward the house, thoughtful. “He paints dead men in silence. That’s not boring.”<br>
+John didn’t respond. But in his gut, something unsettled him—not from what Meteo had said, but from what he hadn’t.
+John stood still for a moment under the gray morning sky, then turned to Noah.<br>
+“Let’s go to Calveran,” he said.<br>
+Noah squinted. “Why?”<br>
+John looked ahead, avoiding the question. “You’ll find a clue. Maybe.”<br>
+Truthfully, John wasn’t seeking resolution—he was seeking confirmation. Something buried in his gut that refused to quiet.<br><br>
+The town of Calveran was no more than a cluster of tired buildings and narrow roads. Old wooden signs creaked in the wind. Smoke trailed from a few chimneys, and carts rumbled softly across dirt paths. The air smelled faintly of burning coal and boiled roots.
+They stopped by a vendor where an elderly woman was arranging potatoes.<br>
+“Do you know a girl named Emily?” John asked. “She had a younger sister.”<br>
+The woman looked up and paused, brushing hair from her cheek with calloused fingers.<br>
+ “Emily, yes... Poor girl died recently. Tragic, that was.”<br>
+Noah stepped closer. “Do you know where her sister is?”<br>
+“She left. Said something about going to Varethorn. I’m not sure if she really went... but that’s what she said.”<br>
+John nodded slowly. “Can you show us their house?”<br><br>
+The woman led them through a side path that opened into a patch of worn-down cottages. She stopped at a small house, its roof slanted, windows fogged. The wood looked brittle with age, and weeds had overrun what was once a tiny garden.
+John stepped inside first. The air was stale and cold. The main room held a single bed, a cracked mirror, and an old wooden table with two chipped bowls.
+There was nothing of comfort. Nothing that said “home.”<br>
+Noah quietly opened a narrow door to a side room. As the door creaked, he paused—something was different here.
+The walls inside were bright—painted in careful strokes, filled with soft colors and rough portraits. Pictures of Emily were pinned to every corner. There were sketches of nature, of cities, of faceless people in elegant clothing. The room radiated emotion and raw talent.<br><br>
+Noah stood still, staring. “She was a painter…”<br>
+John entered the room behind him and looked around in silence.<br>
+Noah continued, “John, she can paint. So if she wants revenge, she’ll come back as an aristocratic painter. That way, we can find her easily.” But John wasn’t listening.<br>
+He stood staring at a portrait—a rough sketch of a woman holding hands with a child under a tree. There was no face, but there was feeling. Loss. Longing. Rage buried deep in the strokes.<br>
+“John?” Noah called. “You hear me?”<br>
+John blinked, snapped out of thought. “Yes. You're right. You’ll solve the last part.”<br>
+There was a weight in his voice. A quiet line drawn.<br>
+Noah turned to look at him, confused. “What do you mean?”<br>
+John didn’t answer. He turned away, slowly stepping out of the room. The sound of his boots on the wooden floor echoed faintly behind him.
+He had already decided—this would be the end of his part in the case.<br><br>
+The room smelled faintly of dried tobacco and rain-soaked wood. It was an old house, with crooked windows and walls that breathed with time. A single oil lamp burned on the low shelf, casting shadows that danced lazily.
+John stood by the threshold, his gaze locked with a cat—black with moss-green eyes. The creature didn’t blink, didn’t move.<br>
+John spoke softly, as if to himself, “I never imagined a bounty hunter would have a house. Let alone... a cat.”<br>
+From the far corner, Goth emerged from the dim. His sleeves rolled up, a dagger casually tucked into his belt. He leaned against the wall, arms crossed.<br>
+“I’m more surprised a defender of justice would ask me for a job,” Goth said.<br>
+ A smirk curled on his lips. “So—who do I need to kill?”<br>
+John shook his head. “Not to kill. To protect.”<br>
+Goth raised an eyebrow. “How surprising.”<br>
+John reached into his coat and pulled out a folded parchment. He held it out.<br>
+“This one,” he said. “There’s going to be an attack. I don’t know when. Just don’t interfere with the plan. Let it happen, but make sure this one walks away alive.”<br>
+Goth took the paper, glanced at the sketched face, then tucked it into his coat. He didn’t ask questions.<br><br>
+Golden chandeliers blazed overhead. Velvet curtains lined every arch. The Viscount’s manor wasn’t merely large—it was proud. A testament to power built over generations.
+Noah stood across from the Viscount in a vast sitting room, polished wine glasses catching firelight from the hearth.<br>
+“I believe the murderer is Emily’s sister,” Noah said calmly.<br>
+ “And I saw one of her paintings in William’s room. If she’s seeking revenge, she would’ve hidden in plain sight—among the aristocracy’s painters.”<br>
+The Viscount raised a brow, thoughtful. “There aren’t many aristocratic painters. And even fewer women. Surely she had help.”<br>
+He turned, waved for a servant. “Summon every girl working as a painter. Thoroughly investigate each one. I want their names, families, lovers—everything.”<br>
+He turned back to Noah. “Thank you, Your Highness. And don’t worry about the dukes. With your continued support, I can change their minds.”<br>
+Noah nodded silently and departed for his estate, thinking this case—at last—was drawing to a close.<br><br>
+Later that night, the Viscount stood on his balcony, sipping wine beneath the stars. He watched the city flicker with gaslights and spoke without turning.<br>
+“Servant. What news?”<br>
+The man bowed. “There are no girl painters, my lord.”
+The Viscount blinked. “What?”<br>
+“None. Only men are recorded on the lists.”<br>
+The Viscount’s eyes narrowed. “That can’t be right.”<br>
+“I gathered them, my lord. Would you like to see for yourself?”<br>
+“…Fine. Prepare the buggy.”<br>
+Moments later, he was on his way.
+The Viscount's carriage was a reflection of aristocratic vanity—velvet cushions, crystal decanter filled with red wine, a small tray of sugared almonds. It was built to remind anyone inside: you are above the world.
+He drank as the carriage rolled forward. But the road grew uneven, shadows thick. The lantern outside flickered wildly. The journey stretched too long.
+Impatience festered. He leaned forward.<br>
+“Is it much farther?” he asked.<br>
+The servant driving didn’t answer.
+Something twisted in the Viscount’s gut.<br><br>
+Eventually, the buggy stopped in front of a towering apartment building—old, twenty stories high, its windows like black eyes staring into the void.
+He stepped out slowly. Another buggy waited near the steps.
+The entrance was eerily silent. No guards. No servants. Just a long, empty hallway and peeling wallpaper.<br>
+“Where are the painters?” he asked sharply.<br>
+The servant stepped down behind him.
+“Right in front of you, my lord.”
+The Viscount turned.<br>
+The boy, Meteo stood straight now, the subservient act gone from his face. His eyes glinted beneath the dim overhead light. Sharp. Defiant. <br>
+“I’m the painter,” he said coldly. “I killed William. I killed Samuel. I’m Emily’s sister.”<br>
+The Viscount laughed. “That’s impossible. You’re a boy.”<br>
+“I enjoy living as a girl. That’s what everyone saw. But does it matter? She was my only family. And you—” his voice cracked—“threw her in a river while she carried life inside her.”<br>
+The Viscount took a step forward, his tone rising. “I’ll kill you myself.”<br>
+He lunged, but staggered suddenly. The hallway spun. His grip loosened around the wine bottle. It shattered.
+He gasped. “The wine…”
+And then his knees buckled. He collapsed with a heavy thud.
+The painter stood above him, watching.<br><br>
+The Viscount’s eyes fluttered open to darkness. A rough cloth was tied over his face, pressing against his eyelids. His arms strained against thick ropes binding him to a chair, the coarse fibers biting into his wrists.
+He inhaled deeply—dust, mold, aged wood, and something bitter beneath it all. The room was cold, still, and yet the wind whispered faintly through unseen cracks in the walls.
+From the darkness, voices emerged.
+Two of them. Muffled. Crying. Not one... but two—high-pitched, broken, desperate. Women’s voices. Somewhere nearby. Not close. Not far.
+Then came the voice of a third—calm, masculine, chillingly composed.<br>
+“Awake already?” Meteo asked. “You sleep lighter than I expected.”<br>
+The Viscount’s pulse quickened. “Where am I?” he barked. “What the hell is this?”<br>
+“You’ll find out soon,” Meteo said. <br>
+The Viscount struggled again, twisting against the rope. “What do you want?”<br>
+
+“You asked if I’m going to kill you,” Meteo said, a thread of amusement curling through his words.<br>
+ “No. That would be too gentle.”<br>
+The women’s cries rose sharply—one shrieked, the other moaned low and guttural. The sound was raw, primal.<br>
+“Shut up!” the Viscount snapped, the sound stabbing at his nerves.<br>
+“They can’t,” Meteo said softly. “I cut out their tongues a few minutes ago. The pain is still fresh. Let them scream.”<br>
+The Viscount froze, sweat rising on his brow. The blood in his veins began to feel heavy. “You’re insane,” he hissed.<br>
+“Perhaps. Or perhaps I just needed someone to hear them scream… since you never did.”<br>
+A pause.
+“Now let’s play a game.”<br>
+
+
+
+  <div style="text-align: center; margin-top: 40px;">
+  <p style="font-weight: bold;">{CHAPTER - 4 END}</p>
+
+
+ <div class="chapter-navigation" style="margin-top: 40px;">
+    <a href="chapters.html" class="btn">🏠 Back</a>
+    <!-- You can add Next Chapter link later -->
+  </div>
+</div>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

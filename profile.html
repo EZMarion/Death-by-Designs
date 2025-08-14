@@ -127,7 +127,7 @@
       const userName = document.getElementById("user-name");
       const profileIcon = document.getElementById("profile-icon");
    
-      const chapterList = document.getElementById("chapter-list");
+     
       const joinDate = document.getElementById("join-date");
       const logoutBtn = document.getElementById("logout-btn");
 
@@ -146,7 +146,7 @@
       const data = userSnap.data();
 
       const name = data.username || data.name || "Unnamed User";
-      const purchased = Array.isArray(data.purchased) ? data.purchased : [];
+   
       const joined = data.joinDate || "N/A";
 
       // ✅ Display data on profile
@@ -163,23 +163,7 @@
       console.log("Auth displayName:", user.displayName);
       console.log("Reading field:", data.reading);
 
-      // ✅ Show purchased chapters
-      chapterList.innerHTML = '';
-      if (purchased.length === 0) {
-        chapterList.innerHTML = '<p>No chapters purchased yet.</p>';
-      } else {
-        purchased.forEach(chapterId => {
-          const chapterNumber = chapterId.replace(/[^\d]/g, '');
-          const title = `Chapter - ${chapterNumber}`;
-          const p = document.createElement("p");
-          p.innerHTML = `
-            <a href="chapter${chapterNumber}.html">
-              <span class="chapter-title">${title}</span>
-              <span class="arrow-label">>></span>
-            </a>`;
-          chapterList.appendChild(p);
-        });
-      }
+     
 
     } else {
       alert("User data not found in Firestore.");

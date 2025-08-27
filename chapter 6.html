@@ -1,10 +1,13 @@
+
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <meta charset="UTF-8">
-  <title>Chapter 1 | E.Z. Marion Novels</title>
-   <link rel="icon" href="favicon.png" type="image/png" />
+  <title>Chapter 6 | E.Z. Marion Novels</title>
+  <link rel="icon" href="favicon.png" type="image/png" />
   <link rel="stylesheet" href="style.css">
   <style>
   body.light-mode {
@@ -28,92 +31,502 @@
   }
 </script>
   
+ <script type="module">
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+  import {
+    getAuth,
+    onAuthStateChanged
+  } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+
+  import {
+    getFirestore,
+    doc,
+    updateDoc,
+    arrayUnion
+  } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+
+  // ✅ Firebase Configuration
+  const firebaseConfig = {
+    apiKey: "AIzaSyDffoLenAKrKGMia63SDWTFt5E4AK3hxBE",
+    authDomain: "novel-site-81674.firebaseapp.com",
+    projectId: "novel-site-81674",
+    storageBucket: "novel-site-81674.appspot.com",
+    messagingSenderId: "227276404115",
+    appId: "1:227276404115:web:0a5831851c8c05391b6466"
+  };
+
+  // ✅ Initialize Firebase
+  const app = initializeApp(firebaseConfig);
+  const auth = getAuth(app);
+  const db = getFirestore(app);
+
+  // ✅ Track Reading Progress
+  onAuthStateChanged(auth, async (user) => {
+    if (user) {
+      const userRef = doc(db, "users", user.uid);
+      try {
+        await updateDoc(userRef, {
+          reading: arrayUnion("chapter1") // Track "chapter1" read
+        });
+        console.log("✅ Chapter read recorded.");
+      } catch (error) {
+        console.error("❌ Failed to update reading history:", error);
+      }
+    }
+  });
+</script>
+  
 </head>
+
 <body>
+  
   <button onclick="toggleTheme()" style="position: absolute; top: 20px; right: 20px; padding: 10px 14px; border-radius: 8px; border: none; cursor: pointer; font-weight: bold;">
   🌙 / ☀️
 </button>
 
 
-
-
-
-<div id="chapter-content" style="display: none;">
-
-
-
 <div class="container">
-  <h1>Chapter 6: Weavy Revenage</h1>
-  
+ <h1>Chapter 6: <br>
+    The Sinner  </h1>
+
+  <p class="big-text chapter5">
+ 
 
 
-  <p class="big-text">
-The morning light poured weakly through the windows of John’s house, the rooms were quiet — too quiet. Noah stepped through the front door slowly, hesitating on the threshold. His boots made no sound on the worn wood. He carried something unspoken on his face — a stiffness in his jaw, a tension in his eyes. He felt it deep in his chest: guilt. It was unfamiliar and uncomfortable, sitting like a stone in his stomach.<br><br>
-This time, he didn’t come to argue.<br><br>
+Varethron was a city of countless churches, yet the trail kept circling back to one: Mary Church.
+Both of the dead went there before their murders.
+John knew what it meant to step into sacred ground with suspicion on his tongue, but responsibility left him no choice.
+The church loomed before him—grand and imposing, its stone spires clawing at the sky. Golden light filtered through stained glass, painting the floors in colors of blood and fire. Inside, the air was thick with incense, the steady murmur of prayers filling the cavernous hall. Dozens of worshippers knelt before the altar, and more than ten priests moved quietly among them, their robes whispering against the marble.
+John stepped in, his boots striking a careful rhythm against the floor. He paused before a passing priest and spoke low.<br><br>
+“I want to speak with your  head priest.”<br>
+The priest gave him a measured look, then bent close, whispering into the ear of an elder standing near the altar. The elder nodded once and turned.
+They met outside, beyond the heavy doors where the evening light was softer.<br>
+“Thank you for giving me your time, Father,” John began.<br>
+The old priest’s face was calm, unreadable. “It is no burden, Investigator. Tell me, how may I help you?”<br><br>
+
+John slipped a hand into his coat and produced his Bureau identification. The insignia caught the dying light. <br>
+“I’m from the Bureau. You’ve already heard of the so-called priest killer. The victims both attended this church before their deaths. I need to investigate further.”<br>
+The Father’s gaze did not waver. His voice was calm, almost disarmingly so. “I know your duty. But tell me—do you have a suspect?”<br>
+John’s face tightened, his tone sharpening with the weight of truth. “Not yet.”<br>
+The Father folded his hands, tilting his head slightly.<br>
+ “Then be careful where you cast your shadow. You cannot determine guilt simply because the killer wore a cassock. A wolf in wool is still not a shepherd.”<br>
+John’s jaw flexed. His reply was low, measured. “I know my job, Father.”<br>
+The church bells tolled in the distance, their iron voices echoing across the courtyard. Between them, silence stretched—thick and uneasy, as if the stones themselves listened.<br><br>
 
 
- <div style="text-align: center; margin-top: 40px;">
+The Father’s eyes hardened, his voice calm but immovable.<br>
+“And I know my duty as well, Investigator. I must protect this church. If I allow you to search freely, what will people think? That our priests—our brothers—are murderers?”<br>
+John raised a hand, his voice low but urgent. “No, Father, I don’t mean—”<br>
+The elder silenced him with a gentle but final wave.<br>
+“You must understand. Allowing such an investigation would stain not only this church, but the faith itself. The shame would spread wider than any murderer’s shadow. If you bring me a strong suspect, something undeniable, then—perhaps—I will think on it.”<br>
+With that, the Father turned, his robes whispering across the stone steps as he disappeared back into the golden interior.
+John stood outside, empty-handed. He clenched his jaw, but he could not fault the man. The Father was right—accusations carried weight heavier than iron. Without proof, his questions would only fan suspicion.
+The evening air pressed in cold and heavy. John lingered on the church steps, watching as townsfolk crossed themselves upon entering. Behind him, the murmur of gossip drifted through the square.
+The word was already spreading.<br>
+The Sinner.<br><br>
+
+Everyone knew the name now. Children whispered it with pale faces. Men told the story in taverns. Women crossed themselves when the sun went down. Some claimed God had sent the Sinner into the world, a shadow to punish hidden sins. They said if you heard a whistle in the night, it meant the Sinner was at your door, ready to claim your sin.
+And the bodies were piling up. Six dead already.
+Witnesses told stories as fractured as their fear. Some swore the Sinner was divine—appearing from nowhere, vanishing without trace. Others spat and said he was only a man, a mad butcher in priest’s robes, bent on dragging the church into disgrace.
+John sifted through the voices in his mind, every word adding weight instead of clarity. Was he chasing a ghost sent by heaven? Or a psychopath with a cruel mask?
+He could not decide.<br><br>
+Across the city, the whispers grew darker. Even the proselytizers—the street preachers—fed the fire. One shouted in the street:<br>
+“People are too afraid to enter the church, too afraid to confess their sins! But remember this—God forgives through confession. The Sinner does not forgive. He will come. He will take your sins himself.”<br>
+The crowd had listened, wide-eyed and trembling.
+John tightened his coat around his shoulders as the bell of Mary Church tolled overhead. Fear was spreading faster than truth, and he knew if he didn’t find the real killer soon, the city itself might be swallowed by it.<br><br>
+
+The Bureau office smelled faintly of ink and parchment. Maps and pinned notes covered one entire wall, and John stood in front of them, marker in hand.<br>
+“These two crimes happened here,” he said, circling the locations on the map with careful precision. <br>
+“Both close to Mary Church. The killer must be from the church—or someone living nearby.”<br>
+Noah leaned back in his chair, arms crossed, eyes narrowing. “So… what’s your opinion?”<br>
+John’s jaw tightened. “I can’t tell yet.”<br>
+A knock at the door interrupted them. “Someone says he saw the Sinner,” a voice called from outside.<br>
+“Send him in,” John said.<br>
+Noah scoffed. “I doubt it’s true.”<br><br>
+The door opened, and a man stepped inside. Thin, with a round face framed by curly hair, he smiled broadly.<br>
+“I’m Mike, and—”<br>
+John cut him off, voice sharp. “I know who you are. You’re a proselytizer.”<br>
+Mike’s smile didn’t falter. Noah leaned forward, voice skeptical. “You said you saw the Sinner?”<br>
+“Right,” Mike said, pulling a small notebook from his coat. “But first… look what I found. I’ve tracked a pattern.”<br>
+
+John raised an eyebrow. “And why are you telling me this? You have a reason?”<br><br>
+Mike’s grin widened. “Simple. I want to be the one who finds the Sinner. Fame, audience… the works.”
+Noah pressed his lips together, disapproving. “This isn’t a good idea—receiving help from a proselytizer.”<br>
+“You’ll benefit,” Mike insisted, flipping open the notebook. “Every victim had a connection—they all went to church before they died.”<br>
+John leaned closer. “We know that already.”<br>
+Mike shrugged. “But you don’t know they all did confessional.”<br>
+Noah and John exchanged a look, tension tightening the air.<br>
+“How do you know?” Noah demanded.<br>
+“I go to Mary Church myself,” Mike said matter-of-factly. “I note everything. Who attends, who confesses. All six victims—I saw them confess. The next day, they died.”<br><br>
+
+Noah’s eyes narrowed. “And you saw him? The Sinner?”<br>
+Mike shook his head. “Not exactly. But one night, I followed a man who had confessed his sins. And the sinner came his house.”<br>
+Noah asked, “If you were so sure about it, why didn’t you contact us?”<br>
+Mike shrugged, a small grin playing on his lips. “Because I was not sure. I watch the houses of everyone who does confessional every night. But that night… I got lucky. He was wearing a sheet’s head over his own, like a mask. But he didn’t harm me. He just walked away. That’s how I know. If you want to catch him, you’ll have to observe confessional at Mary Church.”<br><br>
+John and Noah exchanged glances, the weight of the revelation pressing down.<br>
+Noah ran a hand through his hair. “So… we have to sit through confessional, just to see him?”<br>
+John’s jaw tightened. “It seems that’s our only lead.”<br>
+Outside, the city moved on, oblivious to the predator lurking in its sacred halls. Inside the office, the three men stood in tense silence, plans forming even as doubt gnawed at their resolve.<br><br>
+
+The cobblestones echoed beneath their boots as they approached the towering facade of Mary Church. Candles flickered in the tall windows, their glow spilling across the courtyard like watchful eyes.<br>
+“When I go in for confessional,” John said quietly, his gaze fixed on the heavy doors, “you check the grounds. Keep your eyes open.”<br>
+Noah shrugged, almost careless. “All right.”<br>
+John pushed through the great oak doors. Inside, the air was heavy with incense. A priest noticed him immediately, inclining his head with faint recognition.<br>
+“Investigator. Again.”<br>
+“This time, not for investigation,” John replied, voice steady. He lowered his eyes slightly. “Father… I wish to make a confession.”<br><br>
+The priest studied him a moment longer, then gave a slow nod and gestured toward the shadowed booths along the nave. John disappeared into their dark wooden embrace.
+Outside, Noah wandered the grounds with an air of impatience. The courtyard was alive with movement: priests pacing between chapels, nuns carrying baskets, worshippers murmuring prayers under their breath. He drifted further, circling the outer wall.
+That was when he saw her.
+A girl stood near the steps, broom in hand, sweeping quietly. Her long black hair was tied high, coiled neatly like a crown. Even in her simple dress, she carried a striking beauty, delicate yet resilient.<br>
+Noah started toward her, words on his tongue. The sweep of her broom was unhurried, patient. Noah hesitated, then stepped closer, his voice low. “Do you live here?”<br>
+The girl paused mid-motion, tilting her head slightly at the sound of his voice.<br><br>
+
+The girl turned her face toward Noah, lips parting as if to answer. But before a word could escape, a deep voice cut through the quiet courtyard.<br>
+“Yes, Investigator. She lives here.”<br>
+Noah stiffened. Slowly, he turned.
+A priest approached from the cloister’s shadow. He was tall, broad-shouldered, his black cassock brushing against his boots as he walked. A thick mustache framed his mouth, giving his face a stern gravity. He came to stand beside the blind girl, resting a hand briefly on her shoulder.<br>
+“And,” he said firmly, “she is my wife. Now—what business do you have with her?”<br>
+The girl lowered her head at once, her broom pausing mid-sweep, as if she had been gently commanded into silence.<br>
+The priest’s tone softened as he leaned slightly toward her. “Go inside.”<br>
+Obediently, she set the broom aside and slipped back through the side door of the church, leaving only the faint sound of her steps fading into the hall.<br><br>
+
+Noah blinked, taken aback, caught between curiosity and discomfort. “Oh,” he muttered, the corner of his mouth tightening.<br>
+ “I wasn’t expecting… that.” He straightened his shoulders, covering his surprise. <br>
+“I’m waiting for my partner. He’s inside—doing confessional.”<br>
+The priest’s dark eyes lingered on him. “You are an investigator as well?”<br>
+Noah’s expression hardened. “How do you know that?”<br>
+A faint smile tugged beneath the priest’s mustache. “You don’t look like ordinary men.”<br>
+The silence stretched for a heartbeat before he spoke again, his tone lower, edged with urgency. “Have you found him yet?”<br>
+Noah folded his arms, replying simply, “We’re close.”<br>
+“Good.” The priest’s gaze flicked toward the church doors, then back to Noah. <br>
+“You should stop him quickly. If the news spreads too widely, our church will be shamed. And that stain… it will not be washed away.”<br><br>
+The courtyard fell quiet again, save for the faint toll of bells above, their hollow notes rolling through the fading light.
+The confessional was dim, the only light filtering through a carved lattice. John sat within, the wooden bench creaking softly beneath him. For a moment he said nothing—only listening to his own breathing, heavy in the quiet chamber. Then, at last, his voice came, low and uneven.<br>
+“I had a friend once. Very close. Like a brother. But… a case happened. I couldn’t stand by his side when he needed me most. He died. And since that day…” John’s hand pressed against his chest as if to steady the ache, “I haven’t been able to forgive myself.”<br><br>
+From beyond the lattice, the priest’s voice answered, calm and measured.<br>
+“God has plans for everyone. This was not your fault.”<br>
+The words settled between them, but they did not ease the weight in John’s chest.
+Later, as they prepared to leave, John turned back to the priest. His tone was quiet but resolved.<br>
+
+“Father, I will begin the investigation tomorrow.”<br>
+The priest’s expression sharpened, his calm gaze tightening into something sterner.
+“Are you certain of this? I will not stand idly by.”<br><br>
+“I’m sorry,” John replied evenly, “but this is an order from Your Highness.”<br>
+Out in the nave, Noah lingered in conversation with another priest, unaware of John’s words. John lifted a hand, giving him a subtle wave. Noah frowned at the vague gesture, not understanding, so John repeated it—this time with the faintest smile tugging at his lips.<br>
+Behind him, the Father’s voice carried one last warning.<br>
+“Then Your Highness should be prepared for the consequences.”<br>
+John’s smile deepened, though it carried no joy. “He will.” With that, he turned and strode down the aisle, his coat brushing against the polished pews.<br>
+When they stepped outside, Noah finally asked, “What were you doing in there?”<br>
+John’s reply came lightly, almost evasive. “I was just introducing you to the Father.”<br>
+Noah narrowed his eyes, but John’s face gave nothing away.<br><br>
+
+The house was silent except for the slow crackle of embers in the hearth.
+John sat downstairs on the worn sofa, his back straight, every sense sharpened. Upstairs, Noah kept his bow drawn, an arrow fitted and ready, his posture tense as a coiled spring. The two of them had been waiting for hours, the weight of expectation heavy in the air.
+Leaning over the banister, Noah whispered down, his voice low and edged with skepticism.<br>
+“Can you even trust Mike?”<br>
+John didn’t lift his eyes from the shadows gathering by the window.<br>
+“Just wait. Listen for the whistle.”<br>
+Noah let out a short, amused breath. “And if he really is God’s Sinner?”<br>
+A shadow flickered across John’s face. “No way…”<br>
+But Noah pressed. “What did you say in confession? About the Viscount case?”<br>
+John’s jaw tightened. “I don’t even remember.”<br>
+“Come on,” Noah teased softly, his arrow steady in his grip. “You confessed. Now you can speak your sins freely.”<br>
+John opened his mouth, words hesitant, when—
+A sharp, thin whistle cut through the night air.<br><br>
+
+Both men froze. Noah lifted the bow higher, his eyes narrowing toward the sound. John rose silently, muscles taut. Then—three measured knocks at the front door.
+John looked up, caught Noah’s gaze, and nodded. Noah adjusted his stance, bowstring tight.
+John eased the door open. The night outside was empty—no figure, no shadow, only the shifting wind. He shut the door again slowly, his eyes scanning the room.
+A sound—soft, almost like breathing—crept from above.
+Noah pivoted. Someone was behind him.<br><br>
+He spun and lunged left, his arrow almost slipping. And there it was—looming out of the dark.
+The Sinner.
+He wore a sheet’ head over his head, not cloth but something grotesque, stiffened and foul. Flies clung to it, circling in a low, buzzing halo. A sour stench rolled off him, rotting and suffocating. The fabric clung tight, as though flesh and sheet had fused into one grotesque mask.
+In his hand gleamed the hooked blade, jagged and cruel, its edge crusted with dried blood. Shreds of skin still clung to the curve, catching the faint glow of moonlight through the window.
+The Sinner stood perfectly still, save for the faint rise and fall of his breath beneath the sheet.
+And then—he moved.<br><br>
+
+The first strike came fast.
+The Sinner lunged for Noah, blade flashing in the half-light. Noah twisted back, the hooked edge missing his chest by an inch. His bow snapped up and the string sang — the arrow buried itself deep into the Sinner’s arm.
+A scream tore through the mask, raw and animal.<br>
+The figure staggered but did not fall. His movements were erratic, wild — not trained, but unnatural. Every slash was too sudden, too strong, as though driven by frenzy rather than skill.
+John thundered up the stairs two steps at a time. The Sinner wheeled toward him, blade rising, but John’s boot connected hard with his chest. The figure reeled back, hit the banister, and with a violent crash, toppled over.<br><br>
+Wood splintered. The Sinner slammed into the floor below, his blade clattering to the side.
+He lay still for a heartbeat, then his head snapped up. The buzzing flies around the sheet mask lifted into the air. Without a word, he scrambled to his feet and bolted for the door.
+“After him!” John shouted.
+The two men gave chase, bursting into the cold night. The moon hung pale and merciless above, bathing the cobbled street in silver light. Their boots hammered the ground as they sprinted after the retreating figure.<br><br>
+
+But then—he was gone. The shadows of the alley swallowed him whole.<br>
+“Shit,” Noah hissed, lowering his bow, scanning the rooftops. “Where the hell did he go?”<br>
+John raised a hand. “Steady. He’s near—”<br>
+A voice split the night.<br>
+“Look! I found the Sinner! Here, come here!”<br>
+Both men froze, exchanging sharp glances. Without hesitation, they sprinted toward the sound.
+The cry had come from a side street. They rounded the corner, hearts pounding—
+And there he was.<br><br>
+The Sinner lay sprawled on the stones, his chest heaving, his body marked by wounds from their fight. The grotesque sheet-mask tilted toward them, as if watching, even as his strength bled away.<br>
+John’s breath hitched. His hands trembled slightly, but he forced himself forward. This was it. No more chasing shadows, no more superstition. He knelt down, fingers brushing the foul, buzzing fabric.<br>
+“Let’s see your face,” he muttered.<br>
+With one hard pull, John tore the mask away.<br>
+Beneath it was not some nameless monster.<br><br>
+It was Mike. The proselytizer.
+His curly hair clung damp to his forehead, his thin face pale and streaked with blood. His eyes rolled toward them, glassy with shock.
+Noah’s mouth fell open. John staggered back, unable to speak.
+The night pressed down heavier than before.
+The hunter they had been chasing was no longer faceless. It was a man they already knew.<br><br>
+
+By morning, the streets of Varethron stirred with restless calm. News of the Sinner’s capture spread like fire through dry grass. Markets buzzed again, children played in alleys, and the church bells tolled with an almost relieved harmony. People whispered: the terror was over.
+But beneath that calm, questions festered.
+Why had it been Mike — a proselytizer known for chasing attention? Had he orchestrated the killings for fame, to shame the Church, or was there another plan?
+John meant to find out.<br><br>
+
+Mike’s room was a suffocating den of clutter. Crumpled papers buried the desk, scraps of cloth hung off chairs, and the stench of stale food and metal cans soured the air. Among the chaos, John sifted through notes — lists of parishioners, the names of priests, records of who had entered Mary Church for confession. The handwriting was quick, obsessive.
+John dropped the papers onto the cot where Mike sat, just roused from restless sleep. His curly hair stuck out in every direction, his face hollow from the night.<br>
+“Look familiar?” John asked, voice low and measured.<br>
+Mike rubbed his eyes, blinking down at the notes. “I’m not the Sinner. You’ve caught the wrong man.”<br>
+From the side, Noah leaned against the doorframe, arms folded, expression sharp. <br><br>
+
+“Then what were you doing, lying in the street with a bloody sheet on your head?”<br>
+Mike’s voice wavered. “No. No, I don’t even know. Someone hit me. I fell. Next thing I remember, I was here. That’s all.”<br>
+John’s eyes narrowed. He slid one of the papers closer. “We found this in your house — lists of prayers, notes on Mary Church, names of people who confessed. Why collect this?”<br>
+Mike straightened, shoulders stiff. “Because it’s my work. I want the truth. I wanted to find the Sinner before anyone else. If I found him, I’d gain audience. I’d—”<br><br>
+“So it was for spectacle,” John cut in coldly. “For attention. To shame the priests.”<br>
+Mike let out a small laugh, dry and defensive. “You’re twisting this. You’ve got something wrong.”<br>
+Noah pushed off the doorframe, stepping closer. His gaze fell on Mike’s bandaged arm — the very place his arrow had struck. He jabbed a finger toward it. <br>
+“And that wound? I shot you. Don’t tell me you don’t remember.”<br>
+Mike looked down slowly. His lips parted, but no words came. Then his eyes darted up, desperate.<br>
+ “I don’t even know how I got this! I’m not the Sinner. I didn’t kill anyone!” His voice rose to a ragged shout, echoing off the narrow walls.<br><br>
+John and Noah exchanged a look — unreadable, heavy with doubt — and turned to leave. Their boots thudded against the wooden floorboards as they stepped into the hallway.
+Behind them, Mike lurched forward, chains rattling.<br>
+“Hey! Don’t leave me here! I’m not the Sinner! Do you hear me? I’m not—!”<br>
+The door slammed shut. His voice was swallowed by silence.
+And still, neither John nor Noah was certain.<br><br>
+
+The Bureau’s office smelled of ink and damp parchment, the morning sun cutting pale lines through the shutters. John stood at the map board, still marked with circles and scrawls of red ink, when Noah leaned back in his chair with a sigh.<br>
+“So clear everything,” Noah muttered, tapping his knuckle on the desk. “What should we do with him?”<br>
+John’s voice was flat. “The judge will decide. Likely… death.”<br>
+Before Noah could answer, a boy pushed the door open. His face was flushed, breathless.<br>
+“Sir… there is a girl waiting for you.”<br>
+John frowned, curiosity tightening his features. “Send her in.”<br>
+The door opened wider, and in she stepped—the same girl Noah had seen sweeping outside Mary Church. But now, she looked different. Terrified. Her pale face was framed by long black hair tied high, though strands had come loose, clinging to her skin. Her eyes darted around the room, wide and restless, like a hunted animal.<br><br>
+Noah rose half an inch from his chair, startled. “You?”<br>
+The girl opened her mouth, but no words came. Instead, she raised her trembling hands and made uncertain gestures.<br>
+“What do you mean?” Noah asked, bewildered.<br>
+
+John raised a hand, calming him. “Wait… can you write?”<br>
+The girl shook her head slowly, lips pressed tight. Then, with hesitant movements, she shrugged off her coat.
+Beneath it, the truth surfaced. Her arms were mottled with brownish welts, half-healed scars. Across her slender neck were darker marks—rings of bruising, as though rope or hands had choked the life from her again and again.<br>
+John’s eyes hardened. “What happened to you?”<br><br>
+Noah’s voice dropped to a low growl. “This is your husband, isn’t it? The priest?”<br>
+John turned sharply toward him. “How do you know?”<br>
+“I saw her in Mary Church,” Noah replied. “She was standing beside him.”<br>
+John looked back at the girl. “So… you want to leave him? Divorce?”<br>
+Her head dipped in a quick nod. But almost instantly she raised her hands again, moving them frantically. Her fingers traced meaning into the air, though neither man understood.<br>
+“He is not my husband,” John translated slowly, watching the broken rhythm of her gestures. “He bought me… from a slave market?”<br>
+Her eyes brimmed with tears as she nodded again, desperately. Her hands moved faster now: basement… locked… forbidden to leave.
+John’s breath left him in a tight sigh.  He rubbed the bridge of his nose. The weight of her silence pressed the room into stillness.<br><br>
+“Then he doesn’t know you came here?” John asked quietly.<br>
+The girl shook her head. Her fingers flew again: If he finds me…
+The air shifted suddenly. Heavy footsteps sounded in the hall outside. Voices.
+A man’s voice, sharp and demanding, cut through the door.<br><br>
+“Where is she?”<br>
+The girl froze. Her hands stopped moving, her face drained of color.<br>
+John’s eyes snapped toward the door, then to Noah. The priest was here.<br>
+
+
+The girl startled at the sound of the priest’s voice outside. She backed away from the door in panic, fumbling blindly until she collided with Noah. Instinctively, she clutched at his sleeve, her whole body trembling.<br><br>
+“Calm down,” Noah murmured, steadying her with a hand on her shoulder. His voice was low, firm, but gentler than his usual sharpness.<br>
+The door swung open. The priest filled the frame, tall and stern, his mustache shadowing a mouth that carried authority. His eyes, however, were sharp and possessive as they fixed on the girl.<br>
+“I’ve come to take her back,” he said evenly.<br>
+The  girl shook her head violently, her  eyes wide with fear. She raised her hands in a clumsy plea, words caught in silence: No. Please. Leave me here.<br>
+The priest’s face hardened. His voice sharpened with mockery as he stepped forward.<br>
+“Leave you here, hm?”<br>
+He reached for her arm—but Noah’s hand shot out, clamping onto the priest’s sleeve. The air in the room thickened as the two men locked eyes.<br>
+“If you lay a hand on her again,” Noah said coldly, “you’ll regret it.”<br><br>
+The priest sneered, jerking his arm once against Noah’s grip, but not breaking free. “She is my wife. I own her.”<br>
+ His words cracked like a whip in the quiet Bureau office.<br>
+The girl whimpered and shrank back, clutching Noah’s coat now. The priest, ignoring her fear, pulled his own heavy coat from his shoulders and draped it around her, as though covering property he would reclaim.<br><br>
+
+Then, with a final, barbed murmur, he said,<br>
+“Good luck escaping from the Sinner.”<br>
+John, leaning against the desk, showed only a small, measured nod. Nothing more.<br>
+The priest turned and strode out, boots echoing down the hallway.
+For a long moment, silence lingered. The girl stood rigid, her breath sharp and uneven. Noah finally released his clenched fists, though his jaw stayed tight. He turned to John, anger sparking in his dark eyes.
+“You didn’t do anything,” he accused.<br><br>
+John leaned back against the desk, arms folded, face shadowed in thought.<br>
+ “I wanted to, Noah. But we can’t just act on impulse… not against a priest. We’ll handle this another way.”<br>
+Noah exhaled sharply, running a hand through his black hair. His voice dripped with disdain.<br>
+ “Some kind of marriage. More like a cage.”<br>
+John gave a small nod, but his eyes followed the door where the priest had gone. His silence carried more weight than his words.<br><br>
+
+The basement was cold and damp, the smell of old stone clinging to the air. A single lantern flickered on a crooked shelf, throwing jagged shadows across the walls.
+The priest shoved the girl hard, and her frail body struck the stone wall before collapsing to the floor. The impact rattled through the room, dust sifting down from the ceiling. She lifted trembling hands, her  eyes wide with terror, signing desperately.
+No… no, I’m sorry.<br><br>
+Her hands barely finished the motion before a crash echoed through the chamber. The priest swung his arm violently, knocking a vase to the floor where it shattered into glittering fragments. His rage was unrestrained—tables toppled, a chair splintered under his boot. Each strike was a thunderclap in the small space, and the girl cowered lower, curling against the cold ground, sobbing.<br>
+“Sorry?” his voice thundered, reverberating off the stone. “You dare ask forgiveness after this?”<br><br>
+She flinched at the sound, tears streaking her cheeks.
+He seized her coat collar and hauled her up as though she weighed nothing. Her feet barely scraped the floor, her breath coming in frantic gasps. His face hovered close, eyes sharp with wounded pride.<br><br>
+
+“You want to trust that man?” he spat, the words dripping with accusation. “A man you met once, and now you want to follow him?”<br>
+Her head jerked quickly side to side, tears flying, her lips forming silent no, no. But the priest’s fury did not soften.<br>
+“You want to go back to that life?” His voice dropped lower, venomous. <br>
+“You’ll never understand… If I hadn’t saved you, what would you be now? You’d be rotting on the street, blind and helpless, raped and discarded by the first man who found you.”<br>
+The girl collapsed from his grip, sliding to her knees. She clung to his leg as though it were her only anchor in the storm of his anger, her sobs shaking her entire body.<br>
+The priest’s breathing slowed. His rage cracked, replaced with a strange, controlling tenderness. He crouched down, pried her chin up with a hand, and forced her eyes toward him. For a moment, silence hung heavy, broken only by her ragged breaths. Then, with a voice quieter, almost soothing, he said,<br>
+“You don’t know what’s best for you. Only I do.”<br>
+He pulled her against him, guiding her head to his chest. The girl did not resist. She pressed her face into his robe, clutching him tightly as if terrified of losing even the cruel comfort he offered.
+The lantern flame wavered, and in its glow, the broken shards of glass and splintered wood glimmered like the remnants of a battlefield.<br><br>
+
+The Bureau office was heavy with morning silence, broken only by the rustle of papers. A young clerk stepped in, clutching a thin folder to his chest.<br>
+“Sir… Mike wants to call his lawyer.”<br>
+Noah groaned from his chair, rubbing his temple. “This guy never shuts up.”<br>
+John’s jaw tightened. “I’ll handle it.”<br>
+He strode across the hall, the sound of his boots echoing against the tiled floor, and pushed open the interrogation room door. Inside, Mike sat slouched at the table, pale but still managing a smug curl at the corner of his lips.<br><br>
+“You,” John began, voice sharp as steel, <br>
+“came to my house. You tried to kill me. And now you want a lawyer? You think you’re walking out of here?”<br>
+Before Mike could answer, John’s fist cut through the air and landed square across his jaw. The proselytizer tumbled sideways, clutching his face, his chair screeching against the stone floor.<br>
+“Stop, stop!” Mike shouted, scrambling upright, blood glistening at the corner of his mouth. “I swear—I don’t know anything! I didn’t—”<br><br>
+John froze mid-step. His gaze had caught something—Mike’s arm. The fabric of his sleeve was stretched tight around the bandage. He narrowed his eyes.
+“Come here,” John ordered. His tone was cold, commanding.<br>
+Mike hesitated, inching back. “Don’t… don’t hit me again—”<br>
+“Closer.”
+Fear flickered across Mike’s face. He obeyed, dragging his chair forward, wood scraping across the floor.<br>
+Without a word, John seized his sleeve and tore it open. The cloth ripped clean away, exposing the wound beneath. John’s eyes widened. The wound beneath wasn’t an arrow wound at all—it was blunt, deep bruising from a blade.<br><br>
+
+John stepped back, breath sharp. His thoughts raced, puzzle pieces crashing together.
+If Mike wasn’t wounded by Noah’s arrow, then he wasn’t the man they fought last night.
+And no one else knew about that fight. Only John and Noah. No guards. No witnesses. Not even the Bureau.
+A whisper. Soft. Mocking. From nowhere and everywhere at once.<br>
+“Good luck escaping from Sinner…” the priest at Mary Church had spoken as if he knew.<br>
+John’s blood ran cold. His heart hammered. He knew that voice. That phrase.<br>
+John’s chair scraped violently against the floor as he shoved it aside and rushed for the door.<br>
+“Noah!” he barked, voice sharp with urgency. “Come with me—Mary Church!”<br>
+Noah, startled mid-step, nearly dropped the paper he was holding. “What? Now?”<br>
+But John was already halfway down the corridor, his coat snapping behind him like a banner, every stride fueled by the grim certainty that they had been deceived.<br><br>
+
+
+The upper floor of Mary Church was hushed, the silence broken only by the faint creak of floorboards. The tall priest pushed open the heavy oak door and stepped into the Father’s chamber.<br>
+“You called me?” he asked, his tone edged with suspicion.<br>
+The Father stood near the great stained-glass window, hands folded behind his back, bathed in the glow of fading afternoon light. For a long moment, he did not turn. Then, in a low, firm voice, he said:<br>
+“Leave this place. I have already moved the other priests. You must go as well.”<br>
+The priest frowned, stiffening where he stood. “What… what do you mean?”<br>
+The Father finally turned, his aged eyes heavy with sorrow. “I know everything, son. All of it. Leave quietly, before it is too late.”<br>
+A shadow flickered across the priest’s face. His jaw tightened, his gaze cold. “So… the false Sinner—that was your doing? A distraction to cover me?”<br>
+The Father stepped forward, voice heavy with conviction.<br><br>
+ “I did it for you. For the Church. You brought shame upon our holy order, upon our faith. But you are still one of us. I could not let you be exposed. I did what was necessary. But now—leave. Live quietly, and do no more harm.”<br>
+The priest shook his head slowly, the tension in his shoulders rising like a drawn bowstring. <br>
+“No… I cannot leave. I am the hand of God. His Sinner.”<br>
+“Do not say those words,” the Father snapped, his voice breaking with grief.<br>
+“Why?” the priest thundered, stepping closer. His eyes blazed with feverish conviction. <br>
+“I hear their sins day after day. They whisper into the dark, confessing their filth, then walk away free—as if forgiveness were so cheap! Even God forgives them. But I cannot. I will not. I am doing the work even God refuses to do—punishing the wicked He allows to live!”<br><br>
+
+The Father’s voice hardened, no longer sorrowful but stern.<br>
+ “You dare twist the name of God for blood? That is not holiness—it is blasphemy. You are no servant of Heaven. You are Satan’s hand.”<br>
+The priest’s breathing quickened. His grip tightened on the knife hidden in his sleeve. “No… I am God’s Sinner.”<br>
+“Stop this madness now,” the Father said, turning his back to the window once more.<br>
+ “Or I will see you bound in chains. You will answer to justice, if not to God Himself.”<br>
+The priest’s hand shot out. Steel flashed.
+The Father staggered, clutching his throat as blood poured between his fingers. He lurched backward, stumbling toward the stairwell. His body swayed, legs trembling beneath him, and with a sickening crash he tumbled down the stone steps.<br>
+The priest stood above, his shadow stretching long in the torchlight. He wiped the blade slowly against his robe and whispered down to the fallen body:<br>
+“If you see God… tell Him about me.”<br><br>
+
+The hall of Mary Church lay in silence, broken only by the hollow echo of John and Noah’s boots across the stone floor. Outside, thunder cracked, rolling through the heavens. Rain began to pelt the tall stained-glass windows, darkening the nave until the torches along the wall flickered weakly against the growing storm.
+John’s eyes swept the shadows. Then he froze. At the foot of the grand staircase, sprawled unnaturally, lay the body of the Father—his throat slashed, robes stained deep red.
+John’s jaw tightened. He gave a sharp signal to Noah. “Split.”<br><br>
+
+Sword already drawn, John ascended the stairs two at a time, each creak of the wood drowned by the thunder overhead. Below, Noah moved along the pews, bow strung and arrow ready, eyes cutting through the gloom.
+Upstairs, John reached the Father’s chamber. The heavy door stood ajar, shadows stretching across the floor inside. He stepped forward cautiously—
+A sudden crash. The door slammed open.<br><br>
+The Priest exploded from the shadows, swinging wildly. His blade hissed through the air, forcing John back. Steel clashed, sparks bursting in the dark. The Priest fought like a man possessed, striking with brutal speed. This was his home—every corridor, every angle, every step belonged to him.
+Downstairs, Noah heard the struggle and raced upward, loosing an arrow at the priest. He twisted, the shaft grazing his sleeve. With a snarl, he slammed a fist into Noah’s chest, sending him sprawling hard against the wall.
+John pressed forward, sword flashing, but the Priestr’s counterstrikes came with vicious precision. Blow after blow rang out, steel on steel, as the storm raged louder beyond the stained glass.
+Then—John saw an opening. He lunged.<br><br>
+But before the blade could strike true, a figure darted between them.
+The girl.
+John’s sword sank deep into her belly. The sound was sickening.
+She gasped, blood spilling onto her pale dress as she crumpled to the floor. John staggered back, eyes wide, the sword slipping from his trembling hand.
+“No…” His voice broke.<br><br>
+The Priest’s face twisted in horror. “No! No!” He dropped to his knees beside her, reaching for her, his chains of madness breaking for a moment as raw grief tore through him.
+Noah, regaining his balance, struck hard from behind. His bow cracked against the Priest’s skull, dropping the priest to the ground. He tied the man’s wrists with coarse rope, forcing him flat.
+But the Priest’s gaze never left the girl. His voice cracked and shook as he shouted, “No! Please—no!”<br><br>
+The girl’s hand reached weakly, trembling toward him. Her blind eyes lifted, a soft, broken breath escaping her lips. Then… nothing. Her body slackened, slipping into silence.
+Thunder shook the church. Rain beat harder against the windows.
+John stood frozen, chest heaving, his sword still dripping crimson. His hands shook as he looked down at the lifeless girl.
+And for the first time in years, guilt pierced him deeper than any blade.<br><br>
+
+
+Outside the church, the storm had passed, leaving the air damp and heavy. The streets glistened with rain, torches reflecting off the cobblestones. Bureau agents swarmed the steps, their boots clattering as they carried out bodies wrapped in sheets, catalogued weapons, and marked evidence—among them a torn sheet-head mask and a hooked blade still sticky with dried blood.
+Curious townsfolk gathered in clusters beyond the cordon, whispering, pointing, craning their necks for a glimpse of the scandal inside. Some crossed themselves, others muttered about shame and sin, their voices weaving into a low, uneasy hum.
+Noah stood with his bow slung across his back, watching the controlled chaos. He exhaled sharply.<br><br>
+“He got what he deserved,” he said flatly, his gaze lingering on the church’s darkened doorway.<br>
+ “But the church… what do we do now?”<br>
+John was silent for a moment, eyes tracing the crumbling façade of the holy place that once promised sanctuary. Finally, he spoke, voice weary.<br>
+“The church will close—for now. There are questions to answer, too many… and a mess to clean, with both the clergy and the people.”<br>
+ He shook his head, the weight of his words dragging lower. “But that isn’t our work anymore.”<br><br>
+He turned away as more Bureau men carried out another body, and the murmurs of the crowd swelled. John’s expression remained unreadable, but his eyes were dark.
+When he returned to the Bureau later that evening, the noise of the world dulled to a hollow echo. The cases stacked high, the files detailing names of the dead—faces of people he couldn’t save—blurred together. Faultless people, cut down for no reason. Some by sin, some by madness, some… by his own hand.
+John sank into his chair, exhaustion pulling at him. He rubbed his temples, staring at the floor, his chest heavy with the same thought repeating like a curse:
+He was tired of it. Tired of losing innocents. Tired of seeing the faultless fall. Tired of cases with no reason, no mercy, no end.
+And for the first time, he wanted to stop. To end it all—the work, the chase, the blood.
+Before it consumed him whole.<br><br>
+
+
+Goth slipped through the narrow doorway of the old man’s house, closing it gently behind him. The air smelled of dust and rusted metal, the kind that clung to forgotten rooms. He had used his chance wisely—while John and Noah were preoccupied, Goth had gone where no one thought to look.
+The Bureau’s office.
+The shelves had been quiet witnesses as he rifled through drawers and cabinets, searching not for the present but the past. Finally, in the bottom corner of a long-ignored cabinet, his fingers brushed the brittle edge of a folder.<br>
+Case File: 1899.<br>
+Incident: Entire village slaughtered in mutual violence. Suspects: None. Witness: One. Status: Closed.<br><br>
+
+Now, standing in front of the witness’s address written in fading ink, Goth hesitated. His hand lingered on the gate, old wood flaking beneath his touch. He took a breath, then stepped inside.
+The house was poor, sagging with years. A faint ticking filled the silence—the sound of clocks. On the worn sofa sat an old man, hunched, polishing the glass face of a pocket watch. His fingers moved slowly, carefully, like every tick was his lifeline.<br>
+ Goth said quietly. “Is there a James Motery here?”<br>
+The old man didn’t look up right away. “Who’s asking?”<br>
+“I’m from the Bureau,” Goth replied, lowering himself into a chair across from him.<br>
+The old man’s hands paused. “The Bureau? For what?” His voice was thin, suspicious.<br>
+“I want to ask about a case. 1899.”<br>
+The cloth slipped from James’s fingers. He stared at the watch as though it suddenly weighed too much. <br>
+“That case is closed,” he murmured. “Why dig up something that should be buried?”<br>
+“You were the witness,” Goth pressed, his tone steady but his chest tight. “Tell me what you saw.”<br>
+James’s face shifted, drawn tight with memory. He seemed to resist, then gave in, words dragging out as if pulled from a wound.<br>
+“It was my first day at work,” he said, voice trembling. “When I came home, the road was blocked by a fallen tree. I took another path… and that path led me into the village.” He swallowed. “I heard them before I saw them. Screams, crying, the sound of blades tearing through flesh. When I finally looked…” His eyes clouded. “They weren’t human anymore. They were butchering each other. Knives, axes, bare hands—blood everywhere. The ground wasn’t green with grass; it was red. All red.”<br><br>
+Goth leaned forward. “And… the nun?”<br>
+James blinked at him, confused at first, then his brow furrowed. “Nun? … Ah. Yes. I saw her. She wore a yellow dress. She wasn’t fighting. She was hiding.”<br>
+“Hiding what?”<br>
+“A boy,” James whispered, lowering his voice as though afraid someone might hear. “She hid him inside the hollow of a tree.”<br>
+Goth froze, his breath catching. His eyes widened. “What? No. That’s not possible.”<br>
+“It happened,” James said firmly, as if defending the truth against time itself. “I told the detectives back then. They never found him. But I saw him. A boy, small, alive. ”<br><br>
+But Goth was already rising, unable to hear more. His pulse thundered in his ears. He turned, muttered nothing, and walked out the door into the fading light.<br>
+“Hey! I’m not finished!” James’s voice cracked behind him. “The boy… he must know everything!”<br>
+But Goth didn’t look back. His footsteps quickened down the street, thoughts spinning like storm clouds.<br>
+The nun. The boy. Saved, not slaughtered. The one who had started it all—why would she protect him?<br>
+He didn’t want the answer. Not truly. But the truth had already sunk its claws into him.<br><br>
+
+Later that night, in the Bureau office, John closed the door behind him. The silence felt wrong. He glanced at the desk—papers slightly out of place, drawers left imperfectly ajar.
+He frowned, crossing the room. The case files had been disturbed. He shuffled through the stack, and then his hand froze.<br>
+At the very top sat the file of 1899.<br>
+John’s eyes narrowed. Someone had been here. Someone had searched, and left this case open on purpose.<br>
+And the question burned in his chest: who—and why?<br>
+ 
+                                             
+
+
+
+
+  <div style="text-align: center; margin-top: 40px;">
   <p style="font-weight: bold;">{CHAPTER - 6 END}</p>
+
+ <img src="chapter5-scene.jpg" alt="characters" style="width:100%; max-width:500px; border-radius:10px; margin:20px 0;">
+</div>
+
 
 
  <div class="chapter-navigation" style="margin-top: 40px;">
     <a href="chapters.html" class="btn">🏠 Back</a>
+    <!-- You can add Next Chapter link later -->
   </div>
 </div>
-</div>
-</div>
-
-<script type="module">
- import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
-import {
-  getAuth,
-  createUserWithEmailAndPassword,
-  signInWithEmailAndPassword,
-  signOut,
-  onAuthStateChanged,
-  updateProfile
-} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
-
-import {
-  getFirestore,
-  doc,
-  setDoc,
-  getDoc
-} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
-
-
-const firebaseConfig = {
-  apiKey: "AIzaSyDffoLenAKrKGMia63SDWTFt5E4AK3hxBE",
-  authDomain: "novel-site-81674.firebaseapp.com",
-  projectId: "novel-site-81674",
-  storageBucket: "novel-site-81674.appspot.com",
-  messagingSenderId: "227276404115",
-  appId: "1:227276404115:web:0a5831851c8c05391b6466"
-};
-
-// ✅ Init Firebase
-const app = initializeApp(firebaseConfig);
-const auth = getAuth(app);
-const db = getFirestore(app);
-  
-
-  auth.onAuthStateChanged(async (user) => {
-    if (!user) {
-      document.getElementById("buy-message").innerText = "Please login to read this chapter.";
-      document.getElementById("buy-message").style.display = "block";
-      return;
-    }
-
-    const userRef = doc(db, "users", user.uid);
-    const userSnap = await getDoc(userRef);
-    const purchases = userSnap.exists() ? userSnap.data().purchases || [] : [];
-
-    if (purchases.includes("chapter-6")) {
-      document.getElementById("chapter-content").style.display = "block";
-    } else {
-      document.getElementById("buy-message").style.display = "block";
-    }
-  });
-</script>
 </body>
 </html>
+
+
+
